@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Secleva 案C 予約一覧</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] }, colors: { line: { DEFAULT: '#06C755' }, sc: { teal: '#0E7C7B', tealLight: '#E8F4F4', tealLighter: 'rgba(14, 124, 123, 0.08)' } } } } }
+    </script>
+    <style>
+        ::-webkit-scrollbar { display: none; }
+        * { -ms-overflow-style: none; scrollbar-width: none; -webkit-tap-highlight-color: transparent; }
+        .touch-active:active { opacity: 0.6; transform: scale(0.98); transition: all 0.1s ease; }
+    </style>
+</head>
+<body class="bg-zinc-100 flex justify-center w-full min-h-[100dvh] text-zinc-900">
+
+    <main class="w-full max-w-[390px] h-[100dvh] bg-zinc-50 relative flex flex-col font-sans overflow-hidden sm:border-x sm:border-zinc-200 sm:shadow-2xl">
+
+        <div class="h-11 w-full bg-white flex justify-between items-center px-6 text-[14px] font-medium z-50">
+            <span>09:00</span>
+            <div class="flex gap-1.5 items-center"><i class="ph-fill ph-cell-signal-full text-base"></i><i class="ph ph-wifi-high text-base"></i><i class="ph-fill ph-battery-full text-lg"></i></div>
+        </div>
+
+        <header class="h-14 bg-white border-b border-zinc-200 flex justify-between items-center px-3 sticky top-0 z-40">
+            <a href="admin.html" class="touch-active p-2"><i class="ph ph-caret-left text-2xl"></i></a>
+            <h1 class="text-base font-bold tracking-wide">予約一覧</h1>
+            <button class="touch-active p-2"><i class="ph ph-plus text-2xl text-sc-teal"></i></button>
+        </header>
+
+        <!-- 日付タブ -->
+        <div class="bg-white border-b border-zinc-200 px-4 py-2.5 flex gap-2 overflow-x-auto sticky top-14 z-30">
+            <button class="px-4 py-1.5 bg-sc-teal text-white text-sm font-bold rounded-full shrink-0">今日</button>
+            <button class="px-4 py-1.5 bg-zinc-100 text-zinc-700 text-sm font-medium rounded-full shrink-0">明日</button>
+            <button class="px-4 py-1.5 bg-zinc-100 text-zinc-700 text-sm font-medium rounded-full shrink-0">今週</button>
+            <button class="px-4 py-1.5 bg-zinc-100 text-zinc-700 text-sm font-medium rounded-full shrink-0">日付指定</button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto pb-28">
+            <!-- 日付見出し -->
+            <div class="px-4 py-3 bg-zinc-50">
+                <p class="text-sm font-bold">2026年5月7日 (木)</p>
+                <p class="text-xs text-zinc-500">4件 / 売上見込 ¥29,000</p>
+            </div>
+
+            <!-- 予約カードリスト -->
+            <div class="px-4 space-y-2">
+                <div class="bg-white border border-zinc-100 rounded-2xl p-4 touch-active cursor-pointer flex items-start gap-3">
+                    <div class="text-sc-teal font-mono font-bold text-sm pt-1 w-12 shrink-0">10:00</div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-bold text-[15px] mb-1">田中 健太</p>
+                        <p class="text-xs text-zinc-500">もみほぐし (60分) ・ 8回目</p>
+                    </div>
+                    <span class="text-xs font-bold text-sc-teal bg-sc-tealLight px-2 py-1 rounded">確定</span>
+                </div>
+
+                <div class="bg-white border border-zinc-100 rounded-2xl p-4 touch-active cursor-pointer flex items-start gap-3 ring-2 ring-sc-teal/30">
+                    <div class="text-sc-teal font-mono font-bold text-sm pt-1 w-12 shrink-0">13:00</div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-bold text-[15px] mb-1">佐藤 美咲 <span class="ml-1 text-xs font-bold text-sc-teal bg-sc-tealLight px-1.5 py-0.5 rounded">新規</span></p>
+                        <p class="text-xs text-zinc-500">全身アロマ (90分)</p>
+                    </div>
+                    <span class="text-xs font-bold text-sc-teal bg-sc-tealLight px-2 py-1 rounded">次</span>
+                </div>
+
+                <div class="bg-white border border-zinc-100 rounded-2xl p-4 touch-active cursor-pointer flex items-start gap-3">
+                    <div class="text-zinc-700 font-mono font-bold text-sm pt-1 w-12 shrink-0">15:30</div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-bold text-[15px] mb-1">山田 太郎</p>
+                        <p class="text-xs text-zinc-500">腰中心 (60分) ・ 3回目</p>
+                    </div>
+                    <span class="text-xs font-bold text-zinc-500 bg-zinc-100 px-2 py-1 rounded">確定</span>
+                </div>
+
+                <div class="bg-white border border-zinc-100 rounded-2xl p-4 touch-active cursor-pointer flex items-start gap-3">
+                    <div class="text-zinc-700 font-mono font-bold text-sm pt-1 w-12 shrink-0">18:00</div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-bold text-[15px] mb-1">鈴木 裕子</p>
+                        <p class="text-xs text-zinc-500">全身アロマ (90分) ・ 常連</p>
+                    </div>
+                    <span class="text-xs font-bold text-zinc-500 bg-zinc-100 px-2 py-1 rounded">確定</span>
+                </div>
+            </div>
+
+            <!-- 予約待ち（pending） -->
+            <div class="px-4 py-3 mt-4 bg-zinc-50">
+                <p class="text-sm font-bold text-amber-600 flex items-center gap-1.5"><i class="ph-fill ph-clock"></i> 確認待ち（HP予約）</p>
+                <p class="text-xs text-zinc-500">1件・タップで承認/キャンセル</p>
+            </div>
+            <div class="px-4">
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 touch-active cursor-pointer flex items-start gap-3">
+                    <div class="text-amber-700 font-mono font-bold text-sm pt-1 w-12 shrink-0">明日<br>14:00</div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-bold text-[15px] mb-1">高橋 様</p>
+                        <p class="text-xs text-zinc-600">90分コース ・ 直接予約フォーム</p>
+                    </div>
+                    <i class="ph ph-caret-right text-amber-700 text-xl"></i>
+                </div>
+            </div>
+        </div>
+
+        <nav class="h-[84px] bg-white border-t border-zinc-200 absolute bottom-0 w-full flex justify-around items-start pt-2 px-2 z-50 pb-[20px]">
+            <a href="admin.html" class="flex flex-col items-center justify-center w-full touch-active text-zinc-400">
+                <i class="ph ph-house text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold">ホーム</span>
+            </a>
+            <button class="flex flex-col items-center justify-center w-full touch-active text-sc-teal">
+                <i class="ph-fill ph-calendar-blank text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold">予約</span>
+            </button>
+            <a href="customers.html" class="flex flex-col items-center justify-center w-full touch-active text-zinc-400">
+                <i class="ph ph-users text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold">顧客</span>
+            </a>
+            <a href="karte.html" class="flex flex-col items-center justify-center w-full touch-active text-zinc-400">
+                <i class="ph ph-folder text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold">カルテ</span>
+            </a>
+            <a href="settings.html" class="flex flex-col items-center justify-center w-full touch-active text-zinc-400">
+                <i class="ph ph-gear text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold">設定</span>
+            </a>
+        </nav>
+    </main>
+</body>
+</html>

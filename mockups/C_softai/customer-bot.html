@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Secleva 案C 客側Bot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: { extend: {
+                fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], mono: ['ui-monospace','monospace'] },
+                colors: { line: { green: '#06C755', bg: '#FFFFFF' }, brand: { pale: '#E8F4F4', teal: '#0E7C7B' } },
+                animation: {
+                    'pulse-dot': 'pulseDot 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    'message-enter-left': 'messageEnterLeft 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+                    'message-enter-right': 'messageEnterRight 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+                },
+                keyframes: {
+                    pulseDot: { '0%, 100%': { opacity: 1, transform: 'scale(1)' }, '50%': { opacity: 0.4, transform: 'scale(0.8)' } },
+                    messageEnterLeft: { '0%': { opacity: 0, transform: 'translateY(10px) translateX(-10px)' }, '100%': { opacity: 1, transform: 'translateY(0) translateX(0)' } },
+                    messageEnterRight: { '0%': { opacity: 0, transform: 'translateY(10px) translateX(10px)' }, '100%': { opacity: 1, transform: 'translateY(0) translateX(0)' } }
+                }
+            } }
+        }
+    </script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .notch-area { clip-path: inset(0px 0px 0px 0px round 0 0 24px 24px); }
+        .msg-1 { animation-delay: 100ms; } .msg-2 { animation-delay: 700ms; } .msg-3 { animation-delay: 1200ms; } .msg-4 { animation-delay: 1800ms; } .msg-5 { animation-delay: 2400ms; } .msg-6 { animation-delay: 3000ms; }
+    </style>
+</head>
+<body class="bg-zinc-100 min-h-[100dvh] flex items-center justify-center p-4 font-sans antialiased text-zinc-900 overflow-hidden">
+
+    <div class="relative w-[390px] h-[844px] bg-black rounded-[50px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.4)] border-[12px] border-black overflow-hidden flex flex-col justify-between shrink-0">
+        <div class="relative w-full h-full bg-line-bg rounded-[38px] overflow-hidden flex flex-col z-10">
+
+            <div class="absolute top-0 w-full h-12 z-50 flex justify-between items-center px-8 text-black bg-white/80 backdrop-blur-md">
+                <span class="text-[15px] font-semibold tracking-tight mt-1">14:20</span>
+                <div class="absolute left-1/2 -translate-x-1/2 top-0 w-[120px] h-[30px] bg-black notch-area"></div>
+                <div class="flex items-center gap-1.5 mt-1">
+                    <i class="ph-fill ph-cell-signal-full text-[14px]"></i>
+                    <i class="ph-fill ph-wifi-high text-[14px]"></i>
+                    <i class="ph-fill ph-battery-full text-[18px]"></i>
+                </div>
+            </div>
+
+            <header class="h-[88px] pt-12 px-4 bg-white border-b border-zinc-100 flex items-center justify-between shrink-0 z-40 relative shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)]">
+                <button class="w-10 h-10 flex items-center justify-center text-zinc-800">
+                    <i class="ph ph-caret-left text-2xl"></i>
+                </button>
+                <div class="flex items-center gap-1.5">
+                    <h1 class="text-[16px] font-medium tracking-tight text-zinc-900">上野リラクゼーション</h1>
+                    <div class="relative flex items-center justify-center w-3 h-3 mt-0.5">
+                        <span class="absolute w-2 h-2 bg-brand-teal rounded-full animate-pulse-dot shadow-[0_0_8px_rgba(14,124,123,0.4)]"></span>
+                    </div>
+                </div>
+                <button class="w-10 h-10 flex items-center justify-center text-zinc-800">
+                    <i class="ph ph-list text-xl"></i>
+                </button>
+            </header>
+
+            <main class="flex-1 overflow-y-auto no-scrollbar px-4 py-6 bg-line-bg flex flex-col gap-5 relative isolate">
+
+                <div class="flex justify-center mb-2">
+                    <span class="text-[11px] font-medium text-zinc-400 bg-zinc-50 px-3 py-1 rounded-full border border-zinc-100 tracking-wider">今日</span>
+                </div>
+
+                <div class="flex flex-col items-end opacity-0 animate-message-enter-right msg-1">
+                    <div class="flex items-end gap-1.5 max-w-[80%]">
+                        <div class="flex flex-col items-end gap-0.5 text-[10px] text-zinc-400 mb-0.5">
+                            <span class="leading-none text-brand-teal/80 font-medium">既読</span>
+                            <span class="leading-none font-mono">14:15</span>
+                        </div>
+                        <div class="bg-line-green text-white px-4 py-2.5 rounded-[20px] rounded-tr-sm text-[15px] leading-relaxed shadow-sm">
+                            明日の3時頃って空いてますか？
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-end gap-2 max-w-[85%] opacity-0 animate-message-enter-left msg-2">
+                    <div class="w-9 h-9 rounded-full bg-brand-pale flex items-center justify-center shrink-0 shadow-[inset_0_1px_3px_rgba(0,0,0,0.05)] border border-brand-teal/10">
+                        <span class="text-brand-teal text-[13px] font-semibold tracking-tighter">UR</span>
+                    </div>
+                    <div class="flex items-end gap-1.5">
+                        <div class="bg-white border border-zinc-100 text-zinc-800 px-4 py-2.5 rounded-[20px] rounded-tl-sm text-[15px] leading-relaxed shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+                            明日は15:00以降でしたら大丈夫です。60分か90分、どちらをご希望ですか？
+                        </div>
+                        <span class="text-[10px] text-zinc-400 font-mono mb-0.5">14:15</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-end mt-2 opacity-0 animate-message-enter-right msg-3">
+                    <div class="flex items-end gap-1.5 max-w-[80%]">
+                        <div class="flex flex-col items-end gap-0.5 text-[10px] text-zinc-400 mb-0.5">
+                            <span class="leading-none text-brand-teal/80 font-medium">既読</span>
+                            <span class="leading-none font-mono">14:16</span>
+                        </div>
+                        <div class="bg-line-green text-white px-4 py-2.5 rounded-[20px] rounded-tr-sm text-[15px] leading-relaxed shadow-sm">90分で</div>
+                    </div>
+                </div>
+
+                <div class="flex items-end gap-2 max-w-[85%] mt-2 opacity-0 animate-message-enter-left msg-4">
+                    <div class="w-9 h-9 rounded-full bg-brand-pale flex items-center justify-center shrink-0 shadow-[inset_0_1px_3px_rgba(0,0,0,0.05)] border border-brand-teal/10">
+                        <span class="text-brand-teal text-[13px] font-semibold tracking-tighter">UR</span>
+                    </div>
+                    <div class="flex items-end gap-1.5">
+                        <div class="bg-white border border-zinc-100 text-zinc-800 px-4 py-2.5 rounded-[20px] rounded-tl-sm text-[15px] leading-relaxed shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+                            明日15:00から90分で承りました。お名前を教えてください。
+                        </div>
+                        <span class="text-[10px] text-zinc-400 font-mono mb-0.5">14:16</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-end mt-2 opacity-0 animate-message-enter-right msg-5">
+                    <div class="flex items-end gap-1.5 max-w-[80%]">
+                        <div class="flex flex-col items-end gap-0.5 text-[10px] text-zinc-400 mb-0.5">
+                            <span class="leading-none text-brand-teal/80 font-medium">既読</span>
+                            <span class="leading-none font-mono">14:17</span>
+                        </div>
+                        <div class="bg-line-green text-white px-4 py-2.5 rounded-[20px] rounded-tr-sm text-[15px] leading-relaxed shadow-sm">山田と申します</div>
+                    </div>
+                </div>
+
+                <div class="flex items-end gap-2 max-w-[90%] mt-2 opacity-0 animate-message-enter-left msg-6 pb-4">
+                    <div class="w-9 h-9 rounded-full bg-brand-pale flex items-center justify-center shrink-0 shadow-[inset_0_1px_3px_rgba(0,0,0,0.05)] border border-brand-teal/10 self-start mt-1">
+                        <span class="text-brand-teal text-[13px] font-semibold tracking-tighter">UR</span>
+                    </div>
+                    <div class="flex items-end gap-1.5">
+                        <div class="relative bg-white border border-zinc-100 rounded-2xl rounded-tl-sm shadow-[0_8px_24px_-8px_rgba(0,0,0,0.05)] w-[250px] overflow-hidden">
+                            <div class="absolute top-0 left-0 bottom-0 w-[1.5px] bg-brand-teal"></div>
+                            <div class="p-4 flex flex-col gap-3 pl-5">
+                                <div class="flex items-center gap-2 relative">
+                                    <div class="w-6 h-6 rounded-full bg-brand-pale flex items-center justify-center shrink-0">
+                                        <i class="ph ph-check text-brand-teal text-sm font-bold"></i>
+                                    </div>
+                                    <h3 class="font-bold text-zinc-900 text-[15px] tracking-tight">ご予約完了</h3>
+                                </div>
+                                <div class="w-full h-[1px] bg-zinc-100 my-0.5"></div>
+                                <div class="flex flex-col gap-2.5">
+                                    <div class="flex justify-between items-center px-1">
+                                        <span class="text-zinc-400 text-[12px] font-medium tracking-wide">ご予約者</span>
+                                        <span class="font-medium text-zinc-900 text-[14px]">山田様</span>
+                                    </div>
+                                    <div class="flex justify-between items-center px-1">
+                                        <span class="text-zinc-400 text-[12px] font-medium tracking-wide">日時</span>
+                                        <span class="font-medium text-zinc-900 text-[14px]">明日 15:00</span>
+                                    </div>
+                                    <div class="flex justify-between items-center px-1">
+                                        <span class="text-zinc-400 text-[12px] font-medium tracking-wide">コース</span>
+                                        <span class="font-medium text-zinc-900 text-[14px]">90分</span>
+                                    </div>
+                                </div>
+                                <div class="mt-1 bg-zinc-50 rounded-lg p-2.5 border border-zinc-100/80 flex items-center justify-center">
+                                    <span class="font-mono text-zinc-500 text-[11px] tracking-widest uppercase">#2026-0508-001</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-[10px] text-zinc-400 font-mono mb-0.5 shrink-0">14:18</span>
+                    </div>
+                </div>
+
+                <div class="h-8 w-full shrink-0"></div>
+            </main>
+
+            <footer class="bg-zinc-50 border-t border-zinc-200 pb-8 rounded-b-[38px] shrink-0 relative z-40">
+                <div class="px-3 py-2.5 flex items-end gap-2">
+                    <button class="w-9 h-9 shrink-0 flex items-center justify-center text-zinc-500 mb-0.5">
+                        <i class="ph ph-plus text-[22px]"></i>
+                    </button>
+                    <div class="flex-1 bg-white border border-zinc-200 rounded-[20px] min-h-[40px] px-3.5 py-2.5 flex items-center shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]">
+                        <div class="text-zinc-300 text-[15px] select-none flex-1 font-medium cursor-text">メッセージを入力...</div>
+                        <i class="ph ph-smiley text-zinc-400 text-xl ml-2"></i>
+                    </div>
+                    <button class="w-9 h-9 shrink-0 flex items-center justify-center text-zinc-500 mb-0.5">
+                        <i class="ph ph-microphone text-[22px]"></i>
+                    </button>
+                </div>
+                <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 rounded-full bg-zinc-800"></div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

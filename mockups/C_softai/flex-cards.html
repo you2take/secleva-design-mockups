@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Secleva 案C Flex Messages</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: {
+                fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], mono: ['"Roboto Mono"', 'monospace'] },
+                colors: { secleva: { teal: '#0E7C7B', tealLight: 'rgba(14, 124, 123, 0.1)', paleBlue: '#E8F4F4', chatBg: '#E6ECEF', lineGreen: '#06C755' } },
+                boxShadow: { 'soft-card': '0 4px 20px -2px rgba(0, 0, 0, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02)', 'floating': '0 20px 40px -10px rgba(0, 0, 0, 0.1)', 'inner-border': 'inset 0 0 0 1px rgba(0,0,0,0.03)' }
+            } }
+        }
+    </script>
+    <style>
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(20px) scale(0.98); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+        .animate-card { animation: slideUpFade 0.65s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards; opacity: 0; }
+        .delay-1 { animation-delay: 200ms; } .delay-2 { animation-delay: 400ms; } .delay-3 { animation-delay: 600ms; }
+        @keyframes pulseSoft { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } }
+        .ai-pulse { animation: pulseSoft 3s ease-in-out infinite; }
+    </style>
+</head>
+<body class="bg-zinc-900 text-zinc-800 antialiased min-h-[100dvh] flex items-center justify-center selection:bg-secleva-teal selection:text-white p-4">
+
+    <div class="relative flex flex-col items-center justify-center w-full max-w-7xl mx-auto h-full">
+
+        <main class="relative w-full max-w-[390px] h-[844px] bg-secleva-chatBg rounded-[3rem] shadow-floating ring-[12px] ring-zinc-800/80 overflow-hidden flex flex-col shrink-0 shadow-2xl">
+
+            <header class="relative z-50 w-full h-12 flex items-center justify-between px-6 pt-2 select-none text-zinc-800">
+                <span class="text-[14px] font-medium tracking-tight h-full flex items-center pt-1">09:00</span>
+                <div class="absolute top-2 left-1/2 -translate-x-1/2 w-28 h-[26px] bg-zinc-950 rounded-full shadow-inner"></div>
+                <div class="flex items-center gap-1.5 h-full pt-1">
+                    <i class="ph-fill ph-cell-signal-full text-[14px]"></i>
+                    <i class="ph-fill ph-wifi-high text-[14px]"></i>
+                    <i class="ph-fill ph-battery-full text-[16px]"></i>
+                </div>
+            </header>
+
+            <div class="relative z-40 px-4 py-3 bg-white/90 backdrop-blur-md border-b shadow-inner-border border-zinc-200/50 flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-3">
+                    <button class="w-8 h-8 flex items-center justify-center rounded-full">
+                        <i class="ph ph-caret-left text-xl text-zinc-600"></i>
+                    </button>
+                    <div class="flex flex-col">
+                        <span class="text-[10px] text-secleva-teal font-semibold tracking-wider flex items-center gap-1">
+                            <i class="ph-fill ph-sparkle text-xs ai-pulse"></i> SECLEVA AI
+                        </span>
+                        <h1 class="text-[15px] font-bold text-zinc-800 leading-tight">Flex Message プレビュー</h1>
+                    </div>
+                </div>
+                <button class="w-8 h-8 flex items-center justify-center bg-zinc-100 rounded-full">
+                    <i class="ph-fill ph-list text-zinc-500"></i>
+                </button>
+            </div>
+
+            <div class="relative z-10 flex-1 overflow-y-auto hide-scrollbar px-4 pt-6 pb-12 flex flex-col gap-6">
+
+                <div class="flex items-start gap-2.5 w-full">
+                    <img src="../../branding/logo_C.png" alt="Secleva" class="w-8 h-8 rounded-2xl object-cover">
+                    <div class="flex-1 flex flex-col gap-3 min-w-0">
+
+                        <article class="animate-card delay-1 bg-white rounded-[20px] shadow-soft-card relative overflow-hidden flex flex-col border border-zinc-100/50">
+                            <div class="absolute left-0 top-0 bottom-0 w-[2.5px] bg-secleva-teal z-10"></div>
+                            <div class="px-4 pt-4 pb-2 border-b border-zinc-100/80 flex items-center gap-2">
+                                <div class="w-7 h-7 rounded-lg bg-secleva-paleBlue flex items-center justify-center shrink-0">
+                                    <i class="ph-fill ph-calendar-check text-secleva-teal text-[15px]"></i>
+                                </div>
+                                <h2 class="text-[14px] font-bold text-zinc-800">本日の予約</h2>
+                            </div>
+                            <div class="px-4 py-2 flex flex-col divide-y divide-zinc-50">
+                                <div class="grid grid-cols-[3rem_auto_1fr] gap-3 items-center py-2.5">
+                                    <span class="text-[13px] font-mono text-zinc-500 font-medium tracking-tight">10:00</span>
+                                    <span class="text-[14px] font-bold text-zinc-800 whitespace-nowrap">田中様</span>
+                                    <span class="text-[12px] text-zinc-500 text-right truncate">60分・8回目</span>
+                                </div>
+                                <div class="grid grid-cols-[3rem_auto_1fr] gap-3 items-center py-2.5 relative">
+                                    <span class="text-[13px] font-mono text-zinc-500 font-medium tracking-tight">13:00</span>
+                                    <span class="text-[14px] font-bold text-zinc-800 whitespace-nowrap">佐藤様</span>
+                                    <div class="flex items-center justify-end gap-2 min-w-0">
+                                        <span class="text-[12px] text-zinc-500 truncate">90分</span>
+                                        <span class="bg-secleva-tealLight text-secleva-teal text-[10px] font-bold px-1.5 py-[2px] rounded uppercase tracking-wider shrink-0 ring-1 ring-inset ring-secleva-teal/20">新規</span>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-[3rem_auto_1fr] gap-3 items-center py-2.5">
+                                    <span class="text-[13px] font-mono text-zinc-500 font-medium tracking-tight">15:30</span>
+                                    <span class="text-[14px] font-bold text-zinc-800 whitespace-nowrap">山田様</span>
+                                    <span class="text-[12px] text-zinc-500 text-right truncate">60分・3回目</span>
+                                </div>
+                                <div class="grid grid-cols-[3rem_auto_1fr] gap-3 items-center py-2.5">
+                                    <span class="text-[13px] font-mono text-zinc-500 font-medium tracking-tight">18:00</span>
+                                    <span class="text-[14px] font-bold text-zinc-800 whitespace-nowrap">鈴木様</span>
+                                    <span class="text-[12px] text-zinc-500 text-right truncate">90分・常連</span>
+                                </div>
+                            </div>
+                            <div class="px-4 py-3 bg-zinc-50 mt-1 flex justify-between items-center border-t border-zinc-100/80">
+                                <span class="text-[12px] font-medium text-zinc-500">売上予測</span>
+                                <span class="text-[15px] font-mono font-bold text-secleva-teal tracking-tight">¥29,000</span>
+                            </div>
+                        </article>
+
+                        <article class="animate-card delay-2 bg-white rounded-[20px] shadow-soft-card relative overflow-hidden flex flex-col border border-zinc-100/50">
+                            <div class="absolute left-0 top-0 bottom-0 w-[2.5px] bg-secleva-teal z-10"></div>
+                            <div class="px-4 py-3 flex items-center justify-between border-b border-zinc-50/80 relative z-10 bg-white/50 backdrop-blur-sm">
+                                <h2 class="text-[14px] font-bold text-zinc-800">田中様 カルテ</h2>
+                                <button class="text-zinc-400">
+                                    <i class="ph ph-dots-three text-xl"></i>
+                                </button>
+                            </div>
+                            <div class="h-20 bg-gradient-to-br from-secleva-paleBlue to-white relative flex items-center px-4 mb-2">
+                                <div class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center border border-zinc-100 ring-4 ring-white">
+                                    <i class="ph-fill ph-user text-secleva-teal text-xl"></i>
+                                </div>
+                                <div class="absolute right-4 top-1/2 -translate-y-1/2">
+                                     <span class="border-[1.5px] border-secleva-teal/30 text-secleva-teal bg-white rounded-md px-2 py-0.5 text-[11px] font-bold tracking-wide">8回目</span>
+                                </div>
+                            </div>
+                            <div class="px-4 pb-4 flex flex-col">
+                                <div class="grid grid-cols-[4.5rem_1fr] gap-x-2 gap-y-1.5 text-[13px] mb-3">
+                                    <span class="text-zinc-400 font-medium">最終来店</span>
+                                    <span class="text-zinc-800 font-medium">4/24(月)</span>
+                                    <span class="text-zinc-400 font-medium">施術内容</span>
+                                    <span class="text-zinc-800 font-medium">60分・腰中心強め</span>
+                                </div>
+                                <div class="bg-secleva-paleBlue/40 border-l-[2px] border-secleva-teal rounded-r-lg p-3 relative">
+                                    <i class="ph-fill ph-quotes text-secleva-tealLight absolute top-2 right-2 text-2xl"></i>
+                                    <p class="text-[12px] leading-relaxed text-zinc-700 relative z-10">
+                                        腰の張り強め、肩こりも。<br>次回は90分コースを提案予定。
+                                    </p>
+                                </div>
+                                <button class="mt-4 w-full bg-secleva-teal text-white rounded-[12px] py-3 text-[13px] font-bold flex items-center justify-center gap-1.5 shadow-sm">
+                                    詳細を見る
+                                    <i class="ph-bold ph-arrow-right text-[14px]"></i>
+                                </button>
+                            </div>
+                        </article>
+
+                        <div class="animate-card delay-3 mt-1.5 mb-0.5 pl-1">
+                            <span class="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i class="ph ph-cards"></i> メニューカルーセル
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animate-card delay-3 w-[calc(100%+2rem)] -ml-4 pl-[3.25rem] pr-4 pb-4 flex overflow-x-auto snap-x snap-mandatory gap-3 hide-scrollbar items-stretch">
+                    <article class="w-[200px] shrink-0 snap-start bg-white rounded-[18px] shadow-soft-card border border-zinc-100/50 flex flex-col overflow-hidden relative">
+                        <div class="absolute left-0 top-0 bottom-0 w-[2.5px] bg-secleva-teal z-10"></div>
+                        <div class="h-20 bg-gradient-to-t from-secleva-paleBlue to-white flex items-center justify-center relative">
+                            <i class="ph-light ph-timer text-[32px] text-secleva-teal/60"></i>
+                        </div>
+                        <div class="p-3 flex flex-col flex-1">
+                            <h3 class="text-[14px] font-bold text-zinc-800 mb-1">60分コース</h3>
+                            <span class="text-[16px] font-mono font-bold text-secleva-teal tracking-tighter mb-3 mt-auto">¥4,500</span>
+                            <button class="w-full border-[1.5px] border-secleva-teal text-secleva-teal rounded-xl py-2 text-[12px] font-bold">選ぶ</button>
+                        </div>
+                    </article>
+                    <article class="w-[200px] shrink-0 snap-start bg-white rounded-[18px] shadow-soft-card border border-zinc-100/50 flex flex-col overflow-hidden relative">
+                        <div class="absolute left-0 top-0 bottom-0 w-[2.5px] bg-secleva-teal z-20"></div>
+                        <div class="h-20 bg-gradient-to-t from-secleva-paleBlue to-white flex items-center justify-center relative">
+                            <div class="absolute top-2 right-2 z-10 bg-secleva-teal text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm flex items-center gap-0.5">
+                                <i class="ph-fill ph-crown text-[10px]"></i> 人気
+                            </div>
+                            <i class="ph-light ph-sparkle text-[32px] text-secleva-teal/60"></i>
+                        </div>
+                        <div class="p-3 flex flex-col flex-1">
+                            <h3 class="text-[14px] font-bold text-zinc-800 mb-1">90分コース</h3>
+                            <span class="text-[16px] font-mono font-bold text-secleva-teal tracking-tighter mb-3 mt-auto">¥6,800</span>
+                            <button class="w-full border-[1.5px] border-secleva-teal text-secleva-teal rounded-xl py-2 text-[12px] font-bold">選ぶ</button>
+                        </div>
+                    </article>
+                    <article class="w-[200px] shrink-0 snap-start bg-white rounded-[18px] shadow-soft-card border border-zinc-100/50 flex flex-col overflow-hidden relative">
+                        <div class="absolute left-0 top-0 bottom-0 w-[2.5px] bg-secleva-teal z-10"></div>
+                        <div class="h-20 bg-gradient-to-t from-secleva-paleBlue to-white flex items-center justify-center relative">
+                            <i class="ph-light ph-users text-[32px] text-secleva-teal/60"></i>
+                        </div>
+                        <div class="p-3 flex flex-col flex-1">
+                            <h3 class="text-[14px] font-bold text-zinc-800 mb-1">ペアコース</h3>
+                            <span class="text-[16px] font-mono font-bold text-secleva-teal tracking-tighter mb-3 mt-auto">¥9,000</span>
+                            <button class="w-full border-[1.5px] border-secleva-teal text-secleva-teal rounded-xl py-2 text-[12px] font-bold">選ぶ</button>
+                        </div>
+                    </article>
+                    <div class="w-4 shrink-0"></div>
+                </div>
+            </div>
+
+            <div class="absolute bottom-0 left-0 right-0 h-[88px] bg-[#f6f6f6] border-t border-zinc-200/60 pb-8 px-4 flex items-center gap-3 z-50">
+                <button class="w-8 h-8 rounded-full flex items-center justify-center text-zinc-400">
+                    <i class="ph ph-plus text-xl"></i>
+                </button>
+                <div class="flex-1 h-9 bg-white rounded-full border border-zinc-200 px-4 flex items-center">
+                    <span class="text-[13px] text-zinc-300">メッセージを入力...</span>
+                </div>
+                <button class="w-8 h-8 rounded-full flex items-center justify-center text-zinc-400">
+                    <i class="ph ph-microphone text-xl"></i>
+                </button>
+            </div>
+            <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-zinc-900/80 rounded-full z-50"></div>
+        </main>
+    </div>
+</body>
+</html>

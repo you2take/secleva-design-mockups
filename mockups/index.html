@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secleva デザイン3案 — 比較ハブ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] }, colors: {
+            line: { green: '#06C755' },
+            sec: { terra: '#C75D3C', beige: '#F5EFE6', offwhite: '#FAF7F2' },
+            sc: { teal: '#0E7C7B', tealLight: '#E8F4F4' }
+        } } } }
+    </script>
+</head>
+<body class="bg-zinc-50 min-h-[100dvh] text-zinc-900 font-sans">
+
+    <header class="border-b border-zinc-200 bg-white">
+        <div class="max-w-6xl mx-auto px-6 py-6">
+            <h1 class="text-2xl font-bold tracking-tight">Secleva — デザイン3案 比較ハブ</h1>
+            <p class="text-sm text-zinc-500 mt-1">LINE × AI 秘書 SaaS / 個人サロン向け（整体・マッサージ・スナック）</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-10 space-y-10">
+
+        <!-- Intro -->
+        <section class="bg-white rounded-2xl border border-zinc-200 p-6">
+            <h2 class="text-lg font-bold mb-3">3案 共通土台</h2>
+            <p class="text-sm leading-relaxed text-zinc-600">
+                個人店オーナー（IT中-低リテラシー）が「LINEに溶け込む」ことを最重視。LINEグリーン #06C755 ＋ 角丸吹き出し ＋ Noto Sans JP ＋ 絵文字OK ＋ SaaS王道（Stripe/Linear系）排除。3案は同じ土台の上で<strong>差し色／ロゴ／マイクロコピー</strong>のみで温度差を出します。
+            </p>
+        </section>
+        <!-- LP セクション -->
+        <section class="bg-white rounded-2xl border border-zinc-200 p-6">
+            <h2 class="text-lg font-bold mb-3">LP（secleva.com トップ）</h2>
+            <p class="text-sm leading-relaxed text-zinc-600 mb-4">オーナー獲得用のサービス紹介LP。3案ともLINE土台＋差し色で塗り分け。</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <a href="../lp/A_pure-line/index.html" class="flex items-center justify-between px-4 py-3 bg-zinc-50 rounded-lg hover:bg-zinc-100 text-sm font-bold border border-zinc-200">
+                    <span>📱 案A LP（純正LINE）</span><i class="ph ph-arrow-right"></i>
+                </a>
+                <a href="../lp/B_warmth/index.html" class="flex items-center justify-between px-4 py-3 bg-sec-offwhite rounded-lg hover:bg-sec-beige text-sm font-bold border border-zinc-200">
+                    <span>📱 案B LP（温もり）</span><i class="ph ph-arrow-right"></i>
+                </a>
+                <a href="../lp/C_softai/index.html" class="flex items-center justify-between px-4 py-3 bg-sc-tealLight rounded-lg hover:bg-sc-teal/20 text-sm font-bold border border-zinc-200">
+                    <span>📱 案C LP（やわらかAI）</span><i class="ph ph-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- ロゴ・ブランドキット -->
+        <section class="bg-white rounded-2xl border border-zinc-200 p-6">
+            <h2 class="text-lg font-bold mb-3">ロゴ・ブランドキット 9バリエ</h2>
+            <p class="text-sm leading-relaxed text-zinc-600 mb-4">aidesigner で生成。1〜9 の番号で確定後、各画面に反映予定。</p>
+            <a href="../branding/index.html" class="flex items-center justify-between px-4 py-3 bg-zinc-50 rounded-lg hover:bg-zinc-100 text-sm font-bold border border-zinc-200">
+                <span>🎨 ロゴ9バリエを見る</span><i class="ph ph-arrow-right"></i>
+            </a>
+        </section>
+
+
+        <!-- 3案 Comparison Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- 案A -->
+            <article class="bg-white rounded-2xl border border-zinc-200 overflow-hidden flex flex-col">
+                <div class="h-3 bg-line-green"></div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-[11px] font-bold tracking-widest text-line-green">CASE A</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">純正LINE延長</h3>
+                    <p class="text-xs text-zinc-500 mb-4">最毛嫌い回避／60代・超低リテラシ向け</p>
+
+                    <div class="space-y-1 text-xs text-zinc-600 mb-5">
+                        <div>白＋#06C755＋墨グレー</div>
+                        <div>差し色なし／フラット</div>
+                        <div>「今日は4件です👌」</div>
+                    </div>
+
+                    <div class="space-y-2 mt-auto">
+                        <a href="A_pure-line/owner-bot.html" class="flex items-center justify-between px-3 py-2 bg-zinc-50 rounded-lg hover:bg-zinc-100 text-sm">
+                            <span>① オーナー秘書 LINE Bot</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="A_pure-line/customer-bot.html" class="flex items-center justify-between px-3 py-2 bg-zinc-50 rounded-lg hover:bg-zinc-100 text-sm">
+                            <span>② 客側 LINE Bot</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="A_pure-line/flex-cards.html" class="flex items-center justify-between px-3 py-2 bg-zinc-50 rounded-lg hover:bg-zinc-100 text-sm">
+                            <span>③ Flex Message カード</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="A_pure-line/rich-menu.html" class="flex items-center justify-between px-3 py-2 bg-zinc-50 rounded-lg hover:bg-zinc-100 text-sm">
+                            <span>④ リッチメニュー</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="A_pure-line/admin.html" class="flex items-center justify-between px-3 py-2 bg-zinc-50 rounded-lg hover:bg-zinc-100 text-sm">
+                            <span>⑤ Web管理画面</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="A_pure-line/reservations.html" class="flex items-center justify-between px-3 py-2 bg-zinc-50 rounded-lg hover:bg-zinc-100 text-sm">
+                            <span>⑥ 予約一覧</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="A_pure-line/customers.html" class="flex items-center justify-between px-3 py-2 bg-zinc-50 rounded-lg hover:bg-zinc-100 text-sm">
+                            <span>⑦ 顧客一覧</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="A_pure-line/settings.html" class="flex items-center justify-between px-3 py-2 bg-zinc-50 rounded-lg hover:bg-zinc-100 text-sm">
+                            <span>⑧ 設定</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="A_pure-line/karte.html" class="flex items-center justify-between px-3 py-2 bg-zinc-50 rounded-lg hover:bg-zinc-100 text-sm">
+                            <span>⑨ カルテ一覧</span><i class="ph ph-arrow-right"></i>
+                        </a>                    </div>
+                </div>
+            </article>
+
+            <!-- 案B -->
+            <article class="bg-white rounded-2xl border border-zinc-200 overflow-hidden flex flex-col">
+                <div class="h-3 bg-sec-terra"></div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-[11px] font-bold tracking-widest text-sec-terra">CASE B</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">LINE×温もり</h3>
+                    <p class="text-xs text-zinc-500 mb-4">vision継承／30-50代・温かみ求める層</p>
+
+                    <div class="space-y-1 text-xs text-zinc-600 mb-5">
+                        <div>オフ白＋#06C755＋テラコッタ</div>
+                        <div>ベージュアクセント／和の温かみ</div>
+                        <div>「本日は4件、お疲れさまです🙏」</div>
+                    </div>
+
+                    <div class="space-y-2 mt-auto">
+                        <a href="B_warmth/owner-bot.html" class="flex items-center justify-between px-3 py-2 bg-sec-offwhite rounded-lg hover:bg-sec-beige text-sm">
+                            <span>① オーナー秘書 LINE Bot</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="B_warmth/customer-bot.html" class="flex items-center justify-between px-3 py-2 bg-sec-offwhite rounded-lg hover:bg-sec-beige text-sm">
+                            <span>② 客側 LINE Bot</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="B_warmth/flex-cards.html" class="flex items-center justify-between px-3 py-2 bg-sec-offwhite rounded-lg hover:bg-sec-beige text-sm">
+                            <span>③ Flex Message カード</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="B_warmth/rich-menu.html" class="flex items-center justify-between px-3 py-2 bg-sec-offwhite rounded-lg hover:bg-sec-beige text-sm">
+                            <span>④ リッチメニュー</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="B_warmth/admin.html" class="flex items-center justify-between px-3 py-2 bg-sec-offwhite rounded-lg hover:bg-sec-beige text-sm">
+                            <span>⑤ Web管理画面</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="B_warmth/reservations.html" class="flex items-center justify-between px-3 py-2 bg-sec-offwhite rounded-lg hover:bg-sec-beige text-sm">
+                            <span>⑥ 予約一覧</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="B_warmth/customers.html" class="flex items-center justify-between px-3 py-2 bg-sec-offwhite rounded-lg hover:bg-sec-beige text-sm">
+                            <span>⑦ 顧客一覧</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="B_warmth/settings.html" class="flex items-center justify-between px-3 py-2 bg-sec-offwhite rounded-lg hover:bg-sec-beige text-sm">
+                            <span>⑧ 設定</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="B_warmth/karte.html" class="flex items-center justify-between px-3 py-2 bg-sec-offwhite rounded-lg hover:bg-sec-beige text-sm">
+                            <span>⑨ カルテ一覧</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 案C -->
+            <article class="bg-white rounded-2xl border border-zinc-200 overflow-hidden flex flex-col">
+                <div class="h-3 bg-sc-teal"></div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-[11px] font-bold tracking-widest text-sc-teal">CASE C</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">LINE×やわらかAI</h3>
+                    <p class="text-xs text-zinc-500 mb-4">業界ニュートラル／40-50代・AI興味層</p>
+
+                    <div class="space-y-1 text-xs text-zinc-600 mb-5">
+                        <div>白＋#06C755＋ティール</div>
+                        <div>ペールブルー差し色／クリーン</div>
+                        <div>「今日は4件ですね。順番に進めましょう」</div>
+                    </div>
+
+                    <div class="space-y-2 mt-auto">
+                        <a href="C_softai/owner-bot.html" class="flex items-center justify-between px-3 py-2 bg-sc-tealLight rounded-lg hover:bg-sc-teal/20 text-sm">
+                            <span>① オーナー秘書 LINE Bot</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="C_softai/customer-bot.html" class="flex items-center justify-between px-3 py-2 bg-sc-tealLight rounded-lg hover:bg-sc-teal/20 text-sm">
+                            <span>② 客側 LINE Bot</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="C_softai/flex-cards.html" class="flex items-center justify-between px-3 py-2 bg-sc-tealLight rounded-lg hover:bg-sc-teal/20 text-sm">
+                            <span>③ Flex Message カード</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="C_softai/rich-menu.html" class="flex items-center justify-between px-3 py-2 bg-sc-tealLight rounded-lg hover:bg-sc-teal/20 text-sm">
+                            <span>④ リッチメニュー</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="C_softai/admin.html" class="flex items-center justify-between px-3 py-2 bg-sc-tealLight rounded-lg hover:bg-sc-teal/20 text-sm">
+                            <span>⑤ Web管理画面</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="C_softai/reservations.html" class="flex items-center justify-between px-3 py-2 bg-sc-tealLight rounded-lg hover:bg-sc-teal/20 text-sm">
+                            <span>⑥ 予約一覧</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="C_softai/customers.html" class="flex items-center justify-between px-3 py-2 bg-sc-tealLight rounded-lg hover:bg-sc-teal/20 text-sm">
+                            <span>⑦ 顧客一覧</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="C_softai/settings.html" class="flex items-center justify-between px-3 py-2 bg-sc-tealLight rounded-lg hover:bg-sc-teal/20 text-sm">
+                            <span>⑧ 設定</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="C_softai/karte.html" class="flex items-center justify-between px-3 py-2 bg-sc-tealLight rounded-lg hover:bg-sc-teal/20 text-sm">
+                            <span>⑨ カルテ一覧</span><i class="ph ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- 比較表 -->
+        <section class="bg-white rounded-2xl border border-zinc-200 overflow-hidden">
+            <div class="px-6 py-4 border-b border-zinc-100">
+                <h2 class="text-lg font-bold">3案 比較表</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="bg-zinc-50 border-b border-zinc-200">
+                        <tr>
+                            <th class="px-4 py-3 text-left font-bold">観点</th>
+                            <th class="px-4 py-3 text-left font-bold text-line-green">案A 純正LINE</th>
+                            <th class="px-4 py-3 text-left font-bold text-sec-terra">案B 温もり</th>
+                            <th class="px-4 py-3 text-left font-bold text-sc-teal">案C やわらかAI</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-zinc-100">
+                        <tr><td class="px-4 py-3 font-medium text-zinc-500">背景</td><td class="px-4 py-3">純白</td><td class="px-4 py-3">オフ白 #FAF7F2</td><td class="px-4 py-3">純白</td></tr>
+                        <tr><td class="px-4 py-3 font-medium text-zinc-500">差し色</td><td class="px-4 py-3">なし</td><td class="px-4 py-3">テラコッタ #C75D3C</td><td class="px-4 py-3">ティール #0E7C7B</td></tr>
+                        <tr><td class="px-4 py-3 font-medium text-zinc-500">アバター</td><td class="px-4 py-3">黒丸＋白S</td><td class="px-4 py-3">ベージュ丸＋テラコッタS</td><td class="px-4 py-3">ペールブルー丸＋ティールS</td></tr>
+                        <tr><td class="px-4 py-3 font-medium text-zinc-500">トーン</td><td class="px-4 py-3">完全フラット</td><td class="px-4 py-3">温かい・体言止め</td><td class="px-4 py-3">やわらか・知的</td></tr>
+                        <tr><td class="px-4 py-3 font-medium text-zinc-500">第一声</td><td class="px-4 py-3">「今日は4件です👌」</td><td class="px-4 py-3">「本日は4件、お疲れさまです🙏」</td><td class="px-4 py-3">「今日は4件ですね。順番に進めましょう」</td></tr>
+                        <tr><td class="px-4 py-3 font-medium text-zinc-500">毛嫌いリスク</td><td class="px-4 py-3">◎最低</td><td class="px-4 py-3">○低</td><td class="px-4 py-3">○低</td></tr>
+                        <tr><td class="px-4 py-3 font-medium text-zinc-500">差別化強度</td><td class="px-4 py-3">低</td><td class="px-4 py-3">中</td><td class="px-4 py-3">中-高</td></tr>
+                        <tr><td class="px-4 py-3 font-medium text-zinc-500">ターゲット</td><td class="px-4 py-3">60代・超低リテラシー</td><td class="px-4 py-3">30-50代・温もり志向</td><td class="px-4 py-3">40-50代・AI興味</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-xs text-zinc-400 pb-6">
+            Generated by AIDesigner + Claude · 2026-05-07 · モバイル幅(390×844)推奨
+        </footer>
+    </main>
+
+</body>
+</html>

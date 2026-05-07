@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja" class="antialiased font-sans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Secleva 案A Flex Messages</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: {
+                fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] },
+                colors: { line: { green: '#06C755', bg: '#8BA2B6', bubble: '#FFFFFF', text: '#111111', subtext: '#888888', border: '#EEEEEE', lightbg: '#F5F5F5' } },
+                boxShadow: { 'flex': '0 2px 8px rgba(0, 0, 0, 0.08)', 'flex-inner': 'inset 0 0 0 1px rgba(0,0,0,0.04)' }
+            } }
+        }
+    </script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes messageAppear { 0% { opacity: 0; transform: translateY(20px) scale(0.98); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+        .animate-message { animation: messageAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0; }
+        .msg-1 { animation-delay: 0.1s; } .msg-2 { animation-delay: 0.4s; } .msg-3 { animation-delay: 0.7s; }
+        .btn-press:active { transform: scale(0.96) translateY(1px); transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1); }
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+    </style>
+</head>
+<body class="bg-zinc-100 flex items-center justify-center min-h-[100dvh]">
+
+    <div class="relative w-full max-w-[390px] h-full min-h-[100dvh] md:min-h-[844px] md:h-[844px] bg-line-bg md:rounded-[3rem] md:shadow-2xl md:ring-[12px] md:ring-zinc-900 overflow-hidden flex flex-col font-sans">
+
+        <div class="w-full h-12 flex justify-between items-center px-6 pt-2 text-white z-20 pointer-events-none sticky top-0 bg-gradient-to-b from-black/20 to-transparent">
+            <span class="text-[15px] font-medium tracking-wide">09:00</span>
+            <div class="flex items-center gap-1.5 opacity-90">
+                <i class="ph-fill ph-cell-signal-full text-sm"></i>
+                <i class="ph-fill ph-wifi-high text-sm"></i>
+                <i class="ph-fill ph-battery-full text-lg"></i>
+            </div>
+        </div>
+
+        <div class="absolute top-14 left-0 w-full flex justify-center z-20 pointer-events-none">
+            <div class="bg-black/30 backdrop-blur-md px-4 py-1.5 rounded-full text-white/90 text-xs font-bold tracking-widest shadow-sm">
+                Flex Message プレビュー
+            </div>
+        </div>
+
+        <div class="flex-1 overflow-y-auto px-4 pt-16 pb-24 flex flex-col gap-6 scroll-smooth">
+
+            <div class="flex items-end gap-2 animate-message msg-1 pl-1">
+                <img src="../../branding/logo_A.png" alt="Secleva" class="w-8 h-8 rounded-2xl object-cover">
+                <div class="flex items-end gap-1 w-full relative">
+                    <div class="bg-line-bubble rounded-[16px] shadow-flex shadow-flex-inner overflow-hidden w-[280px] flex-shrink-0">
+                        <div class="bg-line-green px-4 py-3 flex items-center gap-2">
+                            <i class="ph-fill ph-calendar-check text-white text-lg"></i>
+                            <h3 class="text-white font-bold text-[15px] tracking-tight leading-none pt-0.5">本日の予約</h3>
+                        </div>
+                        <div class="px-4 py-3 flex flex-col">
+                            <div class="divide-y divide-line-border">
+                                <div class="py-2.5 flex items-start gap-3 first:pt-0">
+                                    <div class="w-11 pt-0.5"><span class="text-line-text font-bold text-[13px] font-mono tracking-tighter">10:00</span></div>
+                                    <div class="flex-1 flex flex-col gap-0.5">
+                                        <span class="text-line-text font-bold text-[14px]">田中 様</span>
+                                        <span class="text-line-subtext text-[11px] font-medium bg-line-lightbg inline-block px-1.5 py-0.5 rounded self-start">60分・8回目</span>
+                                    </div>
+                                </div>
+                                <div class="py-2.5 flex items-start gap-3">
+                                    <div class="w-11 pt-0.5"><span class="text-line-text font-bold text-[13px] font-mono tracking-tighter">13:00</span></div>
+                                    <div class="flex-1 flex flex-col gap-0.5">
+                                        <span class="text-line-text font-bold text-[14px]">佐藤 様</span>
+                                        <span class="text-line-subtext text-[11px] font-medium bg-line-lightbg inline-block px-1.5 py-0.5 rounded self-start">90分・新規</span>
+                                    </div>
+                                </div>
+                                <div class="py-2.5 flex items-start gap-3">
+                                    <div class="w-11 pt-0.5"><span class="text-line-text font-bold text-[13px] font-mono tracking-tighter">15:30</span></div>
+                                    <div class="flex-1 flex flex-col gap-0.5">
+                                        <span class="text-line-text font-bold text-[14px]">山田 様</span>
+                                        <span class="text-line-subtext text-[11px] font-medium bg-line-lightbg inline-block px-1.5 py-0.5 rounded self-start">60分・3回目</span>
+                                    </div>
+                                </div>
+                                <div class="py-2.5 flex items-start gap-3 pb-0">
+                                    <div class="w-11 pt-0.5"><span class="text-line-text font-bold text-[13px] font-mono tracking-tighter">18:00</span></div>
+                                    <div class="flex-1 flex flex-col gap-0.5">
+                                        <span class="text-line-text font-bold text-[14px]">鈴木 様</span>
+                                        <span class="text-line-subtext text-[11px] font-medium bg-line-lightbg inline-block px-1.5 py-0.5 rounded self-start">90分・常連</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="px-5 py-3.5 bg-[#F9F9F9] border-t border-line-border flex justify-between items-end">
+                            <span class="text-line-subtext text-xs font-bold mb-0.5">売上予測</span>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-line-text font-bold text-sm">¥</span>
+                                <span class="text-line-text font-extrabold text-xl font-mono tracking-tighter">29,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="text-white/70 text-[10px] font-medium mb-1">09:00</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-1 items-start w-full pl-11 animate-message msg-2">
+                <div class="flex items-end gap-1 relative w-full">
+                    <div class="bg-line-bubble rounded-[16px] shadow-flex shadow-flex-inner overflow-hidden w-[280px] flex-shrink-0">
+                        <div class="w-full h-32 bg-line-lightbg border-b border-line-border flex flex-col items-center justify-center gap-2 relative overflow-hidden">
+                            <div class="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                            <i class="ph-light ph-user-focus text-zinc-300 text-[40px]"></i>
+                            <span class="text-zinc-400 text-[10px] tracking-widest font-bold">PROFILE PORTRAIT</span>
+                        </div>
+                        <div class="px-5 py-4 pb-0 flex flex-col gap-3">
+                            <div class="flex items-center justify-between">
+                                <h2 class="text-line-text font-bold text-lg tracking-tight">田中様 カルテ</h2>
+                                <span class="border border-line-text text-line-text text-[10px] font-bold px-2 py-0.5 rounded-full">8回目</span>
+                            </div>
+                            <div class="flex flex-col gap-2.5 pb-4">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-8 shrink-0 relative mt-0.5">
+                                        <div class="absolute left-0 top-[7px] w-full border-t border-dashed border-zinc-300"></div>
+                                        <span class="bg-white relative z-10 text-line-subtext text-[11px] font-bold pr-1">前回</span>
+                                    </div>
+                                    <div class="text-line-text text-[13px] font-medium leading-relaxed">4/24 60分・腰中心強め</div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-8 shrink-0 relative mt-0.5">
+                                        <div class="absolute left-0 top-[7px] w-full border-t border-dashed border-zinc-300"></div>
+                                        <span class="bg-white relative z-10 text-line-subtext text-[11px] font-bold pr-1">メモ</span>
+                                    </div>
+                                    <div class="text-line-text text-[13px] font-medium leading-relaxed bg-zinc-50 p-2 rounded-md border border-zinc-100">
+                                        腰の張り強め、肩こりも。次回は足元からのアプローチを提案予定。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="px-4 pb-4 pt-1">
+                            <button class="w-full bg-line-green text-white text-[13px] font-bold py-3 rounded-[8px] btn-press shadow-sm tracking-wide transition-all">詳細を見る</button>
+                        </div>
+                    </div>
+                     <span class="text-white/70 text-[10px] font-medium mb-1">09:01</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-1 items-start w-[calc(100%+32px)] -ml-4 pl-14 animate-message msg-3 relative">
+                <span class="text-white/80 text-[11px] font-bold tracking-wider pl-1 mb-1">メニューを選択してください</span>
+                <div class="w-full overflow-x-auto no-scrollbar snap-x snap-mandatory pb-4 pr-6 flex gap-2.5">
+                    <div class="w-1 shrink-0"></div>
+                    <div class="snap-start shrink-0 w-[220px] bg-line-bubble rounded-[16px] shadow-flex shadow-flex-inner overflow-hidden flex flex-col">
+                        <div class="w-full h-24 bg-zinc-100 flex items-center justify-center border-b border-line-border">
+                             <i class="ph-light ph-clock-user text-zinc-300 text-[32px]"></i>
+                        </div>
+                        <div class="p-4 flex flex-col gap-2 shrink-0">
+                            <div class="flex flex-col">
+                                <h4 class="text-line-text font-bold text-[15px]">60分コース</h4>
+                                <span class="text-line-subtext text-[11px] mt-0.5">スタンダード・全身もみほぐし</span>
+                            </div>
+                            <div class="mt-1 font-mono tracking-tighter text-line-text font-extrabold text-[17px]">¥4,500</div>
+                        </div>
+                        <div class="p-3 pt-0 mt-auto">
+                            <button class="w-full border-2 border-line-green text-line-green text-[13px] font-bold py-2.5 rounded-[8px] btn-press transition-colors hover:bg-line-green/5">選ぶ</button>
+                        </div>
+                    </div>
+                    <div class="snap-start shrink-0 w-[220px] bg-line-bubble rounded-[16px] shadow-flex shadow-flex-inner overflow-hidden flex flex-col">
+                        <div class="w-full h-24 bg-zinc-100 flex items-center justify-center border-b border-line-border relative">
+                            <div class="absolute top-2 left-2 bg-[#111] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-sm tracking-wider">人気</div>
+                             <i class="ph-light ph-sparkle text-zinc-300 text-[32px]"></i>
+                        </div>
+                        <div class="p-4 flex flex-col gap-2 shrink-0">
+                            <div class="flex flex-col">
+                                <h4 class="text-line-text font-bold text-[15px]">90分コース</h4>
+                                <span class="text-line-subtext text-[11px] mt-0.5">じっくり・疲労回復特化</span>
+                            </div>
+                            <div class="mt-1 font-mono tracking-tighter text-line-text font-extrabold text-[17px]">¥6,800</div>
+                        </div>
+                        <div class="p-3 pt-0 mt-auto">
+                            <button class="w-full border-2 border-line-green text-line-green text-[13px] font-bold py-2.5 rounded-[8px] btn-press transition-colors hover:bg-line-green/5">選ぶ</button>
+                        </div>
+                    </div>
+                    <div class="snap-start shrink-0 w-[220px] bg-line-bubble rounded-[16px] shadow-flex shadow-flex-inner overflow-hidden flex flex-col relative">
+                        <div class="w-full h-24 bg-zinc-100 flex items-center justify-center border-b border-line-border">
+                             <i class="ph-light ph-users-three text-zinc-300 text-[32px]"></i>
+                        </div>
+                        <div class="p-4 flex flex-col gap-2 shrink-0">
+                            <div class="flex flex-col">
+                                <h4 class="text-line-text font-bold text-[15px]">ペアコース</h4>
+                                <span class="text-line-subtext text-[11px] mt-0.5">お二人同室・各60分</span>
+                            </div>
+                             <div class="mt-1 font-mono tracking-tighter text-line-text font-extrabold text-[17px]">¥9,000</div>
+                        </div>
+                        <div class="p-3 pt-0 mt-auto">
+                            <button class="w-full border-2 border-line-green text-line-green text-[13px] font-bold py-2.5 rounded-[8px] btn-press transition-colors hover:bg-line-green/5">選ぶ</button>
+                        </div>
+                    </div>
+                    <div class="w-4 shrink-0"></div>
+                </div>
+                <div class="absolute right-6 bottom-4 flex items-end">
+                     <span class="text-white/70 text-[10px] font-medium drop-shadow-sm">09:01</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="h-16 w-full bg-[#f4f4f4] border-t border-[#dbdbdb] absolute bottom-0 left-0 z-20 flex items-center px-4 gap-3 pointer-events-none pb-safe">
+             <i class="ph ph-plus text-zinc-500 text-xl font-bold"></i>
+             <div class="flex-1 h-9 bg-white rounded-full border border-[#d1d1d1] px-4 flex items-center">
+                 <span class="text-zinc-400 text-sm">メッセージを入力</span>
+             </div>
+             <i class="ph ph-microphone text-zinc-500 text-xl font-bold"></i>
+        </div>
+    </div>
+</body>
+</html>

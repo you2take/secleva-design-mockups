@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Secleva 案B リッチメニュー</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] }, colors: { line: { green: '#06C755' }, sec: { terra: '#C75D3C', terraSoft: '#F5EBE8', offwhite: '#FAF7F2', beige: '#F5EFE6', dark: '#2A2520', gray: '#8A827B' } } } } }
+    </script>
+    <style>
+        body { -webkit-font-smoothing: antialiased; }
+        .pb-safe { padding-bottom: 28px; }
+    </style>
+</head>
+<body class="bg-zinc-200 min-h-[100dvh] flex items-center justify-center p-4">
+
+    <div class="w-[390px] h-[844px] bg-sec-offwhite relative overflow-hidden rounded-[3rem] border-[12px] border-black shadow-2xl flex flex-col">
+        <div class="h-[47px] flex justify-between items-center px-7 pt-2 text-[15px] font-semibold text-sec-dark">
+            <span>09:00</span>
+            <div class="flex gap-1.5"><i class="ph-fill ph-cell-signal-full text-sm"></i><i class="ph-fill ph-wifi-high text-sm"></i><i class="ph-fill ph-battery-full text-base"></i></div>
+        </div>
+        <header class="h-[52px] bg-sec-offwhite border-b border-sec-beige flex items-center justify-between px-3 shrink-0">
+            <div class="flex items-center gap-2">
+                <i class="ph ph-caret-left text-[24px] text-sec-dark"></i>
+                <span class="text-[16px] font-bold text-sec-dark">Secleva 秘書</span>
+            </div>
+            <div class="flex items-center gap-3 text-sec-dark">
+                <i class="ph ph-magnifying-glass text-xl"></i>
+                <i class="ph ph-list text-xl"></i>
+            </div>
+        </header>
+
+        <div class="flex-1 bg-sec-offwhite px-4 py-6 flex flex-col gap-4">
+            <div class="flex justify-center">
+                <span class="bg-sec-beige text-sec-gray text-[11px] font-medium px-3 py-1 rounded-full">今日</span>
+            </div>
+            <div class="flex items-start gap-2.5 max-w-[85%]">
+                <img src="../../branding/logo_B.png" alt="Secleva" class="w-9 h-9 rounded-2xl object-cover">
+                <div class="bg-white border border-sec-beige px-4 py-2.5 rounded-[18px] rounded-tl-sm text-[14px] text-sec-dark relative">
+                    <div class="absolute top-0 left-0 w-full h-[1.5px] bg-sec-terra rounded-t-[18px]"></div>
+                    こんにちは。下のメニューからお気軽にどうぞ。
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 grid-rows-2 gap-[1px] bg-sec-beige h-[260px] shrink-0 border-t border-sec-beige">
+            <button class="bg-white flex flex-col items-center justify-center gap-2">
+                <div class="w-12 h-12 rounded-full bg-sec-terra flex items-center justify-center shadow-sm">
+                    <i class="ph-fill ph-calendar-check text-white text-2xl"></i>
+                </div>
+                <span class="text-[13px] font-bold text-sec-dark">予約一覧</span>
+            </button>
+            <button class="bg-white flex flex-col items-center justify-center gap-2">
+                <div class="w-12 h-12 rounded-full bg-sec-terra flex items-center justify-center shadow-sm">
+                    <i class="ph-fill ph-user-list text-white text-2xl"></i>
+                </div>
+                <span class="text-[13px] font-bold text-sec-dark">顧客検索</span>
+            </button>
+            <button class="bg-white flex flex-col items-center justify-center gap-2">
+                <div class="w-12 h-12 rounded-full bg-sec-terra flex items-center justify-center shadow-sm">
+                    <i class="ph-fill ph-clipboard-text text-white text-2xl"></i>
+                </div>
+                <span class="text-[13px] font-bold text-sec-dark">カルテ</span>
+            </button>
+            <button class="bg-white flex flex-col items-center justify-center gap-2">
+                <div class="w-12 h-12 rounded-full bg-sec-terra flex items-center justify-center shadow-sm">
+                    <i class="ph-fill ph-paper-plane-tilt text-white text-2xl"></i>
+                </div>
+                <span class="text-[13px] font-bold text-sec-dark">配信</span>
+            </button>
+        </div>
+
+        <div class="bg-sec-offwhite border-t border-sec-beige px-3 py-2.5 pb-safe shrink-0 flex items-center gap-3">
+            <i class="ph ph-keyboard text-sec-gray text-2xl"></i>
+            <div class="flex-1 bg-white rounded-full h-9 px-4 flex items-center text-sec-gray/60 text-sm border border-sec-beige">メッセージを入力</div>
+            <i class="ph-fill ph-microphone text-sec-gray text-2xl"></i>
+        </div>
+    </div>
+</body>
+</html>

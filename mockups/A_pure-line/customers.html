@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Secleva 案A 顧客一覧</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] }, colors: { line: { DEFAULT: '#06C755' } } } } }
+    </script>
+    <style>
+        ::-webkit-scrollbar { display: none; }
+        * { -ms-overflow-style: none; scrollbar-width: none; -webkit-tap-highlight-color: transparent; }
+        .touch-active:active { opacity: 0.6; transform: scale(0.98); transition: all 0.1s ease; }
+    </style>
+</head>
+<body class="bg-zinc-100 flex justify-center w-full min-h-[100dvh] text-zinc-900">
+
+    <main class="w-full max-w-[390px] h-[100dvh] bg-zinc-50 relative flex flex-col font-sans overflow-hidden sm:border-x sm:border-zinc-200 sm:shadow-2xl">
+
+        <div class="h-11 w-full bg-white flex justify-between items-center px-6 text-[14px] font-medium z-50">
+            <span>09:00</span>
+            <div class="flex gap-1.5 items-center"><i class="ph-fill ph-cell-signal-full text-base"></i><i class="ph ph-wifi-high text-base"></i><i class="ph-fill ph-battery-full text-lg"></i></div>
+        </div>
+
+        <header class="h-14 bg-white border-b border-zinc-200 flex justify-between items-center px-3 sticky top-0 z-40">
+            <a href="admin.html" class="touch-active p-2"><i class="ph ph-caret-left text-2xl"></i></a>
+            <h1 class="text-base font-bold tracking-wide">顧客一覧</h1>
+            <button class="touch-active p-2"><i class="ph ph-user-plus text-2xl text-line"></i></button>
+        </header>
+
+        <div class="bg-white border-b border-zinc-200 px-4 py-3 sticky top-14 z-30">
+            <div class="flex items-center bg-zinc-100 rounded-xl px-3 py-2 mb-2.5">
+                <i class="ph ph-magnifying-glass text-zinc-400 text-lg mr-2"></i>
+                <input type="text" placeholder="名前・電話番号で検索" class="bg-transparent outline-none text-sm flex-1 placeholder:text-zinc-400">
+            </div>
+            <div class="flex gap-2 overflow-x-auto">
+                <button class="px-3 py-1 bg-line text-white text-xs font-bold rounded-full shrink-0">全員 156</button>
+                <button class="px-3 py-1 bg-zinc-100 text-zinc-700 text-xs font-medium rounded-full shrink-0">常連 42</button>
+                <button class="px-3 py-1 bg-zinc-100 text-zinc-700 text-xs font-medium rounded-full shrink-0">新規 12</button>
+                <button class="px-3 py-1 bg-zinc-100 text-zinc-700 text-xs font-medium rounded-full shrink-0">最近来店 28</button>
+                <button class="px-3 py-1 bg-zinc-100 text-zinc-700 text-xs font-medium rounded-full shrink-0">ご無沙汰 18</button>
+            </div>
+        </div>
+
+        <div class="flex-1 overflow-y-auto pb-28 pt-2">
+            <div class="px-4 py-2 text-xs text-zinc-500 font-bold">た</div>
+            <div class="bg-white border-y border-zinc-100 divide-y divide-zinc-100">
+                <a href="admin.html" class="flex items-center gap-3 px-4 py-3 touch-active">
+                    <div class="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center font-bold text-zinc-600">田</div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-bold text-[15px]">田中 健太</p>
+                        <p class="text-xs text-zinc-500">8回目 ・ 最終 4/24 ・ 60分中心</p>
+                    </div>
+                    <i class="ph ph-caret-right text-zinc-400"></i>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 touch-active">
+                    <div class="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center font-bold text-zinc-600">高</div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-bold text-[15px]">高橋 さくら <span class="ml-1 text-xs font-bold text-line bg-line/10 px-1.5 py-0.5 rounded">新規</span></p>
+                        <p class="text-xs text-zinc-500">1回目 ・ 明日 14:00 予約</p>
+                    </div>
+                    <i class="ph ph-caret-right text-zinc-400"></i>
+                </a>
+            </div>
+
+            <div class="px-4 py-2 text-xs text-zinc-500 font-bold">さ</div>
+            <div class="bg-white border-y border-zinc-100 divide-y divide-zinc-100">
+                <a href="#" class="flex items-center gap-3 px-4 py-3 touch-active">
+                    <div class="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center font-bold text-zinc-600">佐</div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-bold text-[15px]">佐藤 美咲 <span class="ml-1 text-xs font-bold text-line bg-line/10 px-1.5 py-0.5 rounded">新規</span></p>
+                        <p class="text-xs text-zinc-500">本日 13:00 予約 ・ 90分</p>
+                    </div>
+                    <i class="ph ph-caret-right text-zinc-400"></i>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 touch-active">
+                    <div class="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center font-bold text-zinc-600">鈴</div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-bold text-[15px]">鈴木 裕子</p>
+                        <p class="text-xs text-zinc-500">12回目 ・ 最終 4/20 ・ 90分常連</p>
+                    </div>
+                    <i class="ph ph-caret-right text-zinc-400"></i>
+                </a>
+            </div>
+
+            <div class="px-4 py-2 text-xs text-zinc-500 font-bold">や</div>
+            <div class="bg-white border-y border-zinc-100 divide-y divide-zinc-100">
+                <a href="#" class="flex items-center gap-3 px-4 py-3 touch-active">
+                    <div class="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center font-bold text-zinc-600">山</div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-bold text-[15px]">山田 太郎</p>
+                        <p class="text-xs text-zinc-500">3回目 ・ 最終 4/22 ・ 腰中心</p>
+                    </div>
+                    <i class="ph ph-caret-right text-zinc-400"></i>
+                </a>
+            </div>
+        </div>
+
+        <nav class="h-[84px] bg-white border-t border-zinc-200 absolute bottom-0 w-full flex justify-around items-start pt-2 px-2 z-50 pb-[20px]">
+            <a href="admin.html" class="flex flex-col items-center justify-center w-full touch-active text-zinc-400">
+                <i class="ph ph-house text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold">ホーム</span>
+            </a>
+            <a href="reservations.html" class="flex flex-col items-center justify-center w-full touch-active text-zinc-400">
+                <i class="ph ph-calendar-blank text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold">予約</span>
+            </a>
+            <button class="flex flex-col items-center justify-center w-full touch-active text-line">
+                <i class="ph-fill ph-users text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold">顧客</span>
+            </button>
+            <a href="karte.html" class="flex flex-col items-center justify-center w-full touch-active text-zinc-400">
+                <i class="ph ph-folder text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold">カルテ</span>
+            </a>
+            <a href="settings.html" class="flex flex-col items-center justify-center w-full touch-active text-zinc-400">
+                <i class="ph ph-gear text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold">設定</span>
+            </a>
+        </nav>
+    </main>
+</body>
+</html>

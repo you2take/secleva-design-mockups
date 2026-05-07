@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secleva — 案C LINE×やわらかAI</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#06C755',
+                            paleBlue: '#E8F4F4',
+                            teal: '#0E7C7B',
+                            dark: '#111111',
+                            muted: '#888888'
+                        }
+                    },
+                    animation: {
+                        'slide-up-fade': 'slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        slideUpFade: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .msg-1 { animation-delay: 100ms; }
+        .msg-2 { animation-delay: 300ms; }
+        .msg-3 { animation-delay: 600ms; }
+        .msg-4 { animation-delay: 1500ms; }
+        .msg-5 { animation-delay: 2200ms; }
+        .select-none { -webkit-user-select: none; user-select: none; }
+    </style>
+</head>
+<body class="bg-zinc-100 flex items-center justify-center min-h-[100dvh] overflow-hidden antialiased selection:bg-brand-paleBlue selection:text-brand-teal">
+
+    <div class="w-[390px] h-[844px] bg-[#FFFFFF] relative flex flex-col shadow-2xl overflow-hidden border border-zinc-200">
+
+        <div class="h-12 w-full flex justify-between items-center px-6 pt-2 z-50 bg-[#FFFFFF] select-none text-[#111111]">
+            <div class="text-[15px] font-medium tracking-tight">08:30</div>
+            <div class="flex items-center gap-1.5">
+                <i class="ph-fill ph-cell-signal-full text-[14px]"></i>
+                <i class="ph-bold ph-wifi-high text-[14px]"></i>
+                <i class="ph-fill ph-battery-full text-[18px]"></i>
+            </div>
+        </div>
+
+        <header class="h-14 w-full flex items-center px-4 bg-[#FFFFFF] border-b border-zinc-100 z-40 shrink-0">
+            <button class="w-10 h-10 flex items-center justify-center text-[#111111] active:opacity-50 transition-opacity">
+                <i class="ph ph-caret-left text-[24px]"></i>
+            </button>
+            <div class="flex-1 flex items-center gap-2 px-2">
+                <div class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-teal opacity-20"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-teal"></span>
+                </div>
+                <h1 class="text-[16px] font-bold text-[#111111] tracking-tight">Secleva 秘書</h1>
+            </div>
+            <button class="w-10 h-10 flex items-center justify-center text-[#111111] active:opacity-50 transition-opacity">
+                <i class="ph ph-magnifying-glass text-[20px]"></i>
+            </button>
+            <button class="w-8 h-10 flex items-center justify-center text-[#111111] active:opacity-50 transition-opacity">
+                <i class="ph ph-list text-[22px]"></i>
+            </button>
+        </header>
+
+        <main class="flex-1 w-full bg-[#FFFFFF] overflow-y-auto no-scrollbar pb-6 px-4 flex flex-col gap-5 pt-4">
+
+            <div class="flex justify-center mb-2 mt-1">
+                <div class="bg-zinc-100 text-zinc-500 text-[11px] font-medium px-3 py-1 rounded-full select-none">今日</div>
+            </div>
+
+            <div class="flex items-end justify-end gap-1.5 opacity-0 animate-slide-up-fade msg-1">
+                <span class="text-[10px] text-zinc-400 mb-0.5 select-none font-mono">08:28</span>
+                <div class="bg-brand-green text-white text-[15px] px-3.5 py-2.5 rounded-2xl rounded-tr-[4px] max-w-[75%] leading-snug shadow-sm">
+                    今日の予約教えて
+                </div>
+            </div>
+
+            <div class="flex items-start gap-2.5 opacity-0 animate-slide-up-fade msg-2">
+                <img src="../../branding/logo_C.png" alt="Secleva" class="w-[34px] h-[34px] rounded-2xl object-cover">
+                <div class="flex items-end gap-1.5 max-w-[72%]">
+                    <div class="bg-[#FFFFFF] text-[#111111] border border-zinc-200 text-[15px] px-3.5 py-2.5 rounded-2xl rounded-tl-[4px] leading-snug shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+                        今日は4件ですね。順番に進めましょう。
+                    </div>
+                    <span class="text-[10px] text-zinc-400 mb-0.5 shrink-0 select-none font-mono">08:28</span>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-2.5 pl-[44px] -mt-2 opacity-0 animate-slide-up-fade msg-3">
+                <div class="flex items-end gap-1.5 w-full">
+                    <div class="bg-brand-paleBlue/50 border border-brand-paleBlue rounded-2xl rounded-tl-[4px] p-3 w-[260px] relative overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+                        <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-brand-teal"></div>
+                        <div class="flex items-center gap-1.5 mb-3 text-brand-teal">
+                            <i class="ph-fill ph-calendar-check text-[14px]"></i>
+                            <span class="text-[12px] font-bold tracking-tight">本日のスケジュール</span>
+                        </div>
+                        <div class="flex flex-col gap-2.5 w-full">
+                            <div class="flex items-start justify-between">
+                                <div class="flex gap-2.5">
+                                    <span class="text-zinc-500 font-mono text-[13px] pt-[1px] w-[38px]">10:00</span>
+                                    <div class="flex flex-col">
+                                        <span class="text-[14px] font-bold text-zinc-800 leading-none">田中様</span>
+                                        <span class="text-[11px] text-zinc-500 mt-1">60分コース</span>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] bg-white border border-brand-teal/20 text-brand-teal px-1.5 py-0.5 rounded leading-none mt-[1px]">8回目</span>
+                            </div>
+                            <div class="h-px w-full bg-brand-paleBlue/80"></div>
+                            <div class="flex items-start justify-between">
+                                <div class="flex gap-2.5">
+                                    <span class="text-zinc-500 font-mono text-[13px] pt-[1px] w-[38px]">13:00</span>
+                                    <div class="flex flex-col">
+                                        <span class="text-[14px] font-bold text-zinc-800 leading-none">佐藤様</span>
+                                        <span class="text-[11px] text-zinc-500 mt-1">90分コース</span>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] bg-white border border-brand-teal/20 text-brand-teal px-1.5 py-0.5 rounded leading-none mt-[1px]">新規</span>
+                            </div>
+                            <div class="h-px w-full bg-brand-paleBlue/80"></div>
+                            <div class="flex items-start justify-between">
+                                <div class="flex gap-2.5">
+                                    <span class="text-zinc-500 font-mono text-[13px] pt-[1px] w-[38px]">15:30</span>
+                                    <div class="flex flex-col">
+                                        <span class="text-[14px] font-bold text-zinc-800 leading-none">山田様</span>
+                                        <span class="text-[11px] text-zinc-500 mt-1">60分・腰中心</span>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] bg-white border border-brand-teal/20 text-brand-teal px-1.5 py-0.5 rounded leading-none mt-[1px]">3回目</span>
+                            </div>
+                            <div class="h-px w-full bg-brand-paleBlue/80"></div>
+                            <div class="flex items-start justify-between">
+                                <div class="flex gap-2.5">
+                                    <span class="text-zinc-500 font-mono text-[13px] pt-[1px] w-[38px]">18:00</span>
+                                    <div class="flex flex-col">
+                                        <span class="text-[14px] font-bold text-zinc-800 leading-none">鈴木様</span>
+                                        <span class="text-[11px] text-zinc-500 mt-1">90分コース</span>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] bg-white border border-brand-teal/20 text-brand-teal px-1.5 py-0.5 rounded leading-none mt-[1px]">常連</span>
+                            </div>
+                        </div>
+                        <div class="mt-3 pt-2.5 border-t border-brand-teal/10 flex justify-between items-center">
+                            <span class="text-[11px] text-zinc-500">本日の想定売上</span>
+                            <span class="text-[15px] font-bold text-[#111111]">¥29,000</span>
+                        </div>
+                    </div>
+                    <span class="text-[10px] text-zinc-400 mb-0.5 shrink-0 select-none font-mono">08:28</span>
+                </div>
+            </div>
+
+            <div class="flex items-end justify-end gap-1.5 mt-2 opacity-0 animate-slide-up-fade msg-4">
+                <span class="text-[10px] text-zinc-400 mb-0.5 select-none font-mono">08:29</span>
+                <div class="bg-brand-green text-white text-[15px] px-3.5 py-2.5 rounded-2xl rounded-tr-[4px] max-w-[75%] leading-snug shadow-sm">
+                    田中さんって前回どんな感じだった？
+                </div>
+            </div>
+
+            <div class="flex items-start gap-2.5 opacity-0 animate-slide-up-fade msg-5">
+                <img src="../../branding/logo_C.png" alt="Secleva" class="w-[34px] h-[34px] rounded-2xl object-cover">
+                <div class="flex items-end gap-1.5 max-w-[80%] w-full">
+                    <div class="bg-[#FFFFFF] border border-zinc-200 rounded-2xl rounded-tl-[4px] p-3 w-full relative overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+                        <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-brand-teal"></div>
+                        <div class="flex items-center gap-1.5 mb-2 text-brand-teal">
+                            <i class="ph-fill ph-file-text text-[14px]"></i>
+                            <span class="text-[12px] font-bold tracking-tight">前回カルテ抽出</span>
+                        </div>
+                        <div class="bg-zinc-50 rounded-lg p-2.5 mb-1.5 border border-zinc-100">
+                            <p class="text-[14px] text-zinc-800 leading-relaxed font-medium">
+                                「腰中心に強めでお願いします」とメモあり<br>
+                                <span class="text-[12px] text-zinc-500 font-normal mt-1 block">（前回施術日：3週間前）</span>
+                            </p>
+                        </div>
+                    </div>
+                    <span class="text-[10px] text-zinc-400 mb-0.5 shrink-0 select-none font-mono">08:29</span>
+                </div>
+            </div>
+
+            <div class="h-2 w-full"></div>
+        </main>
+
+        <footer class="w-full bg-[#FAFAFA] border-t border-zinc-200 pb-8 pt-2 px-3 z-40 shrink-0">
+            <div class="flex items-center gap-3">
+                <button class="w-8 h-8 flex flex-col items-center justify-center text-zinc-500 hover:text-brand-teal transition-colors shrink-0">
+                    <i class="ph ph-plus text-[24px]"></i>
+                </button>
+                <div class="flex-1 bg-[#FFFFFF] border border-zinc-300 rounded-full h-[40px] flex items-center px-4 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] focus-within:border-brand-teal/50 transition-colors">
+                    <input type="text" placeholder="メッセージを入力..." class="w-full bg-transparent text-[15px] outline-none text-[#111111] placeholder-zinc-400 placeholder:text-[14px]" readonly>
+                    <button class="text-brand-teal ml-2 focus:outline-none">
+                        <i class="ph-fill ph-smiley text-[20px] opacity-80"></i>
+                    </button>
+                </div>
+                <button class="w-8 h-8 flex items-center justify-center text-zinc-500 hover:text-brand-teal transition-colors shrink-0">
+                    <i class="ph ph-microphone text-[24px]"></i>
+                </button>
+            </div>
+            <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-[134px] h-[5px] bg-[#111111] rounded-full opacity-20 pointer-events-none"></div>
+        </footer>
+    </div>
+</body>
+</html>

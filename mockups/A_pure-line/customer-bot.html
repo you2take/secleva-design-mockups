@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja" class="antialiased text-gray-900 bg-gray-100 flex items-center justify-center min-h-screen">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Secleva 案A 客側Bot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], },
+                    colors: { line: { green: '#06C755', bg: '#FFFFFF', text: '#111111', time: '#A0A0A0', inputBg: '#F5F5F5', border: '#E5E5E5' } },
+                    boxShadow: { 'bubble': '0 1px 2px rgba(0, 0, 0, 0.08)', 'card': '0 2px 8px rgba(0, 0, 0, 0.06)' }
+                }
+            }
+        }
+    </script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .bubble-right { border-radius: 18px 18px 4px 18px; }
+        .bubble-left { border-radius: 18px 18px 18px 4px; }
+        @keyframes fadeInSlide { 0% { opacity: 0; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeInSlide 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both; }
+    </style>
+</head>
+<body class="p-4 sm:p-8 flex items-center justify-center">
+
+    <main class="w-full max-w-[390px] h-[844px] bg-line-bg relative overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.2)] rounded-[2.5rem] border-[6px] border-zinc-900 flex flex-col">
+
+        <div class="h-[47px] w-full flex items-center justify-between px-6 pt-2 shrink-0 bg-white z-50">
+            <div class="w-[54px] flex justify-center">
+                <span class="text-[15px] font-semibold tracking-tight text-black">14:20</span>
+            </div>
+            <div class="flex items-center gap-1.5 w-[54px] justify-end text-black">
+                <i class="ph-fill ph-cell-signal-full text-[14px]"></i>
+                <i class="ph-fill ph-wifi-high text-[14px]"></i>
+                <i class="ph-fill ph-battery-full text-[18px]"></i>
+            </div>
+        </div>
+
+        <header class="h-[52px] bg-white border-b border-gray-200 flex items-center justify-between px-3 shrink-0 z-40 relative">
+            <button class="flex items-center text-gray-900 px-1 py-2 cursor-pointer active:opacity-50 transition-opacity">
+                <i class="ph ph-caret-left text-[22px] stroke-[2px]"></i>
+            </button>
+            <div class="flex-1 flex flex-col items-center justify-center translate-x-3">
+                <h1 class="text-[16px] font-semibold text-gray-900 leading-none">上野リラクゼーション</h1>
+            </div>
+            <div class="flex items-center gap-4 text-gray-900 px-2">
+                <i class="ph ph-magnifying-glass text-[20px]"></i>
+                <i class="ph ph-list text-[22px]"></i>
+            </div>
+        </header>
+
+        <section class="flex-1 overflow-y-auto no-scrollbar px-4 pt-6 pb-24 bg-line-bg flex flex-col gap-5">
+
+            <div class="flex justify-end items-end gap-1.5 w-full fade-in" style="animation-delay: 100ms;">
+                <div class="flex flex-col items-end justify-end pb-0.5">
+                    <span class="text-[10px] text-gray-400 font-medium mb-[1px]">既読</span>
+                    <span class="text-[10px] text-gray-400 font-medium leading-none">14:20</span>
+                </div>
+                <div class="bg-line-green text-white px-4 py-2.5 bubble-right max-w-[260px] text-[15px] leading-[1.5] tracking-wide break-words shadow-bubble">
+                    明日の3時頃って空いてますか？
+                </div>
+            </div>
+
+            <div class="flex items-start gap-2.5 w-full fade-in" style="animation-delay: 400ms;">
+                <div class="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center shrink-0 shadow-sm overflow-hidden">
+                    <span class="text-sm font-bold text-gray-600 tracking-tighter">上野</span>
+                </div>
+                <div class="flex flex-col gap-1 max-w-[260px]">
+                    <span class="text-[12px] text-gray-500 font-medium ml-1">上野リラクゼーション</span>
+                    <div class="flex items-end gap-1.5">
+                        <div class="bg-white text-gray-900 border border-line-border px-4 py-2.5 bubble-left text-[15px] leading-[1.5] tracking-wide break-words shadow-bubble">
+                            明日は15:00以降でしたら大丈夫です。60分か90分、どちらをご希望ですか？
+                        </div>
+                        <span class="text-[10px] text-gray-400 font-medium shrink-0 pb-0.5">14:20</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end items-end gap-1.5 w-full mt-2 fade-in" style="animation-delay: 1000ms;">
+                <div class="flex flex-col items-end justify-end pb-0.5">
+                    <span class="text-[10px] text-gray-400 font-medium mb-[1px]">既読</span>
+                    <span class="text-[10px] text-gray-400 font-medium leading-none">14:21</span>
+                </div>
+                <div class="bg-line-green text-white px-4 py-2.5 bubble-right max-w-[260px] text-[15px] leading-[1.5] tracking-wide break-words shadow-bubble">90分で</div>
+            </div>
+
+            <div class="flex items-start gap-2.5 w-full fade-in" style="animation-delay: 1400ms;">
+                <div class="w-10 flex-shrink-0"></div>
+                <div class="flex items-end gap-1.5 max-w-[260px]">
+                    <div class="bg-white text-gray-900 border border-line-border px-4 py-2.5 rounded-[18px] text-[15px] leading-[1.5] tracking-wide break-words shadow-bubble">
+                        明日15:00から90分で承りました。お名前を教えてください。
+                    </div>
+                    <span class="text-[10px] text-gray-400 font-medium shrink-0 pb-0.5">14:21</span>
+                </div>
+            </div>
+
+            <div class="flex justify-end items-end gap-1.5 w-full mt-2 fade-in" style="animation-delay: 2000ms;">
+                <div class="flex flex-col items-end justify-end pb-0.5">
+                    <span class="text-[10px] text-gray-400 font-medium mb-[1px]">既読</span>
+                    <span class="text-[10px] text-gray-400 font-medium leading-none">14:22</span>
+                </div>
+                <div class="bg-line-green text-white px-4 py-2.5 bubble-right max-w-[260px] text-[15px] leading-[1.5] tracking-wide break-words shadow-bubble">山田と申します</div>
+            </div>
+
+            <div class="flex items-start gap-2.5 w-full mt-1 mb-8 fade-in" style="animation-delay: 2500ms;">
+                <div class="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center shrink-0 shadow-sm overflow-hidden">
+                    <span class="text-sm font-bold text-gray-600 tracking-tighter">上野</span>
+                </div>
+                <div class="flex flex-col gap-1 max-w-[270px]">
+                    <span class="text-[12px] text-gray-500 font-medium ml-1">上野リラクゼーション</span>
+                    <div class="flex items-end gap-1.5">
+                        <div class="bg-white border border-line-border rounded-xl overflow-hidden shadow-card w-full">
+                            <div class="w-full bg-[#E8F8EE] px-4 py-3 border-b border-[#06C755]/20 flex items-center gap-2">
+                                <i class="ph-fill ph-check-circle text-line-green text-[18px]"></i>
+                                <span class="text-[15px] font-bold text-gray-900 tracking-wide">ご予約完了</span>
+                            </div>
+                            <div class="px-4 py-3.5 flex flex-col gap-3">
+                                <div class="grid grid-cols-[3.5rem_1fr] items-start gap-2">
+                                    <span class="text-[13px] text-gray-400 font-medium leading-tight">お名前</span>
+                                    <span class="text-[14px] text-gray-900 font-medium leading-tight line-clamp-1">山田様</span>
+                                </div>
+                                <div class="grid grid-cols-[3.5rem_1fr] items-start gap-2">
+                                    <span class="text-[13px] text-gray-400 font-medium leading-tight">日時</span>
+                                    <span class="text-[14px] text-gray-900 font-medium leading-tight">明日 15:00</span>
+                                </div>
+                                <div class="grid grid-cols-[3.5rem_1fr] items-start gap-2">
+                                    <span class="text-[13px] text-gray-400 font-medium leading-tight">コース</span>
+                                    <span class="text-[14px] text-gray-900 font-medium leading-tight">90分</span>
+                                </div>
+                                <div class="mt-2 pt-3 border-t border-dashed border-gray-200 flex justify-between items-center">
+                                    <span class="text-[11px] text-gray-400">予約番号</span>
+                                    <span class="text-[12px] text-gray-500 font-mono tracking-tighter">#2026-0508-001</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-[10px] text-gray-400 font-medium shrink-0 pb-0.5">14:22</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="h-[20px] shrink-0"></div>
+        </section>
+
+        <footer class="absolute bottom-0 w-full bg-[#f9f9f9] border-t border-gray-200 z-50 px-3 pb-[34px] pt-2">
+            <div class="flex items-center gap-3">
+                <button class="w-[28px] h-[28px] flex items-center justify-center shrink-0 active:opacity-50 transition-opacity">
+                    <i class="ph ph-plus text-[24px] text-gray-500"></i>
+                </button>
+                <div class="flex-1 bg-white border border-gray-300 rounded-full h-[36px] flex items-center px-4">
+                    <span class="text-[15px] text-gray-400 font-medium select-none">Aa</span>
+                </div>
+                <button class="w-[28px] h-[28px] flex items-center justify-center shrink-0 active:opacity-50 transition-opacity">
+                    <i class="ph-fill ph-microphone text-[22px] text-gray-500"></i>
+                </button>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secleva ブランドキット 9バリエ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] } } } }
+    </script>
+</head>
+<body class="bg-zinc-50 min-h-[100dvh] font-sans text-zinc-900">
+
+    <header class="border-b border-zinc-200 bg-white">
+        <div class="max-w-5xl mx-auto px-6 py-6">
+            <h1 class="text-2xl font-bold tracking-tight">Secleva ブランドキット 9バリエ</h1>
+            <p class="text-sm text-zinc-500 mt-1">3案 × 3パターン / aidesigner brand kit 生成 / 2026-05-07</p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-10 space-y-8">
+
+        <section class="bg-white rounded-2xl border border-zinc-200 p-6">
+            <h2 class="text-lg font-bold mb-3">構成</h2>
+            <div class="grid grid-cols-3 gap-4 text-sm">
+                <div class="bg-green-50 border border-green-200 rounded-lg p-3">
+                    <strong class="text-[#06C755] block mb-1">Row 1：純正LINE延長（案A）</strong>
+                    1. スッキリ信頼感<br>2. ミニマルSライン<br>3. シンプルひと筆S
+                </div>
+                <div class="bg-orange-50 border border-orange-200 rounded-lg p-3">
+                    <strong class="text-[#C75D3C] block mb-1">Row 2：温もり（案B）</strong>
+                    4. 手書きタッチ<br>5. 和のやさしさ<br>6. 筆書きS
+                </div>
+                <div class="bg-teal-50 border border-teal-200 rounded-lg p-3">
+                    <strong class="text-[#0E7C7B] block mb-1">Row 3：やわらかAI（案C）</strong>
+                    7. S→Lリンク<br>8. レバーの動き<br>9. 穏やかなラインS
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-2xl border border-zinc-200 overflow-hidden">
+            <img src="9-variations.webp" alt="Secleva 9 brand kit variations" class="w-full">
+        </section>
+
+        <section class="bg-white rounded-2xl border border-zinc-200 p-6">
+            <h2 class="text-lg font-bold mb-3">絞り込みについて</h2>
+            <p class="text-sm text-zinc-600 leading-relaxed mb-4">
+                9バリエの中から「これが一番Sclevaらしい」と思うものを<strong>1〜9の番号</strong>で教えてください。確定後、<code class="bg-zinc-100 px-1.5 py-0.5 rounded text-xs">create_brand_kit_from_variation</code> で正式に保存し、各HTMLモックのプレースホルダ「S」アバターを実ロゴに差し替えます。
+            </p>
+            <div class="flex flex-wrap gap-2">
+                <a href="../mockups/index.html" class="text-sm text-zinc-700 underline">← デザイン3案ハブに戻る</a>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Secleva 案B 客側Bot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: {
+                fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'], },
+                colors: { line: '#06C755', bgCore: '#FAF7F2', terra: '#C75D3C', beige: '#F5EFE6', ink: '#36312D', inkSub: '#8A827B' },
+                boxShadow: { 'bubble': '0 2px 8px rgba(0, 0, 0, 0.03)', 'card': '0 12px 32px -8px rgba(54, 49, 45, 0.08)' }
+            } }
+        }
+    </script>
+    <style>
+        body { background-color: #ECEae4; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; overflow: hidden; color: #36312D; font-feature-settings: "palt"; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(12px) scale(0.98); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+        .anim-message { opacity: 0; animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .glass-header { background: rgba(250, 247, 242, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(54, 49, 45, 0.04); box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5); }
+    </style>
+</head>
+<body class="antialiased selection:bg-terra/20">
+
+    <div id="mock-device" class="relative w-[390px] h-[844px] bg-bgCore rounded-[44px] shadow-[0_24px_60px_-15px_rgba(0,0,0,0.15)] overflow-hidden ring-4 ring-white/50 border-[8px] border-[#1C1C1E] flex flex-col">
+
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[30px] bg-[#1C1C1E] rounded-b-[20px] z-50"></div>
+
+        <div class="h-[47px] flex justify-between items-center px-[28px] pt-3 text-[15px] font-semibold text-ink/90 z-40 relative">
+            <span class="tracking-widest">14:20</span>
+            <div class="flex items-center gap-1.5 opacity-90 pb-[2px]">
+                <i class="ph-fill ph-cell-signal-high text-lg"></i>
+                <i class="ph-bold ph-wifi-high text-lg"></i>
+                <i class="ph-fill ph-battery-full text-xl translate-y-[1px]"></i>
+            </div>
+        </div>
+
+        <header class="h-[52px] glass-header flex items-center justify-between px-3 sticky top-[47px] z-30">
+            <button class="w-10 h-10 flex items-center justify-center rounded-full active:-translate-x-[2px] transition-transform">
+                <i class="ph ph-caret-left text-[24px] text-ink"></i>
+            </button>
+            <div class="flex flex-col items-center justify-center -translate-x-1">
+                <h1 class="text-[16px] font-bold text-ink tracking-tight">上野リラクゼーション</h1>
+            </div>
+            <button class="w-10 h-10 flex items-center justify-center active:scale-95 transition-transform">
+                <i class="ph ph-list text-[24px] text-ink"></i>
+            </button>
+        </header>
+
+        <main class="flex-1 overflow-y-auto no-scrollbar px-3 pt-6 pb-24 space-y-[22px] flex flex-col relative z-10" id="chat-stream">
+
+            <div class="flex justify-center w-full anim-message" style="animation-delay: 0.1s;">
+                <span class="bg-black/[0.06] text-inkSub px-3 py-1 rounded-full text-[11px] font-medium tracking-wider">今日</span>
+            </div>
+
+            <div class="flex justify-end items-end gap-1.5 anim-message" style="animation-delay: 0.3s;">
+                <div class="flex flex-col items-end mb-1">
+                    <span class="text-[10px] text-inkSub font-medium mb-[2px]">既読</span>
+                    <time class="text-[10px] text-inkSub font-medium">14:15</time>
+                </div>
+                <div class="bg-line text-white px-[15px] py-[10px] rounded-[20px] rounded-br-[4px] max-w-[260px] text-[15px] leading-relaxed shadow-sm">
+                    明日の3時頃って空いてますか？
+                </div>
+            </div>
+
+            <div class="flex items-start gap-2.5 anim-message" style="animation-delay: 0.8s;">
+                <img src="../../branding/logo_B.png" alt="Secleva" class="w-[38px] h-[38px] rounded-[12px] object-cover shadow-sm">
+                <div class="flex items-end gap-1.5 max-w-[260px]">
+                    <div class="bg-white text-ink px-[15px] py-[12px] rounded-[20px] rounded-tl-[4px] text-[15px] leading-[1.6] shadow-bubble">
+                        明日は15:00以降でしたら大丈夫です。<br>60分か90分、どちらをご希望ですか？
+                    </div>
+                </div>
+                <time class="text-[10px] text-inkSub font-medium self-end mb-1">14:16</time>
+            </div>
+
+            <div class="flex justify-end items-end gap-1.5 anim-message" style="animation-delay: 1.3s;">
+                <div class="flex flex-col items-end mb-1">
+                    <span class="text-[10px] text-inkSub font-medium mb-[2px]">既読</span>
+                    <time class="text-[10px] text-inkSub font-medium">14:18</time>
+                </div>
+                <div class="bg-line text-white px-[15px] py-[10px] rounded-[20px] rounded-br-[4px] max-w-[260px] text-[15px] leading-relaxed shadow-sm">90分で</div>
+            </div>
+
+            <div class="flex items-start gap-2.5 anim-message" style="animation-delay: 1.8s;">
+                <img src="../../branding/logo_B.png" alt="Secleva" class="w-[38px] h-[38px] rounded-[12px] object-cover shadow-sm">
+                <div class="flex items-end gap-1.5 max-w-[260px]">
+                    <div class="bg-white text-ink px-[15px] py-[12px] rounded-[20px] rounded-tl-[4px] text-[15px] leading-[1.6] shadow-bubble">
+                        明日15:00から90分で承りました。<br>お名前を教えてください。
+                    </div>
+                </div>
+                <time class="text-[10px] text-inkSub font-medium self-end mb-1">14:18</time>
+            </div>
+
+            <div class="flex justify-end items-end gap-1.5 anim-message" style="animation-delay: 2.3s;">
+                <div class="flex flex-col items-end mb-1">
+                    <span class="text-[10px] text-inkSub font-medium mb-[2px]">既読</span>
+                    <time class="text-[10px] text-inkSub font-medium">14:19</time>
+                </div>
+                <div class="bg-line text-white px-[15px] py-[10px] rounded-[20px] rounded-br-[4px] max-w-[260px] text-[15px] leading-relaxed shadow-sm">山田と申します</div>
+            </div>
+
+            <div class="flex items-start gap-2.5 anim-message" style="animation-delay: 2.8s; padding-bottom: 20px;">
+                <img src="../../branding/logo_B.png" alt="Secleva" class="w-[38px] h-[38px] rounded-[12px] object-cover shadow-sm">
+                <div class="flex-1 max-w-[275px]">
+                    <div class="bg-white rounded-[22px] rounded-tl-[4px] overflow-hidden shadow-card border border-black/[0.04] relative">
+                        <div class="absolute top-0 left-0 w-full h-[2px] bg-terra/90"></div>
+                        <div class="px-[18px] pt-[20px] pb-[14px] bg-gradient-to-b from-white to-bgCore/30 border-b border-black/[0.03]">
+                            <div class="flex items-center gap-[6px]">
+                                <i class="ph-fill ph-check-circle text-terra text-[18px]"></i>
+                                <h3 class="text-[15px] font-bold text-ink tracking-tight">ご予約完了</h3>
+                            </div>
+                            <p class="text-[12px] text-inkSub mt-1.5 leading-snug">
+                                ご予約ありがとうございます。<br>以下の内容で確定いたしました。
+                            </p>
+                        </div>
+                        <div class="px-[18px] py-[16px] space-y-[12px] bg-white">
+                            <div class="flex justify-between items-baseline border-b border-dashed border-gray-100 pb-2">
+                                <span class="text-[12px] font-medium text-inkSub">お名前</span>
+                                <span class="text-[15px] font-bold text-ink">山田 様</span>
+                            </div>
+                            <div class="flex justify-between items-baseline border-b border-dashed border-gray-100 pb-2">
+                                <span class="text-[12px] font-medium text-inkSub">日時</span>
+                                <span class="text-[15px] font-bold text-ink">明日 15:00</span>
+                            </div>
+                            <div class="flex justify-between items-baseline border-b border-dashed border-gray-100 pb-2">
+                                <span class="text-[12px] font-medium text-inkSub">コース</span>
+                                <span class="text-[15px] font-bold text-ink">90分</span>
+                            </div>
+                            <div class="flex justify-between items-baseline pt-1">
+                                <span class="text-[12px] font-medium text-inkSub">予約番号</span>
+                                <span class="text-[13px] font-mono font-medium text-terra/80 tracking-tight">#2026-0508-001</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-[#FAF9F7] py-3 text-[13px] font-bold text-ink/80 hover:bg-[#F2EFEA] transition-colors border-t border-black/[0.04] flex items-center justify-center gap-1.5 active:scale-[0.98]">
+                            <i class="ph ph-calendar-blank text-[15px]"></i>
+                            予約内容を確認する
+                        </button>
+                    </div>
+                </div>
+                <time class="text-[10px] text-inkSub font-medium self-end mb-1">14:20</time>
+            </div>
+
+            <div class="h-4"></div>
+        </main>
+
+        <div class="absolute bottom-0 w-full bg-white/95 backdrop-blur-xl border-t border-black/[0.06] pb-[34px] pt-2 px-3 z-40">
+            <div class="flex items-end gap-2.5">
+                <button class="w-9 h-9 flex-shrink-0 flex items-center justify-center rounded-full text-inkSub">
+                    <i class="ph ph-plus-circle text-[26px]"></i>
+                </button>
+                <div class="flex-1 bg-bgCore h-[38px] rounded-full px-4 flex items-center border border-black/[0.03] shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]">
+                    <span class="text-inkSub/70 text-[14px]">メッセージを入力</span>
+                </div>
+                <button class="w-9 h-9 flex-shrink-0 flex items-center justify-center rounded-full text-inkSub">
+                    <i class="ph ph-microphone text-[24px]"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

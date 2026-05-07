@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secleva — 案B LINE×温もり</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        app: {
+                            bg: '#FAF7F2',
+                            green: '#06C755',
+                            beige: '#F5EFE6',
+                            terracotta: '#C75D3C',
+                            textPrm: '#2C2C2C',
+                            textSec: '#71717A',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #E6E2DA;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        @keyframes slideUpFade {
+            0% { opacity: 0; transform: translateY(12px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .animate-message {
+            animation: slideUpFade 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+            opacity: 0;
+        }
+        .delay-1 { animation-delay: 100ms; }
+        .delay-2 { animation-delay: 350ms; }
+        .delay-3 { animation-delay: 1200ms; }
+        .delay-4 { animation-delay: 1800ms; }
+
+        .active-scale:active { transform: scale(0.96); transition: transform 0.1s ease-out; }
+        .dashed-border {
+            background-image: linear-gradient(to right, rgba(199, 93, 60, 0.3) 50%, transparent 50%);
+            background-position: top;
+            background-size: 8px 1px;
+            background-repeat: repeat-x;
+        }
+    </style>
+</head>
+<body class="min-h-[100dvh] flex items-center justify-center p-4">
+
+    <main class="w-full max-w-[390px] h-[844px] max-h-[95vh] bg-app-bg shadow-[0_24px_60px_-15px_rgba(0,0,0,0.15)] rounded-[40px] overflow-hidden flex flex-col relative ring-8 ring-[#1A1A1A]">
+
+        <div class="absolute -left-2 top-24 w-1 h-12 bg-black rounded-l-md opacity-20"></div>
+        <div class="absolute -left-2 top-40 w-1 h-16 bg-black rounded-l-md opacity-20"></div>
+        <div class="absolute -right-2 top-32 w-1 h-16 bg-black rounded-r-md opacity-20"></div>
+
+        <div class="h-[47px] w-full px-6 flex justify-between items-center z-50 pt-2 shrink-0 bg-app-bg">
+            <span class="text-[14px] font-semibold tracking-tight text-app-textPrm">08:30</span>
+            <div class="flex items-center gap-1.5 text-app-textPrm">
+                <i class="ph-fill ph-cell-signal-full text-[14px]"></i>
+                <i class="ph-fill ph-wifi-high text-[14px]"></i>
+                <i class="ph-fill ph-battery-full text-[18px]"></i>
+            </div>
+        </div>
+
+        <header class="h-[56px] w-full px-4 flex items-center justify-between border-b border-app-beige bg-app-bg/95 backdrop-blur-md shrink-0 z-40">
+            <div class="flex items-center gap-3">
+                <button class="w-8 h-8 flex items-center justify-start active-scale text-app-textPrm">
+                    <i class="ph ph-caret-left text-[22px] stroke-[2px]"></i>
+                </button>
+                <div class="flex flex-col">
+                    <span class="text-[15px] font-bold text-app-textPrm leading-none">Secleva 秘書</span>
+                    <span class="text-[11px] text-app-textSec mt-1">AIアシスタント</span>
+                </div>
+            </div>
+            <button class="w-8 h-8 flex items-center justify-end active-scale text-app-textPrm">
+                <i class="ph ph-list text-[20px]"></i>
+            </button>
+        </header>
+
+        <div class="flex-1 overflow-y-auto hide-scrollbar px-4 py-5 flex flex-col gap-6 relative">
+
+            <div class="flex justify-center w-full my-2">
+                <div class="bg-app-beige px-4 py-1 rounded-full text-[11px] font-medium text-app-textSec tracking-widest">TODAY</div>
+            </div>
+
+            <div class="flex items-end justify-end gap-1.5 w-full animate-message delay-1">
+                <span class="text-[10px] text-app-textSec mb-1 tracking-tight shrink-0">08:30</span>
+                <div class="bg-app-green text-white px-4 py-2.5 rounded-[20px] rounded-br-sm max-w-[75%] text-[15px] leading-[1.6]">
+                    今日の予約教えて
+                </div>
+            </div>
+
+            <div class="flex items-start justify-start gap-2.5 w-full animate-message delay-2">
+                <img src="../../branding/logo_B.png" alt="Secleva" class="w-9 h-9 rounded-2xl object-cover">
+                <div class="flex flex-col gap-1 w-full max-w-[80%]">
+                    <span class="text-[12px] text-app-textSec ml-1">Secleva</span>
+                    <div class="flex items-end gap-1.5 w-full">
+                        <div class="bg-white px-3 py-3 rounded-[20px] rounded-bl-sm w-full border border-app-beige/50">
+                            <p class="text-[15px] text-app-textPrm leading-[1.6] px-1 mb-3">
+                                本日は4件、お疲れさまです🙏
+                            </p>
+                            <div class="bg-app-bg border-l-2 border-app-terracotta rounded-r-[12px] p-3 shadow-[inset_0_1px_4px_rgba(0,0,0,0.02)]">
+                                <ul class="flex flex-col gap-4">
+                                    <li class="flex items-start gap-3 relative">
+                                        <div class="w-10 pt-0.5 shrink-0">
+                                            <span class="text-app-textSec font-semibold text-[13px] tracking-tight">10:00</span>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <span class="font-bold text-app-textPrm text-[14px]">田中様</span>
+                                            <span class="text-[12px] text-app-textSec mt-0.5">60分コース・8回目</span>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3 relative">
+                                        <div class="w-10 pt-0.5 shrink-0">
+                                            <span class="text-app-textSec font-semibold text-[13px] tracking-tight">13:00</span>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <span class="font-bold text-app-textPrm text-[14px]">佐藤様</span>
+                                            <span class="text-[12px] text-app-textSec mt-0.5">90分・新規</span>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3 relative">
+                                        <div class="w-10 pt-0.5 shrink-0">
+                                            <span class="text-app-textSec font-semibold text-[13px] tracking-tight">15:30</span>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <span class="font-bold text-app-textPrm text-[14px]">山田様</span>
+                                            <span class="text-[12px] text-app-textSec mt-0.5">腰中心・3回目</span>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3 relative">
+                                        <div class="w-10 pt-0.5 shrink-0">
+                                            <span class="text-app-textSec font-semibold text-[13px] tracking-tight">18:00</span>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <span class="font-bold text-app-textPrm text-[14px]">鈴木様</span>
+                                            <span class="text-[12px] text-app-textSec mt-0.5">90分・常連</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="mt-4 pt-3 dashed-border flex justify-between items-end">
+                                    <span class="text-[11px] text-app-textSec font-medium">本日の見込み売上</span>
+                                    <span class="text-[15px] font-bold text-app-textPrm tracking-tight">¥29,000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-[10px] text-app-textSec mb-1 tracking-tight shrink-0">08:30</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-end justify-end gap-1.5 w-full animate-message delay-3">
+                <span class="text-[10px] text-app-textSec mb-1 tracking-tight shrink-0">08:31</span>
+                <div class="bg-app-green text-white px-4 py-2.5 rounded-[20px] rounded-br-sm max-w-[75%] text-[15px] leading-[1.6]">
+                    田中さんって前回どんな感じだった？
+                </div>
+            </div>
+
+            <div class="flex items-start justify-start gap-2.5 w-full animate-message delay-4 pb-4">
+                <img src="../../branding/logo_B.png" alt="Secleva" class="w-9 h-9 rounded-2xl object-cover">
+                <div class="flex items-end gap-1.5 w-full max-w-[78%]">
+                    <div class="bg-white px-4 py-3.5 rounded-[20px] rounded-bl-sm w-full border border-app-beige/50">
+                        <div class="flex items-center gap-1.5 mb-2">
+                            <i class="ph-fill ph-notebook text-app-terracotta text-[14px]"></i>
+                            <span class="text-[10px] font-bold text-app-terracotta tracking-widest leading-none mt-0.5">KARTE MEMO</span>
+                        </div>
+                        <p class="text-[15px] text-app-textPrm leading-[1.6]">
+                            「腰中心に強めでお願いします」とメモあり
+                        </p>
+                    </div>
+                    <span class="text-[10px] text-app-textSec mb-1 tracking-tight shrink-0">08:31</span>
+                </div>
+            </div>
+
+            <div class="h-[20px] w-full shrink-0"></div>
+        </div>
+
+        <div class="w-full bg-app-bg border-t border-app-beige px-3 pt-2.5 pb-[34px] shrink-0 z-50 flex items-end gap-2.5">
+            <button class="w-9 h-9 mb-[3px] flex items-center justify-center text-app-textSec active-scale shrink-0 bg-transparent rounded-full hover:bg-app-beige/50 transition-colors">
+                <i class="ph ph-plus text-[22px]"></i>
+            </button>
+            <div class="flex-1 bg-white border border-app-beige rounded-[20px] min-h-[42px] px-4 py-2.5 flex items-center relative overflow-hidden transition-colors focus-within:border-app-terracotta/40">
+                <textarea rows="1" placeholder="Aa" class="w-full bg-transparent text-[15px] text-app-textPrm placeholder:text-app-textSec/60 outline-none resize-none leading-snug hide-scrollbar pt-[1px]" style="min-height: 22px;" readonly></textarea>
+            </div>
+            <button class="w-9 h-9 mb-[3px] flex items-center justify-center text-app-textSec active-scale shrink-0 bg-transparent rounded-full hover:bg-app-beige/50 transition-colors">
+                <i class="ph ph-microphone text-[22px]"></i>
+            </button>
+        </div>
+
+        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-[134px] h-[5px] bg-black/20 rounded-full z-50 pointer-events-none"></div>
+    </main>
+</body>
+</html>

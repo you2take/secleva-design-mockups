@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Secleva 案C 管理画面</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] },
+            colors: { line: { DEFAULT: '#06C755' }, sc: { teal: '#0E7C7B', tealLight: '#E8F4F4', tealLighter: 'rgba(14, 124, 123, 0.08)', dark: '#111111', gray: '#71717A' } }
+        } } }
+    </script>
+    <style>
+        ::-webkit-scrollbar { display: none; }
+        * { -ms-overflow-style: none; scrollbar-width: none; -webkit-tap-highlight-color: transparent; }
+        .touch-active:active { opacity: 0.6; transform: scale(0.98); transition: all 0.1s ease; }
+        @keyframes growUp { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+        .bar-grow { transform-origin: bottom; animation: growUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        @keyframes pulseSoft { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; } }
+        .ai-pulse { animation: pulseSoft 3s ease-in-out infinite; }
+        .timeline-line::before { content: ''; position: absolute; left: -1px; top: 24px; bottom: -16px; width: 2px; background-color: #e4e4e7; }
+        .timeline-item:last-child .timeline-line::before { display: none; }
+    </style>
+</head>
+<body class="bg-zinc-100 flex justify-center w-full min-h-[100dvh] text-zinc-900">
+
+    <main class="w-full max-w-[390px] h-[100dvh] bg-white relative flex flex-col font-sans overflow-hidden sm:border-x sm:border-zinc-200 sm:shadow-2xl">
+
+        <div class="h-11 w-full bg-white flex justify-between items-center px-6 text-[14px] font-medium z-50">
+            <span>09:00</span>
+            <div class="flex gap-1.5 items-center">
+                <i class="ph-fill ph-cell-signal-full text-base"></i>
+                <i class="ph ph-wifi-high text-base"></i>
+                <i class="ph-fill ph-battery-full text-lg"></i>
+            </div>
+        </div>
+
+        <header class="h-14 bg-white border-b border-zinc-100 flex justify-between items-center px-4 sticky top-0 z-40">
+            <div class="w-8"></div>
+            <div class="flex flex-col items-center">
+                <div class="flex items-center gap-1">
+                    <span class="text-[10px] text-sc-teal font-semibold tracking-wider flex items-center gap-1"><i class="ph-fill ph-sparkle text-[10px] ai-pulse"></i> SECLEVA AI</span>
+                </div>
+                <h1 class="text-[14px] font-bold tracking-tight">管理ダッシュボード</h1>
+            </div>
+            <div class="flex items-center gap-3">
+                <button class="touch-active p-1"><i class="ph ph-magnifying-glass text-2xl text-zinc-700"></i></button>
+                <img src="../../branding/logo_C.png" alt="Secleva" class="w-8 h-8 rounded-2xl object-cover">
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto w-full pb-28 pt-4 px-4 space-y-6">
+
+            <section class="bg-white border border-zinc-100 rounded-[20px] overflow-hidden shadow-[0_4px_20px_-2px_rgba(0,0,0,0.04)] relative">
+                <div class="absolute top-0 left-0 bottom-0 w-[2.5px] bg-sc-teal"></div>
+                <div class="px-4 py-3 border-b border-zinc-100 flex items-center justify-between pl-5">
+                    <h2 class="text-[15px] font-bold">2026年5月7日 (木)</h2>
+                    <span class="text-xs font-bold text-line bg-line/10 px-2 py-1 rounded-md">営業中</span>
+                </div>
+                <div class="grid grid-cols-2 divide-x divide-y divide-zinc-100">
+                    <div class="p-4 flex flex-col justify-center pl-5">
+                        <span class="text-xs font-medium text-sc-gray mb-1">今日の予約</span>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-3xl font-black tracking-tight text-sc-teal">4</span>
+                            <span class="text-sm font-medium text-sc-gray">件</span>
+                        </div>
+                    </div>
+                    <div class="p-4 flex flex-col justify-center">
+                        <span class="text-xs font-medium text-sc-gray mb-1">売上見込</span>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-2xl font-black tracking-tight text-sc-teal font-mono">¥29,000</span>
+                        </div>
+                    </div>
+                    <div class="p-4 flex flex-col justify-center pl-5">
+                        <span class="text-xs font-medium text-sc-gray mb-1">総顧客数</span>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-xl font-bold tracking-tight text-zinc-800">156</span>
+                            <span class="text-xs font-medium text-sc-gray">人</span>
+                        </div>
+                    </div>
+                    <div class="p-4 flex flex-col justify-center">
+                        <span class="text-xs font-medium text-sc-gray mb-1">作成カルテ</span>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-xl font-bold tracking-tight text-zinc-800">89</span>
+                            <span class="text-xs font-medium text-sc-gray">件</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="flex justify-around items-start gap-2">
+                <a href="reservations.html" class="touch-active flex flex-col items-center gap-2">
+                    <div class="w-[60px] h-[60px] bg-white border border-zinc-100 rounded-2xl flex items-center justify-center shadow-[0_2px_6px_-1px_rgba(0,0,0,0.03)]">
+                        <i class="ph ph-calendar-plus text-2xl text-sc-teal"></i>
+                    </div>
+                    <span class="text-[11px] font-bold text-zinc-700">予約追加</span>
+                </a>
+                <a href="customers.html" class="touch-active flex flex-col items-center gap-2">
+                    <div class="w-[60px] h-[60px] bg-white border border-zinc-100 rounded-2xl flex items-center justify-center shadow-[0_2px_6px_-1px_rgba(0,0,0,0.03)]">
+                        <i class="ph ph-user-list text-2xl text-sc-teal"></i>
+                    </div>
+                    <span class="text-[11px] font-bold text-zinc-700">顧客検索</span>
+                </a>
+                <a href="karte.html" class="touch-active flex flex-col items-center gap-2">
+                    <div class="w-[60px] h-[60px] bg-white border border-zinc-100 rounded-2xl flex items-center justify-center shadow-[0_2px_6px_-1px_rgba(0,0,0,0.03)]">
+                        <i class="ph ph-clipboard-text text-2xl text-sc-teal"></i>
+                    </div>
+                    <span class="text-[11px] font-bold text-zinc-700">カルテ</span>
+                </a>
+                <a href="#" class="touch-active flex flex-col items-center gap-2">
+                    <div class="w-[60px] h-[60px] bg-white border border-zinc-100 rounded-2xl flex items-center justify-center shadow-[0_2px_6px_-1px_rgba(0,0,0,0.03)]">
+                        <i class="ph ph-paper-plane-tilt text-2xl text-sc-teal"></i>
+                    </div>
+                    <span class="text-[11px] font-bold text-zinc-700">配信</span>
+                </a>
+            </section>
+
+            <section class="bg-white border border-zinc-100 rounded-[20px] overflow-hidden shadow-[0_4px_20px_-2px_rgba(0,0,0,0.04)] relative">
+                <div class="absolute top-0 left-0 bottom-0 w-[2.5px] bg-sc-teal"></div>
+                <div class="px-4 py-3 border-b border-zinc-100 flex justify-between items-center bg-sc-tealLight/30 pl-5">
+                    <h3 class="text-[14px] font-bold">今日の予約</h3>
+                    <a href="reservations.html" class="text-xs text-sc-gray flex items-center gap-0.5 touch-active">すべて見る <i class="ph ph-caret-right"></i></a>
+                </div>
+                <div class="p-4 pt-5 pb-2 pl-5">
+                    <div class="flex flex-col">
+                        <div class="timeline-item flex gap-4 relative pb-6">
+                            <div class="w-12 text-right shrink-0"><span class="text-[13px] font-bold text-zinc-900 block leading-tight font-mono">10:00</span></div>
+                            <div class="timeline-line relative flex flex-col pt-0.5"><div class="w-2.5 h-2.5 rounded-full bg-zinc-300 z-10 absolute -left-[5px] top-1"></div></div>
+                            <div class="flex-1 pb-2 touch-active">
+                                <p class="text-[14px] font-bold text-zinc-900 mb-0.5">田中 様</p>
+                                <p class="text-xs text-sc-gray">もみほぐし (60分) <span class="ml-2 text-zinc-400">8回目</span></p>
+                            </div>
+                        </div>
+                        <div class="timeline-item flex gap-4 relative pb-6">
+                            <div class="w-12 text-right shrink-0"><span class="text-[13px] font-bold text-zinc-900 block leading-tight font-mono">13:00</span></div>
+                            <div class="timeline-line relative flex flex-col pt-0.5"><div class="w-2.5 h-2.5 rounded-full bg-sc-teal z-10 absolute -left-[5px] top-1 ring-4 ring-sc-tealLighter"></div></div>
+                            <div class="flex-1 pb-2 touch-active">
+                                <p class="text-[14px] font-bold text-zinc-900 mb-0.5">佐藤 様</p>
+                                <p class="text-xs text-sc-gray">全身アロマ (90分) <span class="ml-2 text-sc-teal bg-sc-tealLight px-1 py-0.5 rounded text-[10px] ring-1 ring-inset ring-sc-teal/20">新規</span></p>
+                            </div>
+                        </div>
+                        <div class="timeline-item flex gap-4 relative pb-6">
+                            <div class="w-12 text-right shrink-0"><span class="text-[13px] font-bold text-zinc-900 block leading-tight font-mono">15:30</span></div>
+                            <div class="timeline-line relative flex flex-col pt-0.5"><div class="w-2.5 h-2.5 rounded-full bg-zinc-300 z-10 absolute -left-[5px] top-1"></div></div>
+                            <div class="flex-1 pb-2 touch-active">
+                                <p class="text-[14px] font-bold text-zinc-900 mb-0.5">山田 様</p>
+                                <p class="text-xs text-sc-gray">腰中心 (60分) <span class="ml-2 text-zinc-400">3回目</span></p>
+                            </div>
+                        </div>
+                        <div class="timeline-item flex gap-4 relative pb-2">
+                            <div class="w-12 text-right shrink-0"><span class="text-[13px] font-bold text-zinc-900 block leading-tight font-mono">18:00</span></div>
+                            <div class="timeline-line relative flex flex-col pt-0.5"><div class="w-2.5 h-2.5 rounded-full bg-zinc-300 z-10 absolute -left-[5px] top-1"></div></div>
+                            <div class="flex-1 pb-2 touch-active">
+                                <p class="text-[14px] font-bold text-zinc-900 mb-0.5">鈴木 様</p>
+                                <p class="text-xs text-sc-gray">全身アロマ (90分) <span class="ml-2 text-zinc-400">常連</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white border border-zinc-100 rounded-[20px] overflow-hidden shadow-[0_4px_20px_-2px_rgba(0,0,0,0.04)] relative">
+                <div class="absolute top-0 left-0 bottom-0 w-[2.5px] bg-sc-teal"></div>
+                <div class="px-4 py-3 border-b border-zinc-100 flex justify-between items-center bg-sc-tealLight/30 pl-5">
+                    <h3 class="text-[14px] font-bold">最近のカルテ</h3>
+                    <a href="customers.html" class="text-xs text-sc-gray flex items-center gap-0.5 touch-active">一覧へ <i class="ph ph-caret-right"></i></a>
+                </div>
+                <div class="flex flex-col divide-y divide-zinc-50">
+                    <div class="p-4 flex gap-3 items-start touch-active cursor-pointer hover:bg-zinc-50 transition-colors pl-5">
+                        <div class="w-10 h-10 rounded-full bg-sc-tealLight border border-sc-teal/10 flex items-center justify-center shrink-0">
+                            <span class="text-sm font-bold text-sc-teal">田</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-center mb-1">
+                                <p class="text-[14px] font-bold text-zinc-900 truncate tracking-tight">田中 健太</p>
+                                <span class="text-[11px] text-zinc-400 font-mono">4/24</span>
+                            </div>
+                            <p class="text-xs text-sc-gray line-clamp-2 leading-relaxed">腰の張りが強め、肩こりも。次回は90分コースを提案予定。</p>
+                        </div>
+                    </div>
+                    <div class="p-4 flex gap-3 items-start touch-active cursor-pointer hover:bg-zinc-50 transition-colors pl-5">
+                        <div class="w-10 h-10 rounded-full bg-sc-tealLight border border-sc-teal/10 flex items-center justify-center shrink-0">
+                            <span class="text-sm font-bold text-sc-teal">山</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-center mb-1">
+                                <p class="text-[14px] font-bold text-zinc-900 truncate tracking-tight">山田 太郎</p>
+                                <span class="text-[11px] text-zinc-400 font-mono">4/22</span>
+                            </div>
+                            <p class="text-xs text-sc-gray line-clamp-2 leading-relaxed">デスクワーク由来の眼精疲労。ヘッドケア追加。アロマはラベンダー希望。</p>
+                        </div>
+                    </div>
+                    <div class="p-4 flex gap-3 items-start touch-active cursor-pointer hover:bg-zinc-50 transition-colors pl-5">
+                        <div class="w-10 h-10 rounded-full bg-sc-tealLight border border-sc-teal/10 flex items-center justify-center shrink-0">
+                            <span class="text-sm font-bold text-sc-teal">鈴</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-center mb-1">
+                                <p class="text-[14px] font-bold text-zinc-900 truncate tracking-tight">鈴木 裕子</p>
+                                <span class="text-[11px] text-zinc-400 font-mono">4/20</span>
+                            </div>
+                            <p class="text-xs text-sc-gray line-clamp-2 leading-relaxed">足のむくみ解消希望。少し痛みを伴うくらいが丁度いいとのこと。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white border border-zinc-100 rounded-[20px] overflow-hidden shadow-[0_4px_20px_-2px_rgba(0,0,0,0.04)] relative">
+                <div class="absolute top-0 left-0 bottom-0 w-[2.5px] bg-sc-teal"></div>
+                <div class="px-4 py-3 border-b border-zinc-100 flex justify-between items-center bg-sc-tealLight/30 pl-5">
+                    <h3 class="text-[14px] font-bold">売上推移 <span class="text-xs font-normal text-sc-gray ml-1">(過去7日間)</span></h3>
+                </div>
+                <div class="p-5 pt-8 pb-4 pl-6">
+                    <div class="w-full h-32 flex items-end justify-between space-x-1.5 relative border-b border-zinc-100 pb-2">
+                        <div class="absolute inset-x-0 bottom-2 top-0 flex flex-col justify-between pointer-events-none z-0">
+                            <div class="border-t border-zinc-100 border-dashed w-full h-[1px]"></div>
+                            <div class="border-t border-zinc-100 border-dashed w-full h-[1px]"></div>
+                            <div class="border-t border-zinc-100 border-dashed w-full h-[1px]"></div>
+                        </div>
+                        <div class="relative z-10 w-full flex flex-col justify-end items-center h-full">
+                            <div class="w-full max-w-[24px] bg-sc-tealLight rounded-t-sm bar-grow" style="height: 40%; animation-delay: 100ms;"></div>
+                            <span class="text-[10px] text-zinc-400 mt-2 block w-full text-center font-mono">5/1</span>
+                        </div>
+                        <div class="relative z-10 w-full flex flex-col justify-end items-center h-full">
+                            <div class="w-full max-w-[24px] bg-sc-tealLight rounded-t-sm bar-grow" style="height: 65%; animation-delay: 200ms;"></div>
+                            <span class="text-[10px] text-zinc-400 mt-2 block w-full text-center font-mono">5/2</span>
+                        </div>
+                        <div class="relative z-10 w-full flex flex-col justify-end items-center h-full">
+                            <div class="w-full max-w-[24px] bg-sc-tealLight rounded-t-sm bar-grow" style="height: 80%; animation-delay: 300ms;"></div>
+                            <span class="text-[10px] text-zinc-400 mt-2 block w-full text-center font-mono">5/3</span>
+                        </div>
+                        <div class="relative z-10 w-full flex flex-col justify-end items-center h-full">
+                            <div class="w-full max-w-[24px] bg-sc-tealLighter rounded-t-sm bar-grow" style="height: 20%; animation-delay: 400ms;"></div>
+                            <span class="text-[10px] text-zinc-400 mt-2 block w-full text-center font-mono">5/4</span>
+                        </div>
+                        <div class="relative z-10 w-full flex flex-col justify-end items-center h-full">
+                            <div class="w-full max-w-[24px] bg-sc-tealLight rounded-t-sm bar-grow" style="height: 50%; animation-delay: 500ms;"></div>
+                            <span class="text-[10px] text-zinc-400 mt-2 block w-full text-center font-mono">5/5</span>
+                        </div>
+                        <div class="relative z-10 w-full flex flex-col justify-end items-center h-full">
+                            <div class="w-full max-w-[24px] bg-sc-tealLight rounded-t-sm bar-grow" style="height: 70%; animation-delay: 600ms;"></div>
+                            <span class="text-[10px] text-zinc-400 mt-2 block w-full text-center font-mono">5/6</span>
+                        </div>
+                        <div class="relative z-10 w-full flex flex-col justify-end items-center h-full">
+                            <div class="absolute -top-6 text-[10px] font-bold text-sc-teal whitespace-nowrap bg-white rounded shadow-sm px-1 border border-sc-teal/20 font-mono">¥2.9w</div>
+                            <div class="w-full max-w-[24px] bg-sc-teal rounded-t-sm bar-grow" style="height: 45%; animation-delay: 700ms;"></div>
+                            <span class="text-[10px] font-bold text-zinc-800 mt-2 block w-full text-center">今日</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <nav class="h-[84px] bg-white border-t border-zinc-100 absolute bottom-0 w-full flex justify-around items-start pt-2 px-2 z-50 pb-[20px]">
+            <a href="admin.html" class="flex flex-col items-center justify-center w-full touch-active text-sc-teal">
+                <i class="ph-fill ph-house text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold">ホーム</span>
+            </a>
+            <a href="reservations.html" class="flex flex-col items-center justify-center w-full touch-active text-zinc-400">
+                <i class="ph ph-calendar-blank text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold">予約</span>
+            </a>
+            <a href="customers.html" class="flex flex-col items-center justify-center w-full touch-active text-zinc-400">
+                <i class="ph ph-users text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold">顧客</span>
+            </a>
+            <a href="#" class="flex flex-col items-center justify-center w-full touch-active text-zinc-400">
+                <i class="ph ph-folder text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold">カルテ</span>
+                </a>
+            <a href="settings.html" class="flex flex-col items-center justify-center w-full touch-active text-zinc-400">
+                <i class="ph ph-gear text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold">設定</span>
+            </a>
+        </nav>
+    </main>
+</body>
+</html>
