@@ -38,17 +38,19 @@
                 transform: translate(-100%, -50%);
                 align-items: flex-start;
             }
-            .pc-aside .aside-title { font-size: 14px; font-weight: 700; letter-spacing: 0.3em; color: #06C755; margin-bottom: 1.25rem; }
+            .pc-aside .aside-title { font-size: 11px; font-weight: 700; letter-spacing: 0.3em; color: #06C755; margin-bottom: 0.75rem; }
             .pc-aside a {
-                font-size: 28px; font-weight: 800; color: #1f2937;
-                padding: 0.25rem 0; text-decoration: none;
-                display: flex; gap: 0.75rem; align-items: baseline;
-                transition: color 0.2s, transform 0.2s; line-height: 1.2;
+                font-size: 16px; font-weight: 700; color: #1f2937;
+                padding: 0.4rem 0; text-decoration: none;
+                display: flex; gap: 0.6rem; align-items: baseline;
+                transition: color 0.2s, transform 0.2s; line-height: 1.4;
             }
             .pc-aside a:hover { color: #06C755; transform: translateX(4px); }
-            .pc-aside .aside-num { font-family: 'JetBrains Mono', monospace; color: #9ca3af; font-size: 18px; font-weight: 500; }
-            /* スティッキー bottom CTA を 600px幅に拡張（PC viewport） */
-            .mobile-container > .fixed.bottom-0 { left: 50% !important; transform: translateX(-50%); right: auto !important; max-width: 600px !important; padding-left: 2rem !important; padding-right: 2rem !important; border-radius: 24px 24px 0 0; }
+            .pc-aside .aside-num { font-family: 'JetBrains Mono', monospace; color: #9ca3af; font-size: 12px; font-weight: 500; }
+            /* スティッキー bottom CTA を 800px幅に拡張（PC viewport） + 内側の余白 */
+            .mobile-container > .fixed.bottom-0 { left: 50% !important; transform: translateX(-50%); right: auto !important; max-width: 800px !important; padding-left: 2.5rem !important; padding-right: 2.5rem !important; border-radius: 24px 24px 0 0; }
+            /* CTA内ボタンの内側余白を増やす（吹き出しアイコン・テキストが詰まらないように） */
+            .mobile-container > .fixed.bottom-0 > button { padding-left: 1.5rem !important; padding-right: 1.5rem !important; gap: 0.875rem !important; }
             /* PC表示用の元class（hero-pc等）は無効化＝mobile通りに表示 */
             .hero-pc { display: block !important; text-align: center !important; }
             .hero-pc .pc-mock { display: none !important; }
