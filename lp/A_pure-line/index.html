@@ -73,7 +73,7 @@
             /* スティッキー bottom CTA を 900px幅に拡張（PC viewport） + 内側の余白 */
             .mobile-container > .fixed.bottom-0 { left: 50% !important; transform: translateX(-50%); right: auto !important; max-width: 900px !important; padding-left: 3.5rem !important; padding-right: 3.5rem !important; border-radius: 24px 24px 0 0; }
             /* CTA内ボタンの内側余白を増やす（吹き出しアイコン・テキストが詰まらないように） */
-            .mobile-container > .fixed.bottom-0 > button { padding-left: 1.5rem !important; padding-right: 1.5rem !important; gap: 0.875rem !important; }
+            .mobile-container > .fixed.bottom-0 > button, .mobile-container > .fixed.bottom-0 > a { padding-left: 2.5rem !important; padding-right: 2.5rem !important; gap: 1rem !important; }
             /* PC表示用の元class（hero-pc等）は無効化＝mobile通りに表示 */
             .hero-pc { display: block !important; text-align: center !important; }
             .hero-pc .pc-mock { display: none !important; }
@@ -403,7 +403,7 @@
             <span>\ 個人サロン限定 /</span>
             <span class="text-line-green">クレカ登録なし</span>
         </div>
-        <a href="apply.html" class="btn-active w-full bg-line-green text-white font-black text-xl py-4 rounded-xl flex items-center justify-center gap-2 shadow-[0_4px_0_#049E43]">
+        <a href="apply.html" class="btn-active w-full bg-line-green text-white font-black text-xl py-4 px-8 rounded-xl flex items-center justify-center gap-3 shadow-[0_4px_0_#049E43]">
             <i class="ph ph-chat-circle-text text-[28px]"></i>お申し込みの流れを見る
         </a>
     </div>
