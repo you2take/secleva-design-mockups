@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お申し込みの流れ — Secleva</title>
+    <meta name="description" content="お申し込みは LINE で 3 項目返信するだけ。運営側でお店の LINE 公式アカウントを屋号でご用意してお渡しします。最初の 6 ヶ月は無料、カード入力不要。">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="お申し込みの流れ — Secleva">
+    <meta property="og:description" content="LINE で 3 項目返信するだけ。最初の 6 ヶ月は無料・カード不要。Secleva">
+    <meta property="og:image" content="https://secleva.vercel.app/branding/og.webp">
+    <meta property="og:url" content="https://secleva.vercel.app/lp/A_pure-line/apply.html">
+    <meta property="og:site_name" content="Secleva">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="お申し込みの流れ — Secleva">
+    <meta name="twitter:description" content="LINE で 3 項目返信するだけ。最初の 6 ヶ月は無料・カード不要。Secleva">
+    <meta name="twitter:image" content="https://secleva.vercel.app/branding/og.webp">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../../branding/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../branding/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../branding/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../../branding/icon-192.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { 'line-green': '#06C755', 'ink': '#111111' }, fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] } } } }
+    </script>
+    <style>
+        body { background-color: #f3f4f6; font-family: 'Noto Sans JP', sans-serif; -webkit-font-smoothing: antialiased; }
+        .mobile-container { max-width: 480px; margin-left: auto; margin-right: auto; background-color: #ffffff; min-height: 100dvh; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.05); overflow-x: hidden; z-index: 10; }
+        .btn-active:active { transform: scale(0.96); transition: transform 0.1s; }
+
+        .pc-aside, .pc-bg { display: none; }
+
+        @media (min-width: 1024px) {
+            body { background: linear-gradient(135deg, #f0fdf4 0%, #f3f4f6 50%, #fef9e7 100%); }
+            .pc-bg { display: block; position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+            .pc-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.45; }
+            .mobile-container { box-shadow: 0 30px 80px -20px rgba(0,0,0,0.18), 0 8px 16px -8px rgba(0,0,0,0.08); border-radius: 24px; margin-top: 2rem; margin-bottom: 2rem; min-height: auto; }
+            .pc-aside { display: flex; position: fixed; top: 50%; transform: translateY(-50%); flex-direction: column; gap: 1.25rem; z-index: 30; }
+            .pc-aside.left {
+                left: calc(50% - 240px - 64px);
+                transform: translate(-100%, -50%);
+                align-items: flex-start;
+            }
+            .pc-aside .aside-title { font-size: 11px; font-weight: 700; letter-spacing: 0.3em; color: #06C755; margin-bottom: 0.75rem; }
+            .pc-aside a {
+                font-size: 16px; font-weight: 700; color: #1f2937;
+                padding: 0.4rem 0; text-decoration: none;
+                display: flex; gap: 0.6rem; align-items: baseline;
+                transition: color 0.2s, transform 0.2s; line-height: 1.4;
+            }
+            .pc-aside a:hover { color: #06C755; transform: translateX(4px); }
+            .pc-aside .aside-num { font-family: 'JetBrains Mono', monospace; color: #9ca3af; font-size: 12px; font-weight: 500; }
+        }
+    </style>
+</head>
+<body class="text-ink">
+
+<div class="pc-bg">
+    <img src="../../branding/pc-background.webp" alt="" onerror="this.style.display='none'">
+</div>
+
+<aside class="pc-aside left">
+    <div class="aside-title">STEPS</div>
+    <a href="#step1"><span class="aside-num">01</span>友だち追加</a>
+    <a href="#step2"><span class="aside-num">02</span>3 項目返信</a>
+    <a href="#step3"><span class="aside-num">03</span>運営でご用意</a>
+    <a href="#step4"><span class="aside-num">04</span>準備完了連絡</a>
+    <a href="#step5"><span class="aside-num">05</span>管理画面ログイン</a>
+    <a href="#step6"><span class="aside-num">06</span>ご予約開始</a>
+</aside>
+
+<div class="mobile-container">
+
+    <header class="pt-6 pb-4 px-5 border-b border-gray-100 flex items-center justify-between sticky top-0 bg-white/95 backdrop-blur-sm z-40">
+        <a href="index.html" class="flex items-center gap-2">
+            <img src="../../branding/logo_A.png" alt="Secleva" class="w-7 h-7 rounded-lg object-cover">
+            <span class="font-black text-xl tracking-tight">Secleva</span>
+        </a>
+        <a href="#" class="text-xs font-bold text-gray-600 hover:text-line-green transition-colors">ログイン</a>
+    </header>
+
+    <!-- Hero -->
+    <section class="px-5 pt-10 pb-12 text-center border-b-[8px] border-gray-50">
+        <span class="inline-block px-3 py-1 text-[11px] font-bold text-line-green bg-line-green/10 rounded-full mb-4">申し込み制のサービス</span>
+        <h1 class="text-[24px] leading-[1.4] font-black tracking-tight mb-4">
+            お申し込みは<br>
+            <span class="text-line-green">LINE で 3 項目</span><br>
+            返信するだけ
+        </h1>
+        <p class="text-[14px] font-bold text-gray-600 leading-relaxed mb-6">
+            運営側で<strong class="text-ink">お店の LINE 公式アカウント</strong>を<br>
+            屋号でご用意してお渡しします
+        </p>
+        <a href="https://lin.ee/U771qpF" class="btn-active inline-flex items-center justify-center gap-2 bg-line-green text-white font-bold text-[15px] px-6 py-3 rounded-xl shadow-[0_4px_0_#049E43]">
+            <i class="ph ph-chat-circle-text text-xl"></i>Secleva サポート LINE へ進む
+        </a>
+        <p class="text-[11px] text-gray-500 font-bold mt-3">@224lmrlc / 3 項目を返信するだけ</p>
+    </section>
+
+    <!-- これからの流れ -->
+    <section class="px-5 py-12 border-b-[8px] border-gray-50">
+        <h2 class="text-xl font-black text-center mb-2">これからの流れ</h2>
+        <p class="text-center text-[12px] text-gray-500 font-bold mb-8">所要時間 5 分（ご返信のみ）</p>
+
+        <div class="space-y-5">
+            <!-- Step 1 -->
+            <div id="step1" class="flex gap-4">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-line-green text-white font-black text-lg flex items-center justify-center">1</div>
+                <div class="flex-1 pt-1">
+                    <h3 class="font-bold text-[15px] mb-1">Secleva サポート LINE を友だち追加</h3>
+                    <p class="text-[13px] text-gray-600 leading-relaxed">下のボタンから 1 タップで友だち追加できます。</p>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div id="step2" class="flex gap-4">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-line-green text-white font-black text-lg flex items-center justify-center">2</div>
+                <div class="flex-1 pt-1">
+                    <h3 class="font-bold text-[15px] mb-2">3 項目を返信</h3>
+                    <p class="text-[13px] text-gray-600 leading-relaxed mb-3">あいさつメッセージで以下を聞かれます：</p>
+                    <ol class="space-y-2 bg-gray-50 border border-gray-200 rounded-lg p-3">
+                        <li class="text-[12px] leading-relaxed"><span class="font-bold text-line-green">①</span> お店の屋号<span class="text-gray-500">（LINE 公式アカウントの表示名になります）</span></li>
+                        <li class="text-[12px] leading-relaxed"><span class="font-bold text-line-green">②</span> 業種<span class="text-gray-500">（マッサージ／整体／リラクゼーション 等）</span></li>
+                        <li class="text-[12px] leading-relaxed"><span class="font-bold text-line-green">③</span> メールアドレス<span class="text-gray-500">（プラン変更や利用停止予告などの重要連絡用）</span></li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div id="step3" class="flex gap-4">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-line-green text-white font-black text-lg flex items-center justify-center">3</div>
+                <div class="flex-1 pt-1">
+                    <h3 class="font-bold text-[15px] mb-1">運営側でお店の LINE 公式アカウントをご用意 <span class="text-[11px] text-gray-500">（3-5 営業日）</span></h3>
+                    <p class="text-[13px] text-gray-600 leading-relaxed">専門的な設定は、すべて運営側で代行いたします。難しい作業は一切ございませんので、ご連絡をお待ちください。</p>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div id="step4" class="flex gap-4">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-line-green text-white font-black text-lg flex items-center justify-center">4</div>
+                <div class="flex-1 pt-1">
+                    <h3 class="font-bold text-[15px] mb-1">「準備できました」のご連絡（LINE + メール）</h3>
+                    <p class="text-[13px] text-gray-600 leading-relaxed">サポート LINE とメールの両方でお知らせします。お店の LINE 公式アカウントの友だち追加 URL と、管理画面のログイン URL をお送りします。</p>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div id="step5" class="flex gap-4">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-line-green text-white font-black text-lg flex items-center justify-center">5</div>
+                <div class="flex-1 pt-1">
+                    <h3 class="font-bold text-[15px] mb-1">管理画面にログイン → お店の情報を入力 <span class="text-[11px] text-gray-500">（15-30 分）</span></h3>
+                    <p class="text-[13px] text-gray-600 leading-relaxed">「LINE で続ける」をタップするだけでログイン完了。ご住所／営業時間／メニューなどを入力していただきます。</p>
+                </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div id="step6" class="flex gap-4">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-ink text-white font-black text-lg flex items-center justify-center">6</div>
+                <div class="flex-1 pt-1">
+                    <h3 class="font-bold text-[15px] mb-1">お客様からご予約が入り始めます 🎉</h3>
+                    <p class="text-[13px] text-gray-600 leading-relaxed">ご予約・お問い合わせ・リマインドが LINE 上で自動的に進みます。オーナー様ご自身も AI 秘書に LINE で指示を出せます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 料金 -->
+    <section class="px-5 py-12 border-b-[8px] border-gray-50">
+        <h2 class="text-xl font-black text-center mb-8">料金</h2>
+        <div class="border-2 border-line-green rounded-2xl p-6 bg-line-green/5 space-y-3">
+            <div class="flex justify-between items-baseline">
+                <span class="text-[14px] font-bold">最初の 6 ヶ月</span>
+                <span class="text-[24px] font-black text-line-green">¥0</span>
+            </div>
+            <div class="flex justify-between items-baseline">
+                <span class="text-[13px] font-bold text-gray-700">登録時のクレジットカード入力</span>
+                <span class="text-[14px] font-bold">不要</span>
+            </div>
+            <div class="flex justify-between items-baseline">
+                <span class="text-[13px] font-bold text-gray-700">7 ヶ月目以降：Solo プラン</span>
+                <span class="text-[16px] font-black">月 ¥980</span>
+            </div>
+            <div class="flex justify-between items-baseline">
+                <span class="text-[13px] font-bold text-gray-700">初期設定の代行費用</span>
+                <span class="text-[16px] font-black">¥0</span>
+            </div>
+        </div>
+        <p class="text-[11px] text-gray-500 leading-relaxed mt-4 px-1">
+            ※ 6 ヶ月の無料期間が終わったあと、カード未登録のままですと閲覧のみのモードに自動的に切り替わります（データはそのまま残り、いつでも有料プランで再開できます）。詳細は<a href="#" class="text-line-green underline">利用規約</a>をご確認ください。
+        </p>
+    </section>
+
+    <!-- LINE で完結する理由 -->
+    <section class="px-5 py-12 border-b-[8px] border-gray-50">
+        <h2 class="text-xl font-black text-center mb-8">LINE で完結する理由</h2>
+        <ul class="space-y-3">
+            <li class="flex gap-3 items-start">
+                <i class="ph-fill ph-check-circle text-line-green text-xl shrink-0 mt-0.5"></i>
+                <span class="text-[14px] font-bold leading-relaxed">お客様とのやりとりも、お店の LINE 公式アカウントで完結</span>
+            </li>
+            <li class="flex gap-3 items-start">
+                <i class="ph-fill ph-check-circle text-line-green text-xl shrink-0 mt-0.5"></i>
+                <span class="text-[14px] font-bold leading-relaxed">AI 秘書への指示も、同じ LINE 公式アカウントで完結</span>
+            </li>
+            <li class="flex gap-3 items-start">
+                <i class="ph-fill ph-check-circle text-line-green text-xl shrink-0 mt-0.5"></i>
+                <span class="text-[14px] font-bold leading-relaxed">運営とのやりとりも Secleva サポート LINE で完結</span>
+            </li>
+            <li class="flex gap-3 items-start">
+                <i class="ph-fill ph-check-circle text-gray-300 text-xl shrink-0 mt-0.5"></i>
+                <span class="text-[13px] text-gray-600 leading-relaxed">メールも電話も、基本的に不要<br><span class="text-[11px] text-gray-500">（プラン変更などの大切なお知らせのみ、メールも併せてお送りします）</span></span>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="px-5 py-16 text-center">
+        <h2 class="text-[20px] font-black mb-3">お申し込みの準備はよろしいですか？</h2>
+        <p class="text-[13px] text-gray-600 font-bold mb-8">まずはサポート LINE を友だち追加してください。</p>
+        <a href="https://lin.ee/U771qpF" class="btn-active inline-flex items-center justify-center gap-2 bg-line-green text-white font-bold text-[16px] px-8 py-4 rounded-xl shadow-[0_4px_0_#049E43]">
+            <i class="ph ph-chat-circle-text text-2xl"></i>Secleva サポート LINE へ進む
+        </a>
+        <p class="text-[11px] text-gray-500 font-bold mt-3">@224lmrlc / 3 項目を返信するだけ</p>
+
+        <div class="mt-12 pt-8 border-t border-gray-200">
+            <p class="text-[12px] text-gray-500 font-bold mb-2">すでにお申し込み済みの方はこちら</p>
+            <a href="#" class="text-[14px] font-bold text-ink hover:text-line-green transition-colors">管理画面にログイン →</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 text-center py-8 px-5 border-t border-gray-200">
+        <div class="flex justify-center gap-4 mb-4">
+            <a href="#" class="text-[11px] font-bold text-gray-500 underline">特定商取引法</a>
+            <a href="#" class="text-[11px] font-bold text-gray-500 underline">利用規約</a>
+            <a href="#" class="text-[11px] font-bold text-gray-500 underline">プライバシーポリシー</a>
+        </div>
+        <p class="text-[10px] text-gray-400 font-bold mb-3">&copy; 2026 Secleva Inc.</p>
+        <a href="index.html" class="text-[11px] font-bold text-gray-500 hover:text-ink transition-colors">← Secleva トップに戻る</a>
+    </footer>
+</div>
+
+</body>
+</html>
