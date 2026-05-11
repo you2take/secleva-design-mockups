@@ -31,9 +31,44 @@
         .active-push:active { transform: scale(0.98); }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .pc-aside { display: none; }  /* default hidden on mobile */
+
+        /* PC viewport */
+        @media (min-width: 1024px) {
+            body {
+                background: linear-gradient(135deg, #1A2A4A 0%, #2A3A5A 30%, #f7f7f7 30.5%, #fbfbfb 100%);
+                padding: 2rem 0;
+            }
+            main {
+                box-shadow: 0 30px 80px -20px rgba(26,42,74,0.30), 0 8px 16px -8px rgba(201,168,106,0.15);
+                margin-top: 2rem !important;
+                margin-bottom: 2rem !important;
+                min-height: auto !important;
+            }
+            .pc-aside {
+                display: flex; position: fixed; top: 50%;
+                flex-direction: column; gap: 0.5rem; z-index: 30;
+                left: calc(50% - 215px - 64px); transform: translate(-100%, -50%);
+                width: 200px; align-items: flex-start;
+                color: white;
+            }
+            .pc-aside-title { font-size: 10px; font-weight: 500; letter-spacing: 0.3em; color: #C9A86A; margin-bottom: 0.25rem; font-family: 'Cormorant Garamond', serif; text-transform: uppercase; }
+            .pc-aside-shop { font-size: 26px; font-weight: 500; color: white; line-height: 1.4; font-family: 'Noto Serif JP', serif; letter-spacing: 0.1em; }
+            .pc-aside-shop-en { font-size: 14px; font-weight: 500; color: #C9A86A; margin-top: 0.5rem; font-family: 'Cormorant Garamond', serif; letter-spacing: 0.2em; }
+            .pc-aside-cat { font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.6); margin-top: 1rem; letter-spacing: 0.15em; }
+            .pc-aside-note { font-size: 10px; color: rgba(201,168,106,0.6); margin-top: 1.5rem; line-height: 1.5; letter-spacing: 0.1em; }
+        }
     </style>
 </head>
 <body class="font-sans-jp text-navy antialiased min-h-[100dvh] flex justify-center">
+
+    <aside class="pc-aside">
+        <div class="pc-aside-title">Maison de Lumière</div>
+        <div class="pc-aside-shop">碧の空間</div>
+        <div class="pc-aside-shop-en">PRIVATE SALON</div>
+        <div class="pc-aside-cat">高単価エステ・隠れ家サロン</div>
+        <div class="pc-aside-note">Designed for mobile experience.</div>
+    </aside>
 
     <main class="w-full max-w-[430px] bg-white min-h-[100dvh] relative overflow-x-hidden shadow-[0_0_50px_rgba(0,0,0,0.05)]">
 

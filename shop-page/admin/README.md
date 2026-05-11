@@ -435,6 +435,85 @@ type Shop = {
 
 ---
 
+## 🖥️ PC viewport 対応（モバイルUI + 装飾サイドバー）
+
+公開ページ（T1〜T5）は **モバイルファースト**だが、PC（≥1024px）で開いた時も**スマホUIをそのまま中央配置 + 左にテーマ装飾サイドバー**を表示する。  
+既存LP（`secleva.com/`）と同じパターンを踏襲。
+
+### 共通の設計
+- `@media (min-width: 1024px)` で発火
+- ボディ全面に **テンプレ色のグラデーション背景**
+- モバイルコンテナ（max-w 390〜480px）を **floating shadow + border-radius** で浮かせる
+- 左サイド `position: fixed` の **aside** に店舗ラベル（業種 / 店舗名 / 補足）
+
+### 共通CSS パターン
+```css
+.pc-aside { display: none; }  /* default mobile */
+
+@media (min-width: 1024px) {
+  body {
+    background: linear-gradient(135deg, [color1] 0%, [color2] 100%);
+    padding: 2rem 0;
+  }
+  .mobile-container, main {  /* 各テンプレのコンテナ */
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.18), 0 8px 16px -8px rgba(0,0,0,0.08);
+    border-radius: 24px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    min-height: auto;
+  }
+  .pc-aside {
+    display: flex; position: fixed; top: 50%;
+    flex-direction: column; gap: 1rem; z-index: 30;
+    left: calc(50% - [half_of_container_width] - 64px);
+    transform: translate(-100%, -50%);
+    width: 180-220px; align-items: flex-start;
+  }
+  .pc-aside-title { /* SHOP PAGE 等のラベル */ }
+  .pc-aside-shop { /* 店舗名 */ }
+  .pc-aside-cat { /* 業種 */ }
+  .pc-aside-note { /* 補足 */ }
+}
+```
+
+### テンプレ別パラメータ
+
+| テンプレ | 背景グラデ | コンテナ幅 | aside テキスト色 |
+|---|---|---|---|
+| **T1 クリーン** | 白〜淡緑 | 430px | LINE緑タイトル / 濃灰本文 |
+| **T2 和モダン** | 生成り〜木目 | 480px | 木茶タイトル / 墨黒明朝 |
+| **T3 ナチュラル** | 砂色〜モスグリーン | 390px | モスグリーンLora / 茶系 |
+| **T4 エレガント** | ネイビー30%〜白 | 430px | ゴールド英字 / 白明朝 |
+| **T5 ナイト** | 黒+ピンクゴールドの放射光 | 480px | ピンクゴールド光彩 |
+
+### aside の内容（5テンプレ共通フォーマット）
+```
+{ラベル：SHOP PAGE / AROMA STUDIO 等}
+{店舗名（大きく）}
+{業種カテゴリ}
+
+{補足：スマホからの閲覧を想定したデザインです 等}
+```
+
+### 設計判断のポイント
+
+| 観点 | 判断 |
+|---|---|
+| **PCで完全リデザインしない理由** | サロンの客層は8〜9割スマホ。PCはあくまで補助。リデザインのコスト高 |
+| **aside を出す理由** | PC幅で「ただスマホUIが中央配置」だと寂しい。テーマ色でセットドレッシング |
+| **navi（CONTENTS リンク等）を入れない理由** | 店舗ページは縦スクロール1枚モノなのでセクションナビ不要 |
+| **mobile-container を浮かせる理由** | iPhone 風の「持って眺める」感を演出。プレゼンスを上げる |
+
+### 実装時の TODO
+- [ ] 各テンプレの `.mobile-container` または `<main>` セレクタを確認、PC用 box-shadow/radius を適用
+- [ ] `.pc-aside` を body 直下に追加、テンプレ別の色・タイトルを設定
+- [ ] aside の `left: calc(50% - [W/2] - 64px)` の W はコンテナ最大幅
+- [ ] PC背景画像は将来的に `branding/pc-background.webp` を活用（既存LPと共有）
+- [ ] PC専用要素（aside）が `display: none` でモバイル時隠れること確認
+- [ ] CSS優先順位に注意（`.pc-aside { display: none; }` は `@media` ブロックより**前**に書く）
+
+---
+
 ## 🗓️ ご予約方法（LINE一本固定）
 
 **Sevleva は LINE 公式アカウントとの連携が大前提のSaaS** のため、公開ページの予約 CTA は **LINEで予約する一択** に統一。  

@@ -49,9 +49,43 @@
         }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .pc-aside { display: none; }  /* default hidden on mobile */
+
+        /* PC viewport：スマホUIを浮かせて中央配置（既存LPと同じパターン） */
+        @media (min-width: 1024px) {
+            body {
+                background: linear-gradient(135deg, #f0fdf4 0%, #f9fafb 50%, #ecfdf5 100%);
+                padding: 2rem 0;
+            }
+            .mobile-container {
+                box-shadow: 0 30px 80px -20px rgba(0,0,0,0.18), 0 8px 16px -8px rgba(0,0,0,0.08);
+                border-radius: 24px;
+                margin-top: 2rem;
+                margin-bottom: 2rem;
+                min-height: auto;
+            }
+            .pc-aside {
+                display: flex; position: fixed; top: 50%; transform: translateY(-50%);
+                flex-direction: column; gap: 1rem; z-index: 30;
+                left: calc(50% - 215px - 64px); transform: translate(-100%, -50%);
+                width: 180px; align-items: flex-start;
+            }
+            .pc-aside-title { font-size: 11px; font-weight: 700; letter-spacing: 0.3em; color: #06C755; margin-bottom: 0.25rem; }
+            .pc-aside-shop { font-size: 22px; font-weight: 900; color: #1f2937; line-height: 1.2; }
+            .pc-aside-cat { font-size: 13px; font-weight: 500; color: #6b7280; margin-top: 0.25rem; }
+            .pc-aside-note { font-size: 11px; color: #9ca3af; margin-top: 1.5rem; line-height: 1.5; }
+        }
     </style>
 </head>
 <body class="text-sectext font-sans antialiased selection:bg-secgreen/20 selection:text-secgreen">
+
+    <!-- PC左サイド：店舗ラベル（モバイル時非表示） -->
+    <aside class="pc-aside">
+        <div class="pc-aside-title">SHOP PAGE</div>
+        <div class="pc-aside-shop">上野<br>リラクゼーション</div>
+        <div class="pc-aside-cat">マッサージ・リラクゼーション</div>
+        <div class="pc-aside-note">スマホからの閲覧を想定したデザインです。</div>
+    </aside>
 
     <main class="mobile-container overflow-hidden flex flex-col">
 
