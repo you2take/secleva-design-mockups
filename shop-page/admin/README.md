@@ -138,9 +138,11 @@ branding/
     │   └── menu/
     │       └── 01_oil.webp〜04_stones.webp           メニュー写真 fallback
     ├── pc-bg/
-    │   └── T1_clean.webp〜T5_night.webp              PC viewport背景（aidesigner生成）
+    │   └── T1_clean.webp〜T5_night.webp              PC viewport背景（aidesigner生成、テンプレ別）
     └── shop-logos/
-        └── T1_clean.webp〜T5_night.webp              店舗ロゴ（モック5種、ファビコン用）
+        └── T1_clean.webp〜T5_night.webp              店舗ロゴ（モック5種）
+                                                       ヒーロー円形ロゴ＋ファビコン＋OGPウォーターマーク
+                                                       で同一画像を再利用（本番では shop.logo を参照）
 ```
 
 ### 依存ライブラリ
@@ -159,13 +161,17 @@ branding/
 `branding/dummy/default/` に **中立的なフォールバック画像** を配置。  
 オーナーが写真をアップロードしなくても見栄えするための保険。
 
-| パス | 用途 |
-|---|---|
-| `default/00_hero.webp`（16:9） | メインビジュアル fallback |
-| `default/01_plants.webp`〜`06_stones.webp`（1:1） | ギャラリー6枚 fallback |
-| `default/menu/01_oil.webp`〜`04_stones.webp`（1:1） | メニュー写真 fallback（4枚） |
+| パス | 用途 | 本番での扱い |
+|---|---|---|
+| `default/00_hero.webp`（16:9） | メインビジュアル fallback | サーバー側で同じパスを参照（未アップ時に自動表示） |
+| `default/01_plants.webp`〜`06_stones.webp`（1:1） | ギャラリー6枚 fallback | 同上 |
+| `default/menu/01_oil.webp`〜`04_stones.webp`（1:1） | メニュー写真 fallback（4枚） | 同上 |
+| `salon/01_hero.webp`〜`05_*.webp`（16:9） | T1-T4 デモ用ヒーロー＆ギャラリー画像 | **モック専用**（本番では `shop.hero_image` などDB値を参照） |
+| `bar/01_hero.webp`〜`05_*.webp`（16:9） | T5 デモ用ヒーロー＆ギャラリー画像 | **モック専用** |
+| `pc-bg/T1_clean.webp`〜`T5_night.webp`（16:9） | PC viewport 背景（テンプレ別） | テンプレ ID から動的決定（全店舗共有・サーバー側で固定） |
+| `shop-logos/T1_clean.webp`〜`T5_night.webp`（1:1） | デモ用 店舗ロゴ（**ヒーロー円形ロゴ＝ファビコン同一画像** のサンプル） | **モック専用**（本番では `shop.logo` を参照、未設定時のみ Secleva 共通ロゴへフォールバック） |
 
-公開ページ側でも同じパスを参照する想定（オーナーが未アップロードなら自動で使用）。
+> 💡 **`default/` は本番ファイルとして残す前提のフォールバック画像**。`salon/` `bar/` `pc-bg/` `shop-logos/` はモック専用のダミー画像で、本番では DB 駆動。
 
 ---
 
@@ -216,8 +222,10 @@ branding/
 - 編集画面では各スロットに `DEFAULT` バッジ＋一括「自分の写真をアップロード」CTA
 
 ### Block 2: ロゴ
-- デフォルトなし（オーナー設定必須）
-- 未設定時の挙動は別途検討（テンプレ固有のシンボル？店名イニシャル自動生成？）
+- **ヒーロー直下の円形ロゴ＝ファビコン**（同一画像 `shop.logo` を3箇所で再利用 — 詳細は § メタタグ・OGP・ファビコン）
+- `shop.logo` あり：オーナーアップロード画像を **円形クロップ＋`object-cover`** で表示
+- 未設定時：Secleva 共通ロゴ（`/branding/logo.png`）に **やむを得ずフォールバック**（運営側で `/apply` 完了時に催促メール送付）
+- **テンプレ固有のCSS描画（「結」「M」「RGE」等のテキストロゴ）は使わない**。モックでは `branding/dummy/shop-logos/T{N}.webp` に5店舗分のサンプルを配置し、テンプレを切り替えても同じロゴが追従する設計を示している
 
 ---
 
@@ -627,13 +635,15 @@ type Shop = {
 
 ### テンプレ別パラメータ
 
-| テンプレ | 背景画像（aidesigner生成） | グラデオーバーレイ | コンテナ幅 | aside テキスト色 |
-|---|---|---|---|---|
-| **T1 クリーン** | `pc-bg/T1_clean.webp`（ユーカリ+リネン+石） | 白〜淡緑半透明 | 430px | LINE緑タイトル / 濃灰本文 |
-| **T2 和モダン** | `pc-bg/T2_wamodern.webp`（和紙+竹影+墨流し） | 生成り〜木目半透明 | 480px | 木茶タイトル / 墨黒明朝 |
-| **T3 ナチュラル** | `pc-bg/T3_natural.webp`（ラベンダー+リネン+木目） | 砂色〜モス半透明 | 390px | モスグリーンLora / 茶系 |
-| **T4 エレガント** | `pc-bg/T4_elegant.webp`（ネイビー大理石+ゴールド線+シルク） | 濃紺半透明 | 430px | ゴールド英字 / 白明朝 |
-| **T5 ナイト** | `pc-bg/T5_night.webp`（黒+ボトルbokeh+ベルベット） | 黒+ピンクゴールド放射光 | 480px | ピンクゴールド光彩 |
+| テンプレ | 背景画像（aidesigner生成） | サンプル店舗ロゴ（aidesigner生成） | グラデオーバーレイ | コンテナ幅 | aside テキスト色 |
+|---|---|---|---|---|---|
+| **T1 クリーン** | `pc-bg/T1_clean.webp`（ユーカリ+リネン+石） | `shop-logos/T1_clean.webp`（緑葉+円） | 白〜淡緑半透明 | 430px | LINE緑タイトル / 濃灰本文 |
+| **T2 和モダン** | `pc-bg/T2_wamodern.webp`（和紙+竹影+墨流し） | `shop-logos/T2_wamodern.webp`（墨の結び） | 生成り〜木目半透明 | 480px | 木茶タイトル / 墨黒明朝 |
+| **T3 ナチュラル** | `pc-bg/T3_natural.webp`（ラベンダー+リネン+木目） | `shop-logos/T3_natural.webp`（ラベンダー） | 砂色〜モス半透明 | 390px | モスグリーンLora / 茶系 |
+| **T4 エレガント** | `pc-bg/T4_elegant.webp`（ネイビー大理石+ゴールド線+シルク） | `shop-logos/T4_elegant.webp`（紺×金モノグラム） | 濃紺半透明 | 430px | ゴールド英字 / 白明朝 |
+| **T5 ナイト** | `pc-bg/T5_night.webp`（黒+ボトルbokeh+ベルベット） | `shop-logos/T5_night.webp`（ピンクゴールド薔薇ネオン） | 黒+ピンクゴールド放射光 | 480px | ピンクゴールド光彩 |
+
+> ※ サンプル店舗ロゴはモック専用。本番では `shop.logo`（オーナーアップロード画像）が同じ円形枠に入る。テンプレを切り替えても **店舗ロゴはそのまま追従**（テンプレ装飾の縁取り・影だけがテンプレ依存）。
 
 ### PC背景画像の生成（aidesigner）
 
@@ -1141,6 +1151,12 @@ type Shop = {
 - アイコン：Phosphor Icons（`@phosphor-icons/web`）
 - ボタン高さ：最低 44px（タップ領域確保）
 - 本文サイズ：13-15px（リテラシー低層も読みやすく）
+
+### 公開テンプレ側の不変ルール
+
+- **店舗ロゴ（ヒーロー円形ロゴ）は `<img>` 出力 ＋ `object-cover` ＋ `rounded-full overflow-hidden`** で必ず円形にクロップ。CSS でテキストロゴを描画してはならない（テンプレ依存になり、`shop.logo` 差し替えが効かなくなる）
+- 円形ロゴ枠の **縁取り・影・装飾はテンプレ側で自由に変えてよい**（T2は和紙縁、T4はゴールド枠、T5はピンクゴールド光彩など）。ただし内側の `<img>` 仕様は5テンプレで揃える
+- **ファビコン**（`<link rel="icon">`／`apple-touch-icon`）は **`shop.logo` を 32×32 ／ 180×180 にリサイズしたもの**。ヒーロー円形ロゴと同一画像が原則（詳細は § メタタグ・OGP・ファビコン）
 
 ---
 
