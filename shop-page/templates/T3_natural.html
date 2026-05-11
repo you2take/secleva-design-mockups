@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aroma Studio HANARE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        custom: {
+                            bg: '#FAF7F2', accent: '#6B8E5A', sub: '#C9A87C',
+                            text: '#3D3528', textmuted: '#8A7E68', divider: '#E8DFD0', line: '#06C755'
+                        }
+                    },
+                    fontFamily: { lora: ['Lora', 'serif'], sans: ['"Noto Sans JP"', 'sans-serif'] },
+                    animation: { 'float-slow': 'float 8s ease-in-out infinite' },
+                    keyframes: { float: { '0%, 100%': { transform: 'translateY(0) scale(1)' }, '50%': { transform: 'translateY(-10px) scale(1.02)' } } }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; scroll-behavior: smooth; }
+        .warm-photo { filter: sepia(10%) brightness(1.02); transition: opacity 0.3s ease; }
+        body { background-color: #E8DFD0; display: flex; justify-content: center; overscroll-behavior-y: none; }
+        .organic-blob { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transition: all 4s ease-in-out; }
+    </style>
+</head>
+<body class="antialiased text-custom-text font-sans">
+
+    <main class="w-full max-w-[390px] min-h-[100dvh] bg-custom-bg relative shadow-2xl overflow-x-hidden sm:my-8 sm:rounded-[32px] sm:border border-custom-divider pb-12 flex flex-col">
+
+        <!-- 1. Top Utility Bar -->
+        <header class="w-full px-4 py-3 flex justify-between items-center sticky top-0 z-50 bg-custom-bg/95 backdrop-blur-md">
+            <div class="flex text-xs font-lora font-medium items-center p-1 bg-white rounded-full border border-custom-divider shadow-sm">
+                <button class="px-3 py-1.5 rounded-full border border-custom-accent text-custom-accent bg-custom-accent/5">JP</button>
+                <button class="px-3 py-1.5 rounded-full text-custom-textmuted">EN</button>
+            </div>
+            <div class="flex gap-2">
+                <a href="#" class="w-9 h-9 flex justify-center items-center rounded-xl border border-custom-divider bg-white text-custom-textmuted"><i class="ph ph-instagram-logo text-lg"></i></a>
+                <a href="#" class="w-9 h-9 flex justify-center items-center rounded-xl border border-custom-divider bg-white text-custom-textmuted"><i class="ph ph-x-logo text-lg"></i></a>
+                <a href="#" class="w-9 h-9 flex justify-center items-center rounded-xl border border-custom-divider bg-white text-custom-line"><i class="ph ph-chat-circle text-lg"></i></a>
+            </div>
+        </header>
+
+        <!-- 2. Main Visual -->
+        <section class="relative w-full h-[360px] bg-custom-divider overflow-hidden">
+            <img src="../../branding/dummy/t3/aroma1.jpg" alt="" class="w-full h-full object-cover warm-photo">
+            <div class="absolute -bottom-16 -right-12 w-64 h-64 bg-custom-sub/20 organic-blob mix-blend-multiply blur-xl animate-float-slow pointer-events-none"></div>
+            <div class="absolute -bottom-8 -right-4 w-48 h-48 bg-custom-accent/10 organic-blob mix-blend-multiply blur-lg animate-float-slow pointer-events-none" style="animation-delay: 2s;"></div>
+            <div class="absolute -bottom-6 left-6 w-24 h-24 rounded-full border border-custom-bg bg-[#FDFBF8] shadow-lg flex items-center justify-center p-1 z-10">
+                <div class="w-full h-full rounded-full border border-custom-divider flex items-center justify-center overflow-hidden bg-white">
+                    <img src="../../branding/dummy/t3/herb1.jpg" alt="" class="w-14 h-14 object-cover warm-photo mix-blend-darken">
+                </div>
+            </div>
+            <div class="absolute bottom-0 w-full h-12 bg-gradient-to-t from-custom-bg to-transparent pointer-events-none"></div>
+        </section>
+
+        <!-- 3. Shop Name & Chips -->
+        <section class="pt-10 px-6 pb-8 relative z-10">
+            <p class="text-sm text-custom-textmuted mb-1 tracking-wider">アロマ・ハーブ・オーガニックサロン</p>
+            <h1 class="text-[28px] md:text-[32px] font-bold tracking-tight text-custom-text leading-tight w-full">アロマスタジオ HANARE</h1>
+            <p class="font-lora font-medium text-custom-textmuted text-base uppercase tracking-widest mt-0.5">Aroma Studio Hanare</p>
+            <div class="flex gap-2.5 mt-6 overflow-x-auto hide-scrollbar pb-2 w-full">
+                <span class="px-3 py-1.5 border border-custom-accent/40 text-custom-accent rounded-full text-sm whitespace-nowrap font-medium bg-custom-accent/5 flex-shrink-0">オーガニック認証</span>
+                <span class="px-3 py-1.5 border border-custom-accent/40 text-custom-accent rounded-full text-sm whitespace-nowrap font-medium bg-custom-accent/5 flex-shrink-0">完全予約制</span>
+                <span class="px-3 py-1.5 border border-custom-accent/40 text-custom-accent rounded-full text-sm whitespace-nowrap font-medium bg-custom-accent/5 flex-shrink-0">ペット同伴可</span>
+                <span class="px-3 py-1.5 border border-custom-accent/40 text-custom-accent rounded-full text-sm whitespace-nowrap font-medium bg-custom-accent/5 flex-shrink-0">アロマ調合</span>
+                <span class="px-3 py-1.5 border border-custom-accent/40 text-custom-accent rounded-full text-sm whitespace-nowrap font-medium bg-custom-accent/5 flex-shrink-0">女性専用</span>
+            </div>
+        </section>
+
+        <div class="px-6"><div class="w-full h-[1px] bg-custom-divider"></div></div>
+
+        <!-- 4. Address & Catchcopy -->
+        <section class="py-8 px-6 space-y-6">
+            <div class="w-full flex justify-center text-custom-sub">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="opacity-60">
+                    <path d="M12 22C12 22 12 12 12 8C12 4 16 3 16 3C16 3 20 5 20 8C20 12 12 14 12 14Z" stroke-linejoin="round"/>
+                    <path d="M12 18C12 18 12 10 12 6C12 2 8 1 8 1C8 1 4 3 4 6C4 10 12 12 12 12Z" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <h2 class="text-center text-[18px] text-custom-text leading-[2.2] tracking-wide font-medium">
+                草木の香りに、ほどける時間を。<br>毎日を、自然と整える。
+            </h2>
+            <div class="flex items-center justify-center gap-2 text-custom-textmuted text-base mt-4 font-medium">
+                <i class="ph ph-map-pin text-[18px]"></i>
+                <p>東京都渋谷区神宮前</p>
+            </div>
+        </section>
+
+        <!-- 5. Primary CTAs -->
+        <section class="px-6 pb-12 flex flex-col gap-3">
+            <button class="w-full h-14 bg-custom-line text-white rounded-full flex items-center justify-center gap-2 text-lg font-bold shadow-[0_4px_14px_rgba(6,199,85,0.25)]">
+                <i class="ph ph-chat-circle-text text-2xl"></i>
+                LINEで予約する
+            </button>
+            <button class="w-full h-14 border border-custom-accent/60 text-custom-accent bg-transparent rounded-full flex items-center justify-center gap-2 text-base font-bold">
+                <i class="ph ph-instagram-logo text-xl"></i>
+                Instagram で見る
+            </button>
+        </section>
+
+        <!-- 6. Gallery -->
+        <section class="py-8 bg-white/40 border-y border-custom-divider relative">
+            <div class="px-6 mb-4 flex items-end gap-2">
+                <h3 class="font-lora text-2xl text-custom-text font-semibold tracking-tight">Gallery</h3>
+                <span class="text-sm text-custom-textmuted mb-1">店内ギャラリー</span>
+            </div>
+            <div class="flex gap-4 px-6 overflow-x-auto hide-scrollbar w-full">
+                <img src="../../branding/dummy/t3/spa1.jpg" alt="" class="w-[140px] h-[140px] rounded-[16px] object-cover flex-shrink-0 warm-photo border border-custom-divider/50">
+                <img src="../../branding/dummy/t3/spa2.jpg" alt="" class="w-[140px] h-[140px] rounded-[16px] object-cover flex-shrink-0 warm-photo border border-custom-divider/50">
+                <img src="../../branding/dummy/t3/nature1.jpg" alt="" class="w-[140px] h-[140px] rounded-[16px] object-cover flex-shrink-0 warm-photo border border-custom-divider/50">
+                <img src="../../branding/dummy/t3/nature2.jpg" alt="" class="w-[140px] h-[140px] rounded-[16px] object-cover flex-shrink-0 warm-photo border border-custom-divider/50">
+                <img src="../../branding/dummy/t3/herb2.jpg" alt="" class="w-[140px] h-[140px] rounded-[16px] object-cover flex-shrink-0 warm-photo border border-custom-divider/50">
+                <img src="../../branding/dummy/t3/flower.jpg" alt="" class="w-[140px] h-[140px] rounded-[16px] object-cover flex-shrink-0 warm-photo border border-custom-divider/50">
+                <div class="w-2 flex-shrink-0"></div>
+            </div>
+        </section>
+
+        <!-- 7. Menu -->
+        <section class="py-12 px-6">
+            <div class="mb-6 flex items-end gap-2">
+                <h3 class="font-lora text-2xl text-custom-text font-semibold tracking-tight">Menu</h3>
+                <span class="text-sm text-custom-textmuted mb-1">施術メニュー</span>
+            </div>
+            <div class="space-y-4">
+                <div class="flex gap-4 p-3 rounded-[20px] bg-white border border-custom-accent/10">
+                    <img src="../../branding/dummy/t3/oil.jpg" alt="" class="w-20 h-20 rounded-xl object-cover warm-photo border border-custom-divider/50 flex-shrink-0">
+                    <div class="flex flex-col justify-center flex-grow">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-base text-custom-text tracking-wide">ボディアロマ</h4>
+                            <span class="text-xs text-custom-textmuted bg-custom-divider/40 px-2 py-0.5 rounded-full">60分</span>
+                        </div>
+                        <p class="text-xs text-custom-textmuted mt-1 leading-relaxed">全身を香りで包む施術</p>
+                        <p class="font-lora font-medium text-custom-text text-lg mt-2 tracking-tight">¥7,000</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-3 rounded-[20px] bg-white border border-custom-accent/10">
+                    <img src="../../branding/dummy/t3/hands.jpg" alt="" class="w-20 h-20 rounded-xl object-cover warm-photo border border-custom-divider/50 flex-shrink-0">
+                    <div class="flex flex-col justify-center flex-grow">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-base text-custom-text tracking-wide">ハーブフェイシャル</h4>
+                            <span class="text-xs text-custom-textmuted bg-custom-divider/40 px-2 py-0.5 rounded-full">45分</span>
+                        </div>
+                        <p class="text-xs text-custom-textmuted mt-1 leading-relaxed">季節のハーブパック</p>
+                        <p class="font-lora font-medium text-custom-text text-lg mt-2 tracking-tight">¥6,500</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-3 rounded-[20px] bg-white border border-custom-accent/10">
+                    <img src="../../branding/dummy/t3/aroma2.jpg" alt="" class="w-20 h-20 rounded-xl object-cover warm-photo border border-custom-divider/50 flex-shrink-0">
+                    <div class="flex flex-col justify-center flex-grow">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-base text-custom-text tracking-wide">リフレ＋アロマ</h4>
+                            <span class="text-xs text-custom-textmuted bg-custom-divider/40 px-2 py-0.5 rounded-full">75分</span>
+                        </div>
+                        <p class="text-xs text-custom-textmuted mt-1 leading-relaxed">足元から全身まで</p>
+                        <p class="font-lora font-medium text-custom-text text-lg mt-2 tracking-tight">¥8,800</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8 & 9. Hours and Access -->
+        <section class="mt-4 border-t border-custom-divider/70 bg-gradient-to-b from-transparent to-custom-sub/10">
+            <div class="px-6 py-10">
+                <div class="flex items-center gap-2 mb-6">
+                    <i class="ph ph-clock text-xl text-custom-textmuted"></i>
+                    <h3 class="text-lg font-bold text-custom-text tracking-wide">営業時間</h3>
+                </div>
+                <div class="bg-white rounded-2xl border border-custom-accent/10 p-5 space-y-3 shadow-sm">
+                    <div class="flex justify-between items-center text-base pb-3 border-b border-custom-divider border-dashed">
+                        <span class="font-medium text-custom-textmuted">月-金 (平日)</span>
+                        <span class="font-lora font-semibold text-custom-text tracking-wider">10:00 - 20:00</span>
+                    </div>
+                    <div class="flex justify-between items-center text-base pb-3 border-b border-custom-divider border-dashed">
+                        <span class="font-medium text-custom-textmuted">土・日・祝</span>
+                        <span class="font-lora font-semibold text-custom-text tracking-wider">11:00 - 18:00</span>
+                    </div>
+                    <div class="flex justify-between items-center text-base pt-1">
+                        <span class="font-medium text-custom-textmuted">定休日</span>
+                        <span class="font-semibold text-[#B96A59]">火曜日</span>
+                    </div>
+                </div>
+            </div>
+            <div class="px-6 pb-12">
+                <div class="flex items-center gap-2 mb-6">
+                    <i class="ph ph-map-pin text-xl text-custom-textmuted"></i>
+                    <h3 class="text-lg font-bold text-custom-text tracking-wide">アクセス</h3>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <p class="text-sm text-custom-textmuted mb-1">住所</p>
+                        <p class="text-base text-custom-text font-medium leading-relaxed">〒150-0001<br>東京都渋谷区神宮前<br>※詳細はご予約完了後にお伝えします</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-custom-textmuted mb-1">業種</p>
+                        <p class="text-base text-custom-text font-medium">アロマ・ハーブ・オーガニックサロン</p>
+                    </div>
+                    <button class="w-full mt-2 h-12 border border-custom-accent text-custom-accent bg-white rounded-full flex items-center justify-center gap-2 text-base font-bold">
+                        <i class="ph ph-map-trifold text-lg"></i>
+                        Google マップで開く
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. Footer -->
+        <footer class="py-10 border-t border-custom-divider flex justify-center items-center bg-custom-bg">
+            <p class="text-xs text-custom-textmuted font-medium tracking-wide">Powered by Secleva</p>
+        </footer>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Secleva - テンプレートを選ぶ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] },
+                    colors: { line: { DEFAULT: '#06C755', dark: '#05B34C' } }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { display: none; }
+        * { -ms-overflow-style: none; scrollbar-width: none; -webkit-tap-highlight-color: transparent; }
+        .touch-active { transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.1s ease; }
+        .touch-active:active { transform: scale(0.98); opacity: 0.6; }
+        .template-card { transition: all 0.2s ease; }
+        .template-card__check-selected { display: none; flex-direction: column; align-items: center; justify-content: center; }
+        .template-card__check-empty { display: flex; align-items: center; justify-content: center; }
+        .template-card--selected { border-color: #06C755; background-color: #F3FBF5; }
+        .template-card--selected .template-card__check-selected { display: flex; }
+        .template-card--selected .template-card__check-empty { display: none; }
+    </style>
+</head>
+<!--
+  マージ先：mockups/A_pure-line/admin.html
+  挿入箇所：[設定] > [店舗ページ] サブ階層
+  依存：Tailwind CDN / Noto Sans JP / Phosphor Icons / ../branding/logo_A.png
+  対応する設定セクション：settings.html の "店舗運営" カテゴリ内に追加項目
+  インタラクション仕様：
+    - テンプレ選択カードタップで選択切替（aria-selected）
+    - ブロック編集の ON/OFF はチェックボックス＋クラス切替
+    - ハンドルアイコンは将来的にドラッグ&ドロップ実装枠
+-->
+<body class="bg-zinc-100 flex justify-center w-full min-h-[100dvh] text-zinc-900">
+
+    <main class="w-full max-w-[390px] h-[100dvh] bg-zinc-50 relative flex flex-col font-sans overflow-hidden sm:border-x sm:border-zinc-200 sm:shadow-2xl">
+
+        <!-- iOS Status Bar -->
+        <div class="h-11 w-full bg-white flex justify-between items-center px-6 text-[14px] font-medium z-50">
+            <span>09:00</span>
+            <div class="flex gap-1.5 items-center">
+                <i class="ph-fill ph-cell-signal-full text-base"></i>
+                <i class="ph ph-wifi-high text-base"></i>
+                <i class="ph-fill ph-battery-full text-lg"></i>
+            </div>
+        </div>
+
+        <!-- Sticky Header -->
+        <header class="h-14 bg-white border-b border-zinc-200 flex justify-between items-center px-3 sticky top-0 z-40">
+            <a href="../../mockups/A_pure-line/settings.html" class="touch-active p-2" aria-label="戻る"><i class="ph ph-caret-left text-2xl"></i></a>
+            <h1 class="text-base font-bold tracking-wide">テンプレートを選ぶ</h1>
+            <div class="w-10"></div>
+        </header>
+
+        <!-- Scrollable Main -->
+        <div class="flex-1 overflow-y-auto pb-[120px]">
+
+            <!-- Subhelper -->
+            <div class="px-4 py-3">
+                <p class="text-[14px] text-zinc-500 leading-snug">
+                    お店の雰囲気に合うものを選んでください。あとからいつでも変えられます。
+                </p>
+            </div>
+
+            <!-- Template List -->
+            <div class="px-4 flex flex-col gap-3 pb-4">
+
+                <!-- Card 1 (T1) Default Selected -->
+                <button class="template-card template-card--selected w-full text-left bg-white border border-zinc-200 rounded-xl p-3 flex flex-row gap-3 items-center touch-active" data-template-id="t1" aria-selected="true">
+                    <div class="template-card__thumb w-[88px] h-[88px] rounded-lg shrink-0 overflow-hidden bg-zinc-50 border border-zinc-100 flex flex-col p-2 gap-1.5">
+                        <div class="w-full h-3 rounded bg-zinc-200"></div>
+                        <div class="w-full h-10 rounded bg-[#E4FCEE]"></div>
+                        <div class="flex gap-1">
+                            <div class="w-1/2 h-8 rounded bg-white border border-zinc-100"></div>
+                            <div class="w-1/2 h-8 rounded bg-white border border-zinc-100"></div>
+                        </div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-center min-w-0 py-0.5">
+                        <span class="text-base font-bold text-zinc-900 truncate tracking-tight">T1 クリーン</span>
+                        <span class="text-[13px] text-zinc-500 mt-0 truncate">マッサージ・リラクゼーション</span>
+                        <p class="text-[12px] text-zinc-600 mt-1.5 leading-snug">白基調で清潔感のある定番デザイン。</p>
+                    </div>
+                    <div class="w-[44px] h-[44px] flex items-center justify-center shrink-0">
+                        <div class="template-card__check-empty"><i class="ph ph-circle text-[28px] text-zinc-300"></i></div>
+                        <div class="template-card__check-selected">
+                            <i class="ph-fill ph-check-circle text-[28px] text-line"></i>
+                            <span class="text-[10px] font-bold text-line mt-0.5">選択中</span>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Card 2 (T2) -->
+                <button class="template-card w-full text-left bg-white border border-zinc-200 rounded-xl p-3 flex flex-row gap-3 items-center touch-active" data-template-id="t2" aria-selected="false">
+                    <div class="template-card__thumb w-[88px] h-[88px] rounded-lg shrink-0 overflow-hidden bg-[#F4F1EA] border border-zinc-200/50 flex flex-col">
+                        <div class="w-full h-6 bg-zinc-800 flex items-center px-1"><div class="w-4 h-0.5 bg-[#C2A878]"></div></div>
+                        <div class="flex-1 p-2 flex flex-col gap-1">
+                            <div class="w-2/3 h-2 bg-zinc-400 rounded-full"></div>
+                            <div class="w-full h-8 bg-white/60 rounded border border-zinc-300/30 mt-1"></div>
+                        </div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-center min-w-0 py-0.5">
+                        <span class="text-base font-bold text-zinc-900 truncate tracking-tight">T2 和モダン</span>
+                        <span class="text-[13px] text-zinc-500 mt-0 truncate">整体院・治療院・鍼灸</span>
+                        <p class="text-[12px] text-zinc-600 mt-1.5 leading-snug">落ち着いた和の雰囲気で信頼感を演出。</p>
+                    </div>
+                    <div class="w-[44px] h-[44px] flex items-center justify-center shrink-0">
+                        <div class="template-card__check-empty"><i class="ph ph-circle text-[28px] text-zinc-300"></i></div>
+                        <div class="template-card__check-selected">
+                            <i class="ph-fill ph-check-circle text-[28px] text-line"></i>
+                            <span class="text-[10px] font-bold text-line mt-0.5">選択中</span>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Card 3 (T3) -->
+                <button class="template-card w-full text-left bg-white border border-zinc-200 rounded-xl p-3 flex flex-row gap-3 items-center touch-active" data-template-id="t3" aria-selected="false">
+                    <div class="template-card__thumb w-[88px] h-[88px] rounded-lg shrink-0 overflow-hidden bg-[#FAFAF8] border border-zinc-200/60 p-2 flex flex-col items-center justify-center gap-2">
+                        <div class="w-10 h-10 rounded-full bg-[#E8F0E5] border border-[#d6e2d1]"></div>
+                        <div class="w-14 h-2 bg-[#d6e2d1] rounded-full"></div>
+                        <div class="w-10 h-1.5 bg-zinc-200 rounded-full"></div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-center min-w-0 py-0.5">
+                        <span class="text-base font-bold text-zinc-900 truncate tracking-tight">T3 ナチュラル</span>
+                        <span class="text-[13px] text-zinc-500 mt-0 truncate">アロマ・ハーブ・オーガニック</span>
+                        <p class="text-[12px] text-zinc-600 mt-1.5 leading-snug">植物と木目のやさしい印象。</p>
+                    </div>
+                    <div class="w-[44px] h-[44px] flex items-center justify-center shrink-0">
+                        <div class="template-card__check-empty"><i class="ph ph-circle text-[28px] text-zinc-300"></i></div>
+                        <div class="template-card__check-selected">
+                            <i class="ph-fill ph-check-circle text-[28px] text-line"></i>
+                            <span class="text-[10px] font-bold text-line mt-0.5">選択中</span>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Card 4 (T4) -->
+                <button class="template-card w-full text-left bg-white border border-zinc-200 rounded-xl p-3 flex flex-row gap-3 items-center touch-active" data-template-id="t4" aria-selected="false">
+                    <div class="template-card__thumb w-[88px] h-[88px] rounded-lg shrink-0 overflow-hidden bg-white border border-zinc-200 p-1.5 flex flex-col items-center gap-1.5">
+                        <div class="w-full h-8 bg-slate-900 flex items-center justify-center">
+                            <div class="w-4 h-4 border border-[#D4AF37] opacity-60 transform rotate-45"></div>
+                        </div>
+                        <div class="w-1/2 h-1 bg-[#D4AF37] rounded-sm opacity-80 mt-1"></div>
+                        <div class="w-full h-3 border border-slate-200 bg-slate-50 mt-1"></div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-center min-w-0 py-0.5">
+                        <span class="text-base font-bold text-zinc-900 truncate tracking-tight">T4 エレガント</span>
+                        <span class="text-[13px] text-zinc-500 mt-0 truncate">高単価エステ・隠れ家サロン</span>
+                        <p class="text-[12px] text-zinc-600 mt-1.5 leading-snug">上質で品のある高級感。</p>
+                    </div>
+                    <div class="w-[44px] h-[44px] flex items-center justify-center shrink-0">
+                        <div class="template-card__check-empty"><i class="ph ph-circle text-[28px] text-zinc-300"></i></div>
+                        <div class="template-card__check-selected">
+                            <i class="ph-fill ph-check-circle text-[28px] text-line"></i>
+                            <span class="text-[10px] font-bold text-line mt-0.5">選択中</span>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Card 5 (T5) -->
+                <button class="template-card w-full text-left bg-white border border-zinc-200 rounded-xl p-3 flex flex-row gap-3 items-center touch-active" data-template-id="t5" aria-selected="false">
+                    <div class="template-card__thumb w-[88px] h-[88px] rounded-lg shrink-0 overflow-hidden bg-zinc-950 flex flex-col p-2 gap-1.5 border border-zinc-800">
+                        <div class="w-full flex justify-between">
+                            <div class="w-6 h-2 bg-[#E0BFB8] rounded-sm"></div>
+                            <div class="w-3 h-2 bg-zinc-800 rounded-sm"></div>
+                        </div>
+                        <div class="w-full h-10 rounded bg-zinc-800/80 border border-zinc-700/50 mt-1"></div>
+                        <div class="w-1/3 h-1.5 bg-[#E0BFB8]/60 rounded-full mx-auto mt-1"></div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-center min-w-0 py-0.5">
+                        <span class="text-base font-bold text-zinc-900 truncate tracking-tight">T5 ナイト</span>
+                        <span class="text-[13px] text-zinc-500 mt-0 truncate">スナック・ガールズバー</span>
+                        <p class="text-[12px] text-zinc-600 mt-1.5 leading-snug">大人の夜の雰囲気。</p>
+                    </div>
+                    <div class="w-[44px] h-[44px] flex items-center justify-center shrink-0">
+                        <div class="template-card__check-empty"><i class="ph ph-circle text-[28px] text-zinc-300"></i></div>
+                        <div class="template-card__check-selected">
+                            <i class="ph-fill ph-check-circle text-[28px] text-line"></i>
+                            <span class="text-[10px] font-bold text-line mt-0.5">選択中</span>
+                        </div>
+                    </div>
+                </button>
+
+            </div>
+        </div>
+
+        <!-- Fixed Bottom Bar -->
+        <div class="absolute bottom-0 left-0 w-full bg-white border-t border-zinc-200 px-4 pt-4 pb-6 z-40">
+            <a href="02_block-edit.html" class="block w-full h-[56px] bg-line rounded-xl text-white font-bold text-[17px] touch-active text-center leading-[56px]">決定</a>
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.template-card');
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    cards.forEach(c => {
+                        c.classList.remove('template-card--selected');
+                        c.setAttribute('aria-selected', 'false');
+                    });
+                    card.classList.add('template-card--selected');
+                    card.setAttribute('aria-selected', 'true');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

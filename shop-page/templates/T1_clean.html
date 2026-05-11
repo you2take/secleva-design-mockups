@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>上野リラクゼーション - Secleva</title>
+    
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        secbg: '#FFFFFF',
+                        secgreen: '#06C755',
+                        sectext: '#1F2937',
+                        secmuted: '#6B7280',
+                        secborder: '#E5E7EB',
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f9fafb;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .mobile-container {
+            max-width: 430px;
+            margin: 0 auto;
+            background-color: #FFFFFF;
+            min-height: 100dvh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-sectext font-sans antialiased selection:bg-secgreen/20 selection:text-secgreen">
+
+    <main class="mobile-container overflow-hidden flex flex-col">
+
+        <!-- 1. Top Utility Bar -->
+        <header class="flex items-center justify-between px-4 py-3 bg-secbg border-b border-secborder">
+            <div class="flex items-center gap-1.5">
+                <button class="px-2 py-1 rounded bg-[#F3F4F6] text-sectext text-[10px] font-medium tracking-wide">日本語</button>
+                <button class="px-2 py-1 rounded bg-transparent text-secmuted text-[10px] font-medium tracking-wide">EN</button>
+                <button class="px-2 py-1 rounded bg-transparent text-secmuted text-[10px] font-medium tracking-wide">中文</button>
+                <button class="px-2 py-1 rounded bg-transparent text-secmuted text-[10px] font-medium tracking-wide">한국어</button>
+            </div>
+            <div class="flex items-center gap-2.5 text-sectext">
+                <a href="#" class="w-7 h-7 rounded-full bg-[#F3F4F6] flex items-center justify-center"><i class="ph ph-instagram-logo text-sm"></i></a>
+                <a href="#" class="w-7 h-7 rounded-full bg-[#F3F4F6] flex items-center justify-center"><i class="ph ph-x-logo text-sm"></i></a>
+                <a href="#" class="w-7 h-7 rounded-full bg-[#06C755]/10 text-secgreen flex items-center justify-center"><i class="ph ph-chat-circle text-sm"></i></a>
+            </div>
+        </header>
+
+        <!-- 2. Main Visual & Logo -->
+        <section class="relative w-full aspect-[4/3] bg-gray-50 border-b border-secborder">
+            <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=800&q=80" alt="トリートメントルーム" class="w-full h-full object-cover">
+            <div class="absolute -bottom-12 left-5 w-24 h-24 rounded-full border-4 border-secbg bg-white shadow-sm overflow-hidden z-10">
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=200&q=80" alt="サロンロゴ" class="w-full h-full object-cover">
+            </div>
+        </section>
+
+        <!-- 3. Shop Info Header -->
+        <section class="px-5 pt-16 pb-6 bg-secbg relative z-0">
+            <h1 class="text-[28px] font-bold leading-tight tracking-tight text-sectext">上野リラクゼーション</h1>
+            <p class="text-sm font-medium text-secmuted mt-1">マッサージ・リラクゼーション</p>
+            <div class="flex overflow-x-auto no-scrollbar gap-2 mt-4 -mx-5 px-5 pb-1">
+                <span class="whitespace-nowrap px-3 py-1.5 bg-[#F9FAFB] text-sectext text-xs font-medium rounded-full border border-secborder">女性専用</span>
+                <span class="whitespace-nowrap px-3 py-1.5 bg-[#F9FAFB] text-sectext text-xs font-medium rounded-full border border-secborder">個室完備</span>
+                <span class="whitespace-nowrap px-3 py-1.5 bg-[#F9FAFB] text-sectext text-xs font-medium rounded-full border border-secborder">駅近</span>
+                <span class="whitespace-nowrap px-3 py-1.5 bg-[#F9FAFB] text-sectext text-xs font-medium rounded-full border border-secborder">駐車場あり</span>
+                <span class="whitespace-nowrap px-3 py-1.5 bg-[#F9FAFB] text-sectext text-xs font-medium rounded-full border border-secborder">完全予約制</span>
+            </div>
+        </section>
+
+        <!-- 4. Location & Catchcopy -->
+        <section class="px-5 pb-8 bg-secbg">
+            <div class="flex items-center gap-1.5 text-secmuted text-sm">
+                <i class="ph ph-map-pin text-[18px]"></i>
+                <span>東京都台東区上野</span>
+            </div>
+            <p class="mt-4 text-[17px] font-medium leading-[1.6] text-sectext">
+                心と体をゆるめる、<br>街なかの静かな時間
+            </p>
+        </section>
+
+        <!-- 5. Primary CTA -->
+        <section class="px-5 pb-10 bg-secbg">
+            <button class="w-full h-[56px] bg-secgreen text-white rounded-[14px] flex items-center justify-center font-bold text-[17px]">フォームで予約する</button>
+            <p class="text-xs text-secmuted text-center mt-3 font-medium">店舗側で確認後にご連絡いたします。</p>
+        </section>
+
+        <!-- 6. Gallery -->
+        <section class="py-6 border-t border-secborder bg-secbg">
+            <div class="px-5 mb-4 font-bold text-lg text-sectext">ギャラリー</div>
+            <div class="flex overflow-x-auto no-scrollbar gap-3 -mx-5 px-5 pb-2 snap-x snap-mandatory">
+                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=300&q=80" alt="" class="w-[140px] h-[140px] shrink-0 rounded-xl object-cover border border-secborder snap-start">
+                <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=300&q=80" alt="" class="w-[140px] h-[140px] shrink-0 rounded-xl object-cover border border-secborder snap-start">
+                <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=300&q=80" alt="" class="w-[140px] h-[140px] shrink-0 rounded-xl object-cover border border-secborder snap-start">
+                <img src="https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&fit=crop&w=300&q=80" alt="" class="w-[140px] h-[140px] shrink-0 rounded-xl object-cover border border-secborder snap-start">
+                <img src="https://images.unsplash.com/photo-1583416750470-965b2707b355?auto=format&fit=crop&w=300&q=80" alt="" class="w-[140px] h-[140px] shrink-0 rounded-xl object-cover border border-secborder snap-start">
+                <img src="https://images.unsplash.com/photo-1498837167922-41c543bd1df0?auto=format&fit=crop&w=300&q=80" alt="" class="w-[140px] h-[140px] shrink-0 rounded-xl object-cover border border-secborder snap-start">
+            </div>
+        </section>
+
+        <!-- 7. Menu -->
+        <section class="px-5 py-8 border-t border-secborder bg-secbg">
+            <h2 class="font-bold text-lg text-sectext mb-4">メニュー</h2>
+            <div class="border border-secborder rounded-2xl bg-white overflow-hidden flex flex-col">
+                <div class="flex gap-3 p-4 border-b border-secborder">
+                    <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=150&q=80" alt="" class="w-[72px] h-[72px] rounded-lg object-cover shrink-0 bg-gray-50 border border-black/5">
+                    <div class="flex flex-col justify-between flex-grow pt-0.5">
+                        <div class="text-[15px] font-bold text-sectext leading-tight">60分もみほぐし</div>
+                        <div class="flex items-end justify-between w-full mt-1">
+                            <span class="text-xs text-secmuted font-medium">60分</span>
+                            <span class="text-[17px] font-bold text-sectext">¥6,000</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-3 p-4 border-b border-secborder">
+                    <img src="https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&fit=crop&w=150&q=80" alt="" class="w-[72px] h-[72px] rounded-lg object-cover shrink-0 bg-gray-50 border border-black/5">
+                    <div class="flex flex-col justify-between flex-grow pt-0.5">
+                        <div class="text-[15px] font-bold text-sectext leading-tight">90分全身アロマ</div>
+                        <div class="flex items-end justify-between w-full mt-1">
+                            <span class="text-xs text-secmuted font-medium">90分</span>
+                            <span class="text-[17px] font-bold text-sectext">¥8,500</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-3 p-4">
+                    <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=150&q=80" alt="" class="w-[72px] h-[72px] rounded-lg object-cover shrink-0 bg-gray-50 border border-black/5">
+                    <div class="flex flex-col justify-between flex-grow pt-0.5">
+                        <div class="text-[15px] font-bold text-sectext leading-tight">120分じっくりコース</div>
+                        <div class="flex items-end justify-between w-full mt-1">
+                            <span class="text-xs text-secmuted font-medium">120分</span>
+                            <span class="text-[17px] font-bold text-sectext">¥12,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Business Hours -->
+        <section class="px-5 py-8 border-t border-secborder bg-secbg">
+            <h2 class="font-bold text-lg text-sectext mb-4">営業時間</h2>
+            <div class="border border-secborder rounded-2xl bg-white overflow-hidden text-sm">
+                <div class="flex justify-between items-center py-3.5 px-4 border-b border-secborder"><span class="font-medium text-sectext w-8">月</span><span class="text-sectext tracking-wide">10:00 - 21:00</span></div>
+                <div class="flex justify-between items-center py-3.5 px-4 border-b border-secborder"><span class="font-medium text-sectext w-8">火</span><span class="text-sectext tracking-wide">10:00 - 21:00</span></div>
+                <div class="flex justify-between items-center py-3.5 px-4 border-b border-secborder"><span class="font-medium text-sectext w-8">水</span><span class="text-sectext tracking-wide">10:00 - 21:00</span></div>
+                <div class="flex justify-between items-center py-3.5 px-4 border-b border-secborder"><span class="font-medium text-sectext w-8">木</span><span class="text-sectext tracking-wide">10:00 - 21:00</span></div>
+                <div class="flex justify-between items-center py-3.5 px-4 border-b border-secborder"><span class="font-medium text-sectext w-8">金</span><span class="text-sectext tracking-wide">10:00 - 21:00</span></div>
+                <div class="flex justify-between items-center py-3.5 px-4 border-b border-secborder"><span class="font-medium text-sectext w-8">土</span><span class="text-sectext tracking-wide">10:00 - 21:00</span></div>
+                <div class="flex justify-between items-center py-3.5 px-4"><span class="font-medium text-sectext w-8">日</span><span class="text-secmuted font-medium">定休日</span></div>
+            </div>
+        </section>
+
+        <!-- 9. Access & Shop Info -->
+        <section class="px-5 py-8 border-t border-secborder bg-secbg">
+            <h2 class="font-bold text-lg text-sectext mb-4">アクセス・店舗情報</h2>
+            <div class="space-y-4 text-[15px] text-sectext font-medium">
+                <div class="flex gap-4"><span class="text-secmuted w-12 shrink-0">住所</span><p class="leading-relaxed">〒110-0005<br>東京都台東区上野</p></div>
+                <div class="flex gap-4 pt-1"><span class="text-secmuted w-12 shrink-0">業種</span><p>マッサージ・リラクゼーション</p></div>
+            </div>
+            <button class="w-full h-[56px] border border-secgreen text-secgreen bg-white rounded-[14px] flex items-center justify-center font-bold text-[16px] mt-6 gap-2">
+                <i class="ph ph-map-pin text-[20px]"></i>
+                Google マップで開く
+            </button>
+        </section>
+
+        <!-- 10. Footer -->
+        <footer class="py-10 bg-[#F9FAFB] border-t border-secborder flex items-center justify-center">
+            <p class="text-[11px] font-medium text-secmuted tracking-wider uppercase">Powered by Secleva</p>
+        </footer>
+
+    </main>
+
+</body>
+</html>

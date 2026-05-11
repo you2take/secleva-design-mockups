@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Lounge ROUGE | 銀座・スナックラウンジ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] },
+                    colors: {
+                        obsidian: '#0F0F12', surface: '#1A1A1F', pinkgold: '#E8B4A0',
+                        neonpink: '#FF6B9D', txtprimary: '#F5F5F5', txtsecondary: '#B5B5B5', linegreen: '#06C755',
+                    },
+                    boxShadow: {
+                        'neon-pink': '0 0 15px rgba(255, 107, 157, 0.4)',
+                        'logo-glow': '0 0 20px rgba(255, 107, 157, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #000; -webkit-font-smoothing: antialiased; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .neon-text { text-shadow: 0 0 12px rgba(255, 107, 157, 0.6), 0 0 24px rgba(255, 107, 157, 0.3); }
+        .divider { border-color: rgba(232, 180, 160, 0.15); }
+        .mood-filter { filter: saturate(1.1) contrast(1.05) brightness(0.9); }
+        .gallery-item { transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    </style>
+</head>
+<body class="flex justify-center w-full min-h-[100dvh]">
+
+    <main class="w-full max-w-[480px] bg-obsidian text-txtprimary relative overflow-x-hidden shadow-2xl flex flex-col justify-start pb-20">
+
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] h-[500px] bg-[radial-gradient(ellipse_at_top,rgba(232,180,160,0.15)_0%,transparent_60%)] pointer-events-none z-0"></div>
+
+        <!-- 1. Top Utility Bar -->
+        <header class="relative z-20 w-full px-5 py-3 flex justify-between items-center bg-obsidian/80 backdrop-blur-md border-b divider sticky top-0">
+            <div class="flex gap-3 text-xs font-medium tracking-widest text-pinkgold/60">
+                <button class="text-pinkgold underline underline-offset-4 decoration-[1px]">JP</button>
+                <span>/</span>
+                <button>EN</button>
+            </div>
+            <div class="flex gap-4 items-center text-pinkgold">
+                <a href="#"><i class="ph ph-instagram-logo text-xl"></i></a>
+                <a href="#"><i class="ph ph-x-logo text-xl"></i></a>
+                <a href="#"><i class="ph ph-chat-circle text-xl"></i></a>
+            </div>
+        </header>
+
+        <!-- 2. Main Visual -->
+        <section class="relative w-full h-[450px] z-10 shrink-0">
+            <div class="w-full h-full relative overflow-hidden bg-surface">
+                <img src="../../branding/dummy/t5/bar1.jpg" alt="" class="w-full h-full object-cover object-center mood-filter">
+                <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/40 to-transparent"></div>
+            </div>
+            <div class="absolute -bottom-10 left-5 w-24 h-24 rounded-full border-[1.5px] border-pinkgold shadow-logo-glow overflow-hidden bg-obsidian flex items-center justify-center flex-col z-20">
+                <span class="text-pinkgold font-bold tracking-widest text-lg leading-none">RGE</span>
+                <span class="text-pinkgold/50 text-[9px] tracking-widest uppercase mt-1">Ginza</span>
+            </div>
+        </section>
+
+        <div class="h-14 w-full"></div>
+
+        <!-- 3. Title & Chips -->
+        <section class="px-5 w-full z-10 relative">
+            <div class="flex flex-col gap-1">
+                <p class="text-pinkgold text-xs tracking-[0.2em] font-medium opacity-90 uppercase">Ginza Snack & Lounge</p>
+                <h1 class="text-3xl sm:text-[36px] font-black tracking-tight text-white neon-text mt-1">Lounge ROUGE</h1>
+                <p class="text-txtsecondary text-sm font-medium mt-1">スナック・ラウンジ</p>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-6">
+                <span class="px-3 py-1.5 rounded text-[11px] font-bold border border-pinkgold text-pinkgold tracking-wider bg-transparent">ボトルキープ可</span>
+                <span class="px-3 py-1.5 rounded text-[11px] font-bold border border-pinkgold text-pinkgold tracking-wider bg-transparent">カラオケ完備</span>
+                <span class="px-3 py-1.5 rounded text-[11px] font-bold border border-pinkgold text-pinkgold tracking-wider bg-transparent">カード決済可</span>
+                <span class="px-3 py-1.5 rounded text-[11px] font-bold border border-pinkgold text-pinkgold tracking-wider bg-transparent">VIP個室</span>
+                <span class="px-3 py-1.5 rounded text-[11px] font-bold border border-pinkgold text-pinkgold tracking-wider bg-transparent">22時以降</span>
+            </div>
+        </section>
+
+        <!-- 4. Address & Catchcopy -->
+        <section class="px-5 mt-10 w-full">
+            <p class="text-txtsecondary text-sm flex items-center gap-2 mb-4">
+                <i class="ph ph-map-pin text-pinkgold text-base"></i>
+                東京都中央区銀座8-x-x ローズビル3F
+            </p>
+            <h2 class="text-xl sm:text-[22px] font-bold leading-[1.8] text-txtprimary tracking-wide">
+                夜が深くなるほど、<br>会話がほどける場所。
+            </h2>
+        </section>
+
+        <!-- 5. CTAs -->
+        <section class="px-5 mt-10 w-full flex flex-col gap-3">
+            <button class="w-full h-14 bg-pinkgold text-obsidian font-bold text-[15px] rounded-lg tracking-wider flex items-center justify-center gap-2 shadow-[0_4px_24px_rgba(232,180,160,0.35)]">
+                <i class="ph ph-chat-circle text-2xl"></i>
+                LINEで予約する
+            </button>
+            <button class="w-full h-14 bg-transparent border border-pinkgold/60 text-pinkgold font-bold text-[15px] rounded-lg tracking-wider flex items-center justify-center gap-2">
+                <i class="ph ph-phone text-xl"></i>
+                電話で予約 03-xxxx-xxxx
+            </button>
+        </section>
+
+        <div class="w-full px-5 mt-14 mb-10"><div class="w-full border-t divider"></div></div>
+
+        <!-- 6. Gallery -->
+        <section class="px-5 w-full">
+            <h3 class="text-sm font-bold tracking-[0.15em] text-pinkgold mb-6 uppercase flex items-center gap-2">
+                <i class="ph ph-images"></i> Gallery
+            </h3>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="aspect-square bg-surface rounded border border-pinkgold/40 gallery-item relative overflow-hidden"><img src="../../branding/dummy/t5/night1.jpg" alt="" class="w-full h-full object-cover mood-filter"></div>
+                <div class="aspect-square bg-surface rounded border border-pinkgold/40 gallery-item relative overflow-hidden"><img src="../../branding/dummy/t5/bottle.jpg" alt="" class="w-full h-full object-cover mood-filter"></div>
+                <div class="aspect-square bg-surface rounded border border-pinkgold/40 gallery-item relative overflow-hidden"><img src="../../branding/dummy/t5/lounge2.jpg" alt="" class="w-full h-full object-cover mood-filter"></div>
+                <div class="aspect-square bg-surface rounded border border-pinkgold/40 gallery-item relative overflow-hidden"><img src="../../branding/dummy/t5/lounge1.jpg" alt="" class="w-full h-full object-cover mood-filter"></div>
+                <div class="aspect-square bg-surface rounded border border-pinkgold/40 gallery-item relative overflow-hidden"><img src="../../branding/dummy/t5/bar2.jpg" alt="" class="w-full h-full object-cover mood-filter"></div>
+                <div class="aspect-square bg-surface rounded border border-pinkgold/40 gallery-item relative overflow-hidden"><img src="../../branding/dummy/t5/night2.jpg" alt="" class="w-full h-full object-cover mood-filter"></div>
+            </div>
+        </section>
+
+        <div class="w-full px-5 mt-14 mb-10"><div class="w-full border-t divider"></div></div>
+
+        <!-- 7. Menu -->
+        <section class="px-5 w-full">
+            <h3 class="text-sm font-bold tracking-[0.15em] text-pinkgold mb-6 uppercase flex items-center gap-2">
+                <i class="ph ph-wine"></i> System & Menu
+            </h3>
+            <div class="flex flex-col gap-4 w-full">
+                <div class="w-full bg-surface border border-pinkgold/40 p-5 rounded flex flex-col gap-3">
+                    <div class="flex justify-between items-start w-full">
+                        <div class="flex flex-col gap-1">
+                            <h4 class="font-bold text-base text-white tracking-wide">ご新規様セット</h4>
+                            <span class="text-xs text-txtsecondary tracking-wider">飲み放題90分</span>
+                        </div>
+                        <span class="font-bold text-pinkgold text-lg tracking-wider">¥6,000</span>
+                    </div>
+                </div>
+                <div class="w-full bg-surface border border-pinkgold/40 p-5 rounded flex flex-col gap-3">
+                    <div class="flex justify-between items-start w-full">
+                        <div class="flex flex-col gap-1">
+                            <h4 class="font-bold text-base text-white tracking-wide">ハウスボトル</h4>
+                            <span class="text-xs text-txtsecondary tracking-wider">ウイスキー・焼酎 一晩</span>
+                        </div>
+                        <span class="font-bold text-pinkgold text-lg tracking-wider">¥10,000</span>
+                    </div>
+                </div>
+                <div class="w-full bg-surface border border-pinkgold/40 p-5 rounded flex flex-col gap-3">
+                    <div class="flex justify-between items-start w-full">
+                        <div class="flex flex-col gap-1">
+                            <h4 class="font-bold text-base text-white tracking-wide">シャンパン</h4>
+                            <span class="text-xs text-txtsecondary tracking-wider">モエ＆シャンドン (1本)</span>
+                        </div>
+                        <span class="font-bold text-pinkgold text-lg tracking-wider">¥18,000</span>
+                    </div>
+                </div>
+            </div>
+            <p class="text-xs text-txtsecondary mt-4 pr-2 text-right">その他のメニュー・ボトルも多数ご用意しております。</p>
+        </section>
+
+        <div class="w-full px-5 mt-14 mb-10"><div class="w-full border-t divider"></div></div>
+
+        <!-- 8. Business Hours -->
+        <section class="px-5 w-full">
+            <h3 class="text-sm font-bold tracking-[0.15em] text-pinkgold mb-6 uppercase flex items-center gap-2">
+                <i class="ph ph-clock"></i> Hours
+            </h3>
+            <div class="w-full flex justify-between items-center py-4 border-b border-t divider">
+                <div class="flex items-center gap-3">
+                    <div class="w-1.5 h-1.5 rounded-full bg-pinkgold shadow-[0_0_8px_#E8B4A0]"></div>
+                    <span class="text-sm font-medium tracking-widest text-txtprimary">月 - 土</span>
+                </div>
+                <span class="font-bold text-lg text-white tracking-wider">19:00 - 翌2:00</span>
+            </div>
+            <div class="w-full flex justify-between items-center py-4 border-b divider">
+                <div class="flex items-center gap-3">
+                    <div class="w-1.5 h-1.5 rounded-full bg-surface border border-pinkgold"></div>
+                    <span class="text-sm font-medium tracking-widest text-txtsecondary">日 <small class="text-xs ml-1">(定休)</small></span>
+                </div>
+                <span class="font-medium text-sm text-txtsecondary">Closed</span>
+            </div>
+        </section>
+
+        <div class="w-full px-5 mt-14 mb-10"><div class="w-full border-t divider"></div></div>
+
+        <!-- 9. Access Block -->
+        <section class="px-5 w-full">
+            <h3 class="text-sm font-bold tracking-[0.15em] text-pinkgold mb-6 uppercase flex items-center gap-2">
+                <i class="ph ph-map-trifold"></i> Access
+            </h3>
+            <div class="bg-surface p-6 rounded border border-pinkgold/20 w-full flex flex-col gap-6">
+                <dl class="flex flex-col gap-4 text-sm w-full">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:border-b sm:divider sm:pb-3 gap-1">
+                        <dt class="text-pinkgold/70 text-xs tracking-widest">店舗名</dt>
+                        <dd class="text-txtprimary font-medium tracking-wide">Lounge ROUGE</dd>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <dt class="text-pinkgold/70 text-xs tracking-widest">住所</dt>
+                        <dd class="text-txtprimary font-medium tracking-wide leading-relaxed">〒104-0061<br>東京都中央区銀座8-x-x<br>ローズビル3F</dd>
+                    </div>
+                    <div class="flex flex-col gap-1 mt-2">
+                        <dt class="text-pinkgold/70 text-xs tracking-widest">アクセス</dt>
+                        <dd class="text-txtprimary font-medium tracking-wide leading-relaxed">東京メトロ 銀座駅 C3出口 徒歩5分<br>JR 新橋駅 銀座口 徒歩4分</dd>
+                    </div>
+                    <div class="flex flex-col gap-1 mt-2">
+                        <dt class="text-pinkgold/70 text-xs tracking-widest">業種</dt>
+                        <dd class="text-txtprimary font-medium tracking-wide">スナック・ラウンジ</dd>
+                    </div>
+                    <div class="flex flex-col gap-1 mt-2">
+                        <dt class="text-pinkgold/70 text-xs tracking-widest">電話</dt>
+                        <dd class="text-txtprimary font-medium tracking-wide">03-xxxx-xxxx</dd>
+                    </div>
+                </dl>
+                <button class="w-full mt-2 h-12 bg-transparent border border-pinkgold text-pinkgold font-bold text-sm rounded tracking-wider flex items-center justify-center gap-2">
+                    <i class="ph ph-navigation-arrow"></i>
+                    Google マップで開く
+                </button>
+            </div>
+        </section>
+
+        <!-- 10. Footer -->
+        <footer class="w-full mt-20 pt-8 pb-12 text-center flex flex-col items-center justify-center gap-2 border-t border-obsidian bg-obsidian z-10 relative">
+            <div class="w-10 h-[1px] bg-pinkgold/30 mb-2"></div>
+            <p class="text-[10px] sm:text-xs text-pinkgold/40 tracking-[0.2em] uppercase font-medium">Powered by Secleva</p>
+            <p class="text-[9px] text-txtsecondary/30 mt-1">&copy; Lounge ROUGE. All rights reserved.</p>
+        </footer>
+
+    </main>
+</body>
+</html>

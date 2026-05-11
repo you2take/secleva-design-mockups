@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Maison de Lumière | プライベートエステ・隠れ家サロン</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { navy: '#1A2A4A', gold: '#C9A86A', 'text-sec': '#6B7280', hairline: '#E5E5E5', line: '#06C755' },
+                    fontFamily: {
+                        'serif-en': ['"Cormorant Garamond"', 'serif'],
+                        'serif-jp': ['"Noto Serif JP"', 'serif'],
+                        'sans-jp': ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    boxShadow: { 'hero': '0 10px 40px -10px rgba(26, 42, 74, 0.1)' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #f7f7f7; }
+        .hairline-gold { border-color: rgba(201, 168, 106, 0.4); border-width: 1px; }
+        .hairline-gray { border-color: #E5E5E5; border-width: 1px; }
+        .active-push:active { transform: scale(0.98); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="font-sans-jp text-navy antialiased min-h-[100dvh] flex justify-center">
+
+    <main class="w-full max-w-[430px] bg-white min-h-[100dvh] relative overflow-x-hidden shadow-[0_0_50px_rgba(0,0,0,0.05)]">
+
+        <!-- 1. Top Utility Bar -->
+        <header class="flex justify-between items-center px-6 py-5 bg-white relative z-10">
+            <div class="flex items-center gap-3 text-[11px] tracking-widest font-serif-en text-navy">
+                <button class="relative pb-[2px] opacity-50">JP</button>
+                <span class="w-px h-3 bg-hairline"></span>
+                <button class="relative pb-[2px]">EN<span class="absolute bottom-0 left-0 w-full h-[1px] bg-gold"></span></button>
+            </div>
+            <div class="flex items-center gap-4 text-navy">
+                <a href="#"><i class="ph ph-instagram-logo text-lg"></i></a>
+                <a href="#"><i class="ph ph-x-logo text-lg"></i></a>
+                <a href="#"><i class="ph ph-chats text-lg"></i></a>
+            </div>
+        </header>
+
+        <!-- 2. Main Visual -->
+        <section class="relative w-full aspect-[16/11]">
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800" alt="" class="w-full h-full object-cover">
+            <div class="absolute -bottom-12 left-6 w-24 h-24 bg-white rounded-full border border-gold shadow-hero z-20 flex items-center justify-center p-1">
+                <div class="w-full h-full border-[0.5px] border-gold/30 rounded-full flex items-center justify-center">
+                    <span class="font-serif-en text-2xl tracking-tighter text-navy font-medium">M</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Header Info -->
+        <section class="pt-16 pb-8 px-6">
+            <div class="flex flex-col gap-1">
+                <span class="text-[11px] tracking-[0.2em] text-text-sec">プライベートエステ・隠れ家サロン</span>
+                <h1 class="font-serif-jp text-navy text-3xl tracking-[0.15em] leading-snug font-normal mt-1">碧の空間</h1>
+                <h2 class="font-serif-en text-navy text-lg font-medium tracking-[0.2em] mt-1">Maison de Lumière</h2>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-6">
+                <span class="border border-gold text-navy text-[10px] px-2.5 py-1.5 rounded-[2px] tracking-wider bg-transparent">完全プライベート</span>
+                <span class="border border-gold text-navy text-[10px] px-2.5 py-1.5 rounded-[2px] tracking-wider bg-transparent">紹介制</span>
+                <span class="border border-gold text-navy text-[10px] px-2.5 py-1.5 rounded-[2px] tracking-wider bg-transparent">VIP個室</span>
+                <span class="border border-gold text-navy text-[10px] px-2.5 py-1.5 rounded-[2px] tracking-wider bg-transparent">シャワー完備</span>
+                <span class="border border-gold text-navy text-[10px] px-2.5 py-1.5 rounded-[2px] tracking-wider bg-transparent">駅徒歩2分</span>
+            </div>
+        </section>
+
+        <!-- 4. Address & Catchcopy -->
+        <section class="px-6 py-12 relative">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-6 bg-gold/40"></div>
+            <p class="text-[11px] text-text-sec mb-8 tracking-[0.25em] text-center uppercase font-serif-en">Minato-ku, Tokyo</p>
+            <h3 class="font-serif-jp text-xl leading-[2.2] tracking-[0.15em] text-center text-navy font-normal">
+                限られた方だけが知る、<br>街なかの隠れ家。<br>本物の静けさを、あなたへ。
+            </h3>
+        </section>
+
+        <!-- 5. Primary CTA -->
+        <section class="px-6 py-4">
+            <button class="w-full h-[56px] bg-line rounded-[4px] text-white flex items-center justify-center gap-2 font-medium tracking-[0.15em] text-[15px] active-push">
+                <i class="ph-fill ph-chats-circle text-[20px]"></i>
+                予約のご相談
+            </button>
+            <p class="text-center text-[11px] mt-3 text-text-sec tracking-[0.1em]">ご紹介・初回の方も承ります。</p>
+        </section>
+
+        <!-- 6. Gallery -->
+        <section class="px-6 py-12">
+            <div class="flex items-center gap-4 mb-8">
+                <h4 class="font-serif-en text-lg tracking-[0.15em] text-navy">Atmosphere</h4>
+                <div class="flex-grow h-px hairline-gold"></div>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="aspect-square bg-gray-50 rounded-[4px] hairline-gold overflow-hidden"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=400" alt="" class="w-full h-full object-cover"></div>
+                <div class="aspect-square bg-gray-50 rounded-[4px] hairline-gold overflow-hidden"><img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&q=80&w=400" alt="" class="w-full h-full object-cover"></div>
+                <div class="aspect-square bg-gray-50 rounded-[4px] hairline-gold overflow-hidden"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=400" alt="" class="w-full h-full object-cover"></div>
+                <div class="aspect-square bg-gray-50 rounded-[4px] hairline-gold overflow-hidden"><img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=400" alt="" class="w-full h-full object-cover"></div>
+                <div class="aspect-square bg-gray-50 rounded-[4px] hairline-gold overflow-hidden"><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&q=80&w=400" alt="" class="w-full h-full object-cover"></div>
+                <div class="aspect-square bg-gray-50 rounded-[4px] hairline-gold overflow-hidden"><img src="https://images.unsplash.com/photo-1519415943484-9fa1873496d4?auto=format&fit=crop&q=80&w=400" alt="" class="w-full h-full object-cover"></div>
+            </div>
+        </section>
+
+        <!-- 7. Menu -->
+        <section class="px-6 py-8">
+            <div class="flex items-center gap-4 mb-8">
+                <h4 class="font-serif-en text-lg tracking-[0.15em] text-navy">Treatments</h4>
+                <div class="flex-grow h-px hairline-gold"></div>
+            </div>
+            <div class="flex flex-col">
+                <div class="flex items-center py-5 border-b hairline-gold">
+                    <img src="https://images.unsplash.com/photo-1615397347101-b74e6451a37c?auto=format&fit=crop&q=80&w=200" alt="" class="w-16 h-16 rounded-[4px] object-cover hairline-gold shrink-0">
+                    <div class="ml-4 flex-grow"><h5 class="font-serif-jp text-[15px] text-navy tracking-widest pl-1">シグネチャーフェイシャル</h5></div>
+                    <div class="text-right shrink-0">
+                        <span class="block text-[11px] text-text-sec tracking-widest mb-1">90分</span>
+                        <span class="font-serif-en tracking-wider text-[17px] text-navy">¥18,000</span>
+                    </div>
+                </div>
+                <div class="flex items-center py-5 border-b hairline-gold">
+                    <img src="https://images.unsplash.com/photo-1542840410-3092f99611a3?auto=format&fit=crop&q=80&w=200" alt="" class="w-16 h-16 rounded-[4px] object-cover hairline-gold shrink-0">
+                    <div class="ml-4 flex-grow"><h5 class="font-serif-jp text-[15px] text-navy tracking-widest pl-1">ボディトリートメント</h5></div>
+                    <div class="text-right shrink-0">
+                        <span class="block text-[11px] text-text-sec tracking-widest mb-1">120分</span>
+                        <span class="font-serif-en tracking-wider text-[17px] text-navy">¥28,000</span>
+                    </div>
+                </div>
+                <div class="flex items-center py-5">
+                    <img src="https://images.unsplash.com/photo-1552693673-1bf9582989ac?auto=format&fit=crop&q=80&w=200" alt="" class="w-16 h-16 rounded-[4px] object-cover hairline-gold shrink-0">
+                    <div class="ml-4 flex-grow"><h5 class="font-serif-jp text-[15px] text-navy tracking-widest pl-1">VIPフルコース</h5></div>
+                    <div class="text-right shrink-0">
+                        <span class="block text-[11px] text-text-sec tracking-widest mb-1">180分</span>
+                        <span class="font-serif-en tracking-wider text-[17px] text-navy">¥42,000</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8 + 9. Hours & Access -->
+        <section class="px-6 py-12">
+            <div class="flex items-center gap-4 mb-8">
+                <h4 class="font-serif-en text-lg tracking-[0.15em] text-navy">Information</h4>
+                <div class="flex-grow h-px hairline-gold"></div>
+            </div>
+            <ul class="text-[14px]">
+                <li class="flex justify-between py-4 border-b hairline-gold tracking-widest">
+                    <span class="text-text-sec font-serif-jp">営業時間</span>
+                    <div class="text-right text-navy font-sans-jp flex flex-col gap-1 text-[13px]">
+                        <span>11:00-22:00 平日</span><span>11:00-20:00 週末</span>
+                    </div>
+                </li>
+                <li class="flex justify-between py-4 border-b hairline-gold tracking-widest">
+                    <span class="text-text-sec font-serif-jp">営業日</span><span class="text-navy text-[13px]">月-日</span>
+                </li>
+                <li class="flex justify-between py-4 border-b hairline-gray tracking-widest mt-6">
+                    <span class="text-text-sec font-serif-jp text-[13px]">住所</span><span class="text-navy text-[13px]">東京都港区（詳細はご予約後）</span>
+                </li>
+                <li class="flex justify-between py-4 border-b hairline-gray tracking-widest">
+                    <span class="text-text-sec font-serif-jp text-[13px]">アクセス</span><span class="text-navy text-[13px]">各線主要駅から徒歩2分</span>
+                </li>
+                <li class="flex justify-between py-4 border-b hairline-gray tracking-widest">
+                    <span class="text-text-sec font-serif-jp text-[13px]">業種</span><span class="text-navy text-[13px]">エステティックサロン</span>
+                </li>
+            </ul>
+            <p class="text-[11px] text-text-sec mt-6 tracking-widest text-center">完全予約制・当日予約不可</p>
+            <button class="w-full h-[48px] mt-8 border border-gold text-navy rounded-[4px] flex items-center justify-center gap-2 text-[14px] tracking-widest active-push bg-transparent">
+                <i class="ph ph-map-pin text-[18px]"></i>
+                Google マップで開く
+            </button>
+        </section>
+
+        <!-- 10. Footer -->
+        <footer class="border-t hairline-gray py-10 bg-white">
+            <div class="flex justify-center items-center gap-2 text-[10px] tracking-[0.2em] text-text-sec/60 uppercase font-serif-en">
+                <span>Powered by</span><span class="font-medium text-navy/70">Secleva</span>
+            </div>
+        </footer>
+
+    </main>
+</body>
+</html>

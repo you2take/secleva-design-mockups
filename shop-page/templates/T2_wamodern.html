@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth bg-[#F5F1E8]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>結び堂 治療院 | Musubido Clinic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Noto+Serif+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kinari: '#F5F1E8',
+                        sumi: '#1A1A1A',
+                        woody: '#8B6F47',
+                        paper: '#D6C8AE',
+                        textsec: '#6B5A45',
+                        line: '#06C755',
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif JP"', 'serif'],
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    letterSpacing: { 'jp-wide': '0.15em', 'jp-wider': '0.2em' }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { height: 0; width: 0; background: transparent; }
+        * { -ms-overflow-style: none; scrollbar-width: none; -webkit-tap-highlight-color: transparent; }
+        body { font-feature-settings: "palt"; text-rendering: optimizeLegibility; }
+        .btn-press:active { transform: scale(0.98); }
+        .app-container { width: 100%; max-width: 480px; margin: 0 auto; min-height: 100dvh; position: relative; overflow-x: hidden; }
+    </style>
+</head>
+<body class="bg-kinari text-sumi font-sans antialiased">
+    <div class="app-container shadow-[0_0_40px_-15px_rgba(0,0,0,0.05)] md:border-x md:border-paper/40">
+
+        <!-- 1. Top Utility Bar -->
+        <nav class="flex items-center justify-between px-5 py-3 border-b border-paper/30">
+            <div class="flex items-center gap-4 text-[11px] font-sans text-textsec tracking-wide">
+                <span class="text-sumi border-b border-sumi pb-[1px]">日本語</span>
+                <span>English</span>
+                <span>中文</span>
+                <span>한국어</span>
+            </div>
+            <div class="flex items-center gap-3 text-sumi">
+                <a href="#"><i class="ph ph-instagram-logo text-lg"></i></a>
+                <a href="#"><i class="ph ph-x-logo text-lg"></i></a>
+                <a href="#"><i class="ph ph-chat-circle text-lg"></i></a>
+            </div>
+        </nav>
+
+        <!-- 2. Main Visual -->
+        <header class="relative w-full aspect-[4/3] bg-paper/20">
+            <img src="https://images.unsplash.com/photo-1600573472591-ee6bfc6cb3ca?auto=format&fit=crop&w=800&q=80" alt="治療院の入り口" class="w-full h-full object-cover">
+            <div class="absolute -bottom-12 left-5 w-24 h-24 rounded-full border-[4px] border-paper bg-kinari flex items-center justify-center z-10">
+                <span class="font-serif text-3xl text-sumi tracking-widest ml-1">結</span>
+            </div>
+        </header>
+
+        <!-- 3. Header Info -->
+        <section class="px-5 pt-16 pb-8">
+            <h1 class="font-serif text-[32px] font-medium text-sumi tracking-jp-wide leading-[1.2]">結び堂</h1>
+            <p class="text-[13px] text-textsec mt-2 tracking-wide font-sans">整体・治療院・鍼灸</p>
+            <div class="flex overflow-x-auto gap-2.5 mt-5 pb-2">
+                <div class="flex-shrink-0 px-3 py-1.5 bg-paper border border-sumi rounded-[2px]"><span class="text-[11px] text-sumi tracking-wider font-sans">完全予約制</span></div>
+                <div class="flex-shrink-0 px-3 py-1.5 bg-paper border border-sumi rounded-[2px]"><span class="text-[11px] text-sumi tracking-wider font-sans">国家資格保有</span></div>
+                <div class="flex-shrink-0 px-3 py-1.5 bg-paper border border-sumi rounded-[2px]"><span class="text-[11px] text-sumi tracking-wider font-sans">女性スタッフ在籍</span></div>
+                <div class="flex-shrink-0 px-3 py-1.5 bg-paper border border-sumi rounded-[2px]"><span class="text-[11px] text-sumi tracking-wider font-sans">駅徒歩3分</span></div>
+                <div class="flex-shrink-0 px-3 py-1.5 bg-paper border border-sumi rounded-[2px]"><span class="text-[11px] text-sumi tracking-wider font-sans">着替え有り</span></div>
+            </div>
+        </section>
+
+        <div class="w-[calc(100%-2.5rem)] h-px bg-paper mx-auto"></div>
+
+        <!-- 4. Intro / Catchcopy -->
+        <section class="px-5 py-10">
+            <div class="flex items-start gap-2 mb-6 text-textsec">
+                <i class="ph ph-map-pin text-sm mt-[2px]"></i>
+                <p class="text-[13px] tracking-wide leading-relaxed font-sans">東京都世田谷区<br>静寂に包まれた和風建築</p>
+            </div>
+            <h2 class="font-serif text-[20px] font-light text-sumi leading-[2.2] tracking-jp-wider relative inline-block">
+                ひとり、ひとりの体と向き合う。<br>
+                三代続く、町の治療院。
+                <div class="absolute -left-3 top-2 w-[1px] h-[80%] bg-woody/40"></div>
+            </h2>
+        </section>
+
+        <!-- 5. Primary CTA -->
+        <section class="px-5 pb-10">
+            <button class="btn-press w-full h-[56px] bg-line text-white rounded-[10px] flex items-center justify-center gap-2">
+                <i class="ph ph-chat-circle text-xl"></i>
+                <span class="font-sans font-medium text-[16px] tracking-wide mt-[1px]">ご予約はこちら</span>
+            </button>
+            <p class="text-center text-[11px] text-textsec mt-3 tracking-wider font-sans">確認後にご連絡いたします。</p>
+        </section>
+
+        <div class="w-[calc(100%-2.5rem)] h-[1px] bg-paper mx-auto"></div>
+
+        <!-- 6. Gallery -->
+        <section class="py-10">
+            <h3 class="px-5 font-serif text-[12px] tracking-widest text-textsec mb-5 uppercase flex items-center gap-2">
+                <span class="w-1.5 h-1.5 bg-paper rounded-full"></span> 空間と施術
+            </h3>
+            <div class="flex overflow-x-auto gap-3 px-5 pb-2">
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=400&h=400&q=80" alt="" class="w-[140px] h-[140px] rounded-[8px] object-cover flex-shrink-0">
+                <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=400&h=400&q=80" alt="" class="w-[140px] h-[140px] rounded-[8px] object-cover flex-shrink-0">
+                <img src="https://images.unsplash.com/photo-1611680197779-7f975417ecbb?auto=format&fit=crop&w=400&h=400&q=80" alt="" class="w-[140px] h-[140px] rounded-[8px] object-cover flex-shrink-0">
+                <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=400&h=400&q=80" alt="" class="w-[140px] h-[140px] rounded-[8px] object-cover flex-shrink-0">
+                <img src="https://images.unsplash.com/photo-1629853381665-27a92b23a9d7?auto=format&fit=crop&w=400&h=400&q=80" alt="" class="w-[140px] h-[140px] rounded-[8px] object-cover flex-shrink-0">
+                <img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=400&h=400&q=80" alt="" class="w-[140px] h-[140px] rounded-[8px] object-cover flex-shrink-0">
+            </div>
+        </section>
+
+        <div class="w-[calc(100%-2.5rem)] h-[1px] bg-paper mx-auto"></div>
+
+        <!-- 7. Menu -->
+        <section class="py-10 px-5">
+            <h3 class="font-serif text-[18px] text-sumi mb-8 tracking-widest text-center">施術内容</h3>
+            <div class="flex flex-col gap-6">
+                <div class="flex items-center gap-4 relative">
+                    <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=200&h=200&q=80" alt="" class="w-[72px] h-[72px] rounded border border-paper/50 object-cover flex-shrink-0">
+                    <div class="flex-1 flex flex-col justify-center">
+                        <h4 class="text-[16px] font-sans font-medium text-sumi tracking-wide">全身整体</h4>
+                        <p class="text-[12px] text-textsec mt-1 font-sans">60分</p>
+                    </div>
+                    <div class="w-px h-10 bg-paper/60"></div>
+                    <div class="min-w-[70px] text-right"><span class="text-[16px] font-medium font-sans text-sumi tracking-wider">¥6,000</span></div>
+                </div>
+                <div class="flex items-center gap-4 relative pt-6 border-t border-paper/30">
+                    <img src="https://images.unsplash.com/photo-1606902965551-dce093cda6e7?auto=format&fit=crop&w=200&h=200&q=80" alt="" class="w-[72px] h-[72px] rounded border border-paper/50 object-cover flex-shrink-0">
+                    <div class="flex-1 flex flex-col justify-center">
+                        <h4 class="text-[16px] font-sans font-medium text-sumi tracking-wide">骨盤矯正</h4>
+                        <p class="text-[12px] text-textsec mt-1 font-sans">45分</p>
+                    </div>
+                    <div class="w-px h-10 bg-paper/60"></div>
+                    <div class="min-w-[70px] text-right"><span class="text-[16px] font-medium font-sans text-sumi tracking-wider">¥5,500</span></div>
+                </div>
+                <div class="flex items-center gap-4 relative pt-6 border-t border-paper/30">
+                    <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=200&h=200&q=80" alt="" class="w-[72px] h-[72px] rounded border border-paper/50 object-cover flex-shrink-0">
+                    <div class="flex-1 flex flex-col justify-center">
+                        <h4 class="text-[16px] font-sans font-medium text-sumi tracking-wide">鍼灸コース</h4>
+                        <p class="text-[12px] text-textsec mt-1 font-sans">90分</p>
+                    </div>
+                    <div class="w-px h-10 bg-paper/60"></div>
+                    <div class="min-w-[70px] text-right"><span class="text-[16px] font-medium font-sans text-sumi tracking-wider">¥9,800</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Business Hours -->
+        <section class="py-10 px-5 bg-[#F0EBE0] border-y border-paper/50">
+            <h3 class="font-serif text-[18px] text-sumi mb-8 tracking-widest text-center">営業時間</h3>
+            <table class="w-full text-[15px]">
+                <tbody>
+                    <tr class="border-b border-paper/60"><th class="py-4 text-left font-serif font-normal text-textsec w-[80px] tracking-widest pl-2">月</th><td class="py-4 text-right font-sans tracking-widest text-sumi pr-2">10:00 - 20:00</td></tr>
+                    <tr class="border-b border-paper/60"><th class="py-4 text-left font-serif font-normal text-textsec w-[80px] tracking-widest pl-2">火</th><td class="py-4 text-right font-sans tracking-widest text-sumi pr-2">10:00 - 20:00</td></tr>
+                    <tr class="border-b border-paper/60"><th class="py-4 text-left font-serif font-normal text-textsec w-[80px] tracking-widest pl-2">水</th><td class="py-4 text-right font-sans tracking-widest text-sumi pr-2">10:00 - 20:00</td></tr>
+                    <tr class="border-b border-paper/60"><th class="py-4 text-left font-serif font-normal text-textsec w-[80px] tracking-widest pl-2">木</th><td class="py-4 text-right font-sans tracking-widest text-sumi pr-2">10:00 - 20:00</td></tr>
+                    <tr class="border-b border-paper/60"><th class="py-4 text-left font-serif font-normal text-textsec w-[80px] tracking-widest pl-2">金</th><td class="py-4 text-right font-sans tracking-widest text-sumi pr-2">10:00 - 20:00</td></tr>
+                    <tr class="border-b border-paper/60"><th class="py-4 text-left font-serif font-normal text-woody w-[80px] tracking-widest pl-2">土</th><td class="py-4 text-right font-sans tracking-widest text-sumi pr-2">10:00 - 15:00</td></tr>
+                    <tr><th class="py-4 text-left font-serif font-normal text-woody/60 w-[80px] tracking-widest pl-2">日</th><td class="py-4 text-right font-sans tracking-widest text-textsec/60 pr-2">定休日</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 9. Access Block -->
+        <section class="py-12 px-5">
+            <h3 class="font-serif text-[18px] text-sumi mb-8 tracking-widest text-center">アクセス情報</h3>
+            <dl class="flex flex-col text-[14px]">
+                <div class="flex py-4 border-b border-paper/50"><dt class="w-[80px] font-sans text-textsec font-medium">住所</dt><dd class="flex-1 font-sans text-sumi leading-relaxed">〒154-0000<br>東京都世田谷区和風街 3-2-1<br>結びの杜 1階</dd></div>
+                <div class="flex py-4 border-b border-paper/50"><dt class="w-[80px] font-sans text-textsec font-medium">業種</dt><dd class="flex-1 font-sans text-sumi">整体院・鍼灸院</dd></div>
+                <div class="flex py-4 border-b border-paper/50"><dt class="w-[80px] font-sans text-textsec font-medium">電話</dt><dd class="flex-1 font-sans font-medium text-sumi">03-1234-5678</dd></div>
+                <div class="flex py-4"><dt class="w-[80px] font-sans text-textsec font-medium">最寄駅</dt><dd class="flex-1 font-sans text-sumi">世田谷線「静寂駅」東口 徒歩3分</dd></div>
+            </dl>
+            <button class="btn-press w-full h-[48px] mt-6 bg-transparent border border-sumi text-sumi rounded-[2px] flex items-center justify-center gap-2">
+                <i class="ph ph-map-pin text-[18px]"></i>
+                <span class="font-sans font-medium text-[15px] tracking-wide mt-[1px]">Google マップで開く</span>
+            </button>
+        </section>
+
+        <!-- 10. Footer -->
+        <footer class="bg-paper py-10">
+            <div class="flex justify-center items-center h-full">
+                <p class="font-sans text-[11px] text-sumi tracking-widest">Powered by Secleva</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

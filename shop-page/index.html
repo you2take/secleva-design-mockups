@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secleva 店舗ページ モック一覧</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] }, colors: { line: '#06C755' } } } }
+    </script>
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; }
+    </style>
+</head>
+<body class="bg-zinc-100 text-zinc-900 min-h-screen">
+
+    <div class="max-w-5xl mx-auto px-6 py-12">
+
+        <!-- Header -->
+        <header class="mb-10">
+            <p class="text-sm text-line font-bold tracking-widest mb-2">SECLEVA / SHOP PAGE</p>
+            <h1 class="text-3xl md:text-4xl font-black tracking-tight mb-3">店舗ページ リッチ化モック一覧</h1>
+            <p class="text-zinc-600 text-base leading-relaxed">
+                個人サロン向けの店舗ページ・リッチ化案。<br>
+                公開ページ5テンプレート（モバイル 390×844）と、管理画面側の編集フロー3画面。
+            </p>
+        </header>
+
+        <!-- Part A: Public Templates -->
+        <section class="mb-12">
+            <div class="flex items-baseline gap-3 mb-5">
+                <h2 class="text-xl font-bold">Part A. 公開ページ 5テンプレート</h2>
+                <span class="text-xs text-zinc-500">モバイル 390×844 / 業種別5案</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- T1 -->
+                <a href="templates/T1_clean.html" target="_blank" class="block bg-white border border-zinc-200 rounded-2xl p-5 hover:shadow-lg transition-shadow">
+                    <div class="aspect-[4/5] rounded-xl bg-white border border-zinc-200 mb-4 overflow-hidden flex flex-col">
+                        <div class="h-2 bg-line"></div>
+                        <div class="flex-1 p-3 flex flex-col gap-2">
+                            <div class="w-full h-20 bg-zinc-100 rounded"></div>
+                            <div class="w-2/3 h-3 bg-zinc-300 rounded"></div>
+                            <div class="w-1/3 h-2 bg-zinc-200 rounded"></div>
+                            <div class="w-full h-8 bg-line rounded mt-2"></div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-zinc-500 mb-1 tracking-widest">T1 / CLEAN</p>
+                    <h3 class="text-lg font-bold mb-1">クリーン</h3>
+                    <p class="text-sm text-zinc-600">白基調 × LINE緑のデフォルト。マッサージ・リラクゼーション向け。</p>
+                </a>
+
+                <!-- T2 -->
+                <a href="templates/T2_wamodern.html" target="_blank" class="block bg-white border border-zinc-200 rounded-2xl p-5 hover:shadow-lg transition-shadow">
+                    <div class="aspect-[4/5] rounded-xl bg-[#F5F1E8] border border-[#D6C8AE] mb-4 overflow-hidden flex flex-col">
+                        <div class="h-6 bg-zinc-900"></div>
+                        <div class="flex-1 p-3 flex flex-col gap-2">
+                            <div class="w-full h-20 bg-[#D6C8AE]/40 rounded"></div>
+                            <div class="w-1/2 h-3 bg-zinc-800 rounded"></div>
+                            <div class="w-2/3 h-2 bg-[#8B6F47] rounded"></div>
+                            <div class="w-full h-8 bg-line rounded mt-2"></div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-zinc-500 mb-1 tracking-widest">T2 / WAMODERN</p>
+                    <h3 class="text-lg font-bold mb-1">和モダン</h3>
+                    <p class="text-sm text-zinc-600">生成り × 墨黒 × 木目。整体院・治療院・鍼灸向け。</p>
+                </a>
+
+                <!-- T3 -->
+                <a href="templates/T3_natural.html" target="_blank" class="block bg-white border border-zinc-200 rounded-2xl p-5 hover:shadow-lg transition-shadow">
+                    <div class="aspect-[4/5] rounded-xl bg-[#FAF7F2] border border-[#E8DFD0] mb-4 overflow-hidden flex flex-col">
+                        <div class="h-2 bg-[#6B8E5A]"></div>
+                        <div class="flex-1 p-3 flex flex-col gap-2">
+                            <div class="w-full h-20 bg-[#E8DFD0] rounded-lg"></div>
+                            <div class="w-2/3 h-3 bg-[#6B8E5A] rounded"></div>
+                            <div class="w-1/2 h-2 bg-[#C9A87C] rounded"></div>
+                            <div class="w-full h-8 bg-line rounded mt-2"></div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-zinc-500 mb-1 tracking-widest">T3 / NATURAL</p>
+                    <h3 class="text-lg font-bold mb-1">ナチュラル</h3>
+                    <p class="text-sm text-zinc-600">オフホワイト × モスグリーン。アロマ・ハーブ・オーガニック向け。</p>
+                </a>
+
+                <!-- T4 -->
+                <a href="templates/T4_elegant.html" target="_blank" class="block bg-white border border-zinc-200 rounded-2xl p-5 hover:shadow-lg transition-shadow">
+                    <div class="aspect-[4/5] rounded-xl bg-white border border-zinc-200 mb-4 overflow-hidden flex flex-col">
+                        <div class="h-2 bg-[#1A2A4A]"></div>
+                        <div class="flex-1 p-3 flex flex-col gap-2">
+                            <div class="w-full h-20 bg-zinc-100 rounded"></div>
+                            <div class="w-2/3 h-3 bg-[#1A2A4A] rounded"></div>
+                            <div class="w-1/3 h-1 bg-[#C9A86A]"></div>
+                            <div class="w-full h-8 bg-line rounded mt-2"></div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-zinc-500 mb-1 tracking-widest">T4 / ELEGANT</p>
+                    <h3 class="text-lg font-bold mb-1">エレガント</h3>
+                    <p class="text-sm text-zinc-600">ディープネイビー × シャンパンゴールド。高単価エステ・隠れ家サロン向け。</p>
+                </a>
+
+                <!-- T5 -->
+                <a href="templates/T5_night.html" target="_blank" class="block bg-white border border-zinc-200 rounded-2xl p-5 hover:shadow-lg transition-shadow">
+                    <div class="aspect-[4/5] rounded-xl bg-[#0F0F12] border border-zinc-800 mb-4 overflow-hidden flex flex-col">
+                        <div class="h-2 bg-[#E8B4A0]"></div>
+                        <div class="flex-1 p-3 flex flex-col gap-2">
+                            <div class="w-full h-20 bg-zinc-800 rounded"></div>
+                            <div class="w-2/3 h-3 bg-white rounded"></div>
+                            <div class="w-1/3 h-2 bg-[#E8B4A0] rounded"></div>
+                            <div class="w-full h-8 bg-line rounded mt-2"></div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-zinc-500 mb-1 tracking-widest">T5 / NIGHT</p>
+                    <h3 class="text-lg font-bold mb-1">ナイト</h3>
+                    <p class="text-sm text-zinc-600">漆黒 × ピンクゴールド。スナック・ガールズバー向け。</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Part B: Admin Screens -->
+        <section class="mb-12">
+            <div class="flex items-baseline gap-3 mb-5">
+                <h2 class="text-xl font-bold">Part B. 管理画面 編集フロー 3画面</h2>
+                <span class="text-xs text-zinc-500">既存 admin.html にマージ前提</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- B1 -->
+                <a href="admin/01_template-select.html" target="_blank" class="block bg-white border border-zinc-200 rounded-2xl p-5 hover:shadow-lg transition-shadow">
+                    <div class="aspect-[3/4] rounded-xl bg-zinc-50 border border-zinc-200 mb-4 overflow-hidden flex flex-col">
+                        <div class="h-8 bg-white border-b border-zinc-200 flex items-center px-3">
+                            <i class="ph ph-caret-left text-zinc-400"></i>
+                            <span class="text-[10px] font-bold mx-auto">テンプレートを選ぶ</span>
+                        </div>
+                        <div class="flex-1 p-2 flex flex-col gap-2">
+                            <div class="bg-white border border-line rounded p-1.5 flex gap-1.5 items-center">
+                                <div class="w-6 h-6 bg-line/20 rounded"></div>
+                                <div class="flex-1 h-2 bg-zinc-300 rounded"></div>
+                                <i class="ph-fill ph-check-circle text-line text-xs"></i>
+                            </div>
+                            <div class="bg-white border border-zinc-200 rounded p-1.5 flex gap-1.5 items-center">
+                                <div class="w-6 h-6 bg-zinc-200 rounded"></div>
+                                <div class="flex-1 h-2 bg-zinc-200 rounded"></div>
+                            </div>
+                            <div class="bg-white border border-zinc-200 rounded p-1.5 flex gap-1.5 items-center">
+                                <div class="w-6 h-6 bg-zinc-200 rounded"></div>
+                                <div class="flex-1 h-2 bg-zinc-200 rounded"></div>
+                            </div>
+                        </div>
+                        <div class="h-10 bg-white border-t border-zinc-200 p-1.5">
+                            <div class="w-full h-full bg-line rounded flex items-center justify-center text-[10px] text-white font-bold">決定</div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-zinc-500 mb-1 tracking-widest">B1</p>
+                    <h3 class="text-lg font-bold mb-1">テンプレ選択</h3>
+                    <p class="text-sm text-zinc-600">5テンプレを縦並びカードで選択。デフォルトは T1。</p>
+                </a>
+
+                <!-- B2 -->
+                <a href="admin/02_block-edit.html" target="_blank" class="block bg-white border border-zinc-200 rounded-2xl p-5 hover:shadow-lg transition-shadow">
+                    <div class="aspect-[3/4] rounded-xl bg-zinc-50 border border-zinc-200 mb-4 overflow-hidden flex flex-col">
+                        <div class="h-8 bg-white border-b border-zinc-200 flex items-center px-3">
+                            <i class="ph ph-caret-left text-zinc-400"></i>
+                            <span class="text-[10px] font-bold mx-auto">店舗ページを編集</span>
+                            <i class="ph ph-eye text-zinc-400 text-xs"></i>
+                        </div>
+                        <div class="flex-1 p-2 flex flex-col gap-1.5">
+                            <div class="bg-white border border-zinc-200 rounded p-1.5 flex gap-1.5 items-center">
+                                <div class="w-5 h-5 bg-line/10 rounded"></div>
+                                <div class="flex-1 h-2 bg-zinc-300 rounded"></div>
+                                <div class="w-6 h-3 bg-line rounded-full"></div>
+                            </div>
+                            <div class="bg-white border border-line rounded p-1.5 flex flex-col gap-1">
+                                <div class="flex items-center gap-1.5">
+                                    <div class="w-5 h-5 bg-line/10 rounded"></div>
+                                    <div class="flex-1 h-2 bg-zinc-300 rounded"></div>
+                                </div>
+                                <div class="flex gap-1 flex-wrap mt-1">
+                                    <div class="w-8 h-2 bg-line/20 rounded"></div>
+                                    <div class="w-6 h-2 bg-line/20 rounded"></div>
+                                    <div class="w-7 h-2 bg-zinc-200 rounded"></div>
+                                </div>
+                            </div>
+                            <div class="bg-white border border-zinc-200 rounded p-1.5 flex gap-1.5 items-center">
+                                <div class="w-5 h-5 bg-line/10 rounded"></div>
+                                <div class="flex-1 h-2 bg-zinc-200 rounded"></div>
+                                <div class="w-6 h-3 bg-line rounded-full"></div>
+                            </div>
+                        </div>
+                        <div class="h-10 bg-white border-t border-zinc-200 p-1.5">
+                            <div class="w-full h-full bg-line rounded flex items-center justify-center text-[10px] text-white font-bold">とりあえず保存</div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-zinc-500 mb-1 tracking-widest">B2</p>
+                    <h3 class="text-lg font-bold mb-1">ブロック編集</h3>
+                    <p class="text-sm text-zinc-600">6ブロックをカード型で並べ、ON/OFFとドラッグ並び替え対応。タグ展開UI内包。</p>
+                </a>
+
+                <!-- B3 -->
+                <a href="admin/03_preview.html" target="_blank" class="block bg-white border border-zinc-200 rounded-2xl p-5 hover:shadow-lg transition-shadow">
+                    <div class="aspect-[3/4] rounded-xl bg-zinc-100 border border-zinc-200 mb-4 overflow-hidden flex flex-col">
+                        <div class="h-8 bg-white border-b border-zinc-200 flex items-center px-3">
+                            <i class="ph ph-caret-left text-zinc-400"></i>
+                            <span class="text-[10px] font-bold mx-auto">プレビュー</span>
+                            <i class="ph ph-share-network text-zinc-400 text-xs"></i>
+                        </div>
+                        <div class="bg-white border-b border-zinc-200 px-2 py-1 flex justify-between items-center">
+                            <span class="text-[8px] font-bold">公開状態</span>
+                            <span class="text-[8px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded-full">下書き</span>
+                        </div>
+                        <div class="flex-1 flex items-center justify-center p-3">
+                            <div class="w-16 h-28 bg-zinc-800 rounded-lg p-1">
+                                <div class="w-full h-full bg-white rounded-md overflow-hidden flex flex-col">
+                                    <div class="h-6 bg-zinc-100"></div>
+                                    <div class="flex-1 p-1 flex flex-col gap-0.5">
+                                        <div class="w-2/3 h-1.5 bg-zinc-300 rounded"></div>
+                                        <div class="w-full h-2 bg-line rounded mt-1"></div>
+                                        <div class="flex gap-0.5 mt-0.5">
+                                            <div class="w-3 h-3 bg-zinc-200 rounded"></div>
+                                            <div class="w-3 h-3 bg-zinc-200 rounded"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h-14 bg-white border-t border-zinc-200 p-1.5 flex flex-col gap-1">
+                            <div class="w-full h-5 bg-line rounded flex items-center justify-center text-[8px] text-white font-bold">公開する</div>
+                            <div class="flex gap-1">
+                                <div class="flex-1 h-3 bg-white border border-zinc-200 rounded"></div>
+                                <div class="flex-1 h-3 bg-white border border-zinc-200 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-zinc-500 mb-1 tracking-widest">B3</p>
+                    <h3 class="text-lg font-bold mb-1">プレビュー</h3>
+                    <p class="text-sm text-zinc-600">スマホ枠で公開ページを再現表示。公開ボタンと編集戻りを同時に提供。</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Notes -->
+        <section class="bg-white border border-zinc-200 rounded-2xl p-6">
+            <h2 class="text-base font-bold mb-3 flex items-center gap-2">
+                <i class="ph ph-info text-line"></i>
+                マージ・実装メモ
+            </h2>
+            <ul class="text-sm text-zinc-700 space-y-2 leading-relaxed">
+                <li><strong>公開ページ5案</strong>：全テンプレで共通の10セクション順序を遵守。CTAは全て LINE緑 #06C755 でブランド一貫性を確保。</li>
+                <li><strong>編集画面3案</strong>：既存 <code class="bg-zinc-100 px-1.5 py-0.5 rounded text-xs">mockups/A_pure-line/admin.html</code> と同じスタック（Tailwind CDN / Noto Sans JP / Phosphor Icons / line色 #06C755）。<code class="bg-zinc-100 px-1.5 py-0.5 rounded text-xs">settings.html</code> の「店舗運営」セクション内に「店舗ページ」項目を新設、その下位として3画面を配置する想定。</li>
+                <li><strong>BEM命名</strong>：<code class="bg-zinc-100 px-1.5 py-0.5 rounded text-xs">.template-card</code> / <code class="bg-zinc-100 px-1.5 py-0.5 rounded text-xs">.shop-block</code> / <code class="bg-zinc-100 px-1.5 py-0.5 rounded text-xs">.preview-frame</code> を採用。状態は <code class="bg-zinc-100 px-1.5 py-0.5 rounded text-xs">--selected</code> / <code class="bg-zinc-100 px-1.5 py-0.5 rounded text-xs">--disabled</code> / <code class="bg-zinc-100 px-1.5 py-0.5 rounded text-xs">--draft</code>。</li>
+                <li><strong>想定ペルソナ</strong>：50代女性個人サロンオーナー。本文16px以上、タップ領域44×44px以上、ボタン高さ48px以上を全画面で遵守。</li>
+                <li><strong>編集UI文言</strong>：「保存」→「とりあえず保存」、「公開」→「お店ページを公開する」、「決定」など、業務語を低リテラシー向けに翻訳。</li>
+            </ul>
+        </section>
+
+    </div>
+</body>
+</html>
