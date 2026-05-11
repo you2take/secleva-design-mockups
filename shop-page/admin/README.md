@@ -351,6 +351,42 @@ async function copyShopUrl() {
 | Block 6 キャッチコピー | 所在地下の一文 |
 | Block 7 SNSリンク | ヘッダーのSNSアイコン群 ＋ CTA の href |
 
+### 🔘 ブロック表示トグル（ON/OFF）の挙動
+
+各ブロック右上の **緑トグルは「公開ページに表示するかどうか」のフラグ**（編集データは保持・表示だけ抑止）。
+
+| 状態 | 編集画面（admin/02） | プレビュー画面（admin/03） | 公開ページ（templates/） |
+|---|---|---|---|
+| **トグル ON**（既定） | 通常表示 | 該当セクション表示 | 該当セクション表示 |
+| **トグル OFF** | 本文部分が半透明＋グレースケール＋操作不能（タイトル行とトグル自体は操作可） | 該当セクションを **丸ごと省略** | 該当セクションを **丸ごと省略**（セクション間の余白も詰める） |
+
+##### バックエンドデータ
+```json
+{
+  "blocks": {
+    "main_visual": { "visible": true,  "photo_url": "...", ... },
+    "logo":        { "visible": true,  "logo_url": "...", ... },
+    "tags":        { "visible": true,  "items": [...] },
+    "gallery":     { "visible": false, "items": [...] },  // ← OFF
+    "menu_photos": { "visible": true,  ... },
+    "catchphrase": { "visible": true,  "text": "..." },
+    "sns_links":   { "visible": true,  ... }
+  }
+}
+```
+
+##### 実装ルール
+- **「OFF にしても入力データは消えない」**：再びONにすると即復帰。誤操作リカバリの心理的安全性
+- **トグル自体は disabled の影響を受けない**：トグルOFFにしても、もう一度ONにできる必要があるため
+- **公開ページ側のレンダリング**：`{% if block.visible %}` で囲み、OFF時は HTML 自体を出力しない（DOM上に non-display で残さない＝CLSもパフォーマンスも有利）
+- **Block 2 ロゴをOFFにした時**：ヒーロー直下の円形枠ごと非表示（ファビコンとOGPは shop.logo を参照し続けるので影響なし）
+- **Block 5 メニュー写真をOFFにした時**：メニューセクション自体は表示（料金等は別管理）、各カードのサムネだけ消える or デフォルトに置換（仕様要確認 → v1 は **サムネ完全非表示** で OK）
+
+##### モック動作（02_block-edit.html 実装済み）
+- トグル change イベントで article に `shop-block--disabled` クラス付与/解除
+- CSS：`.shop-block--disabled > div:not(:first-child) { opacity: 0.45; filter: grayscale(100%); pointer-events: none; }` で本文だけ無効化（タイトル行とトグル自体は操作維持）
+- 03_preview への状態引き継ぎは v2（現状の03はテンプレを静的表示するだけ・実装時はサーバー側で `block.visible` を読んでレンダリング）
+
 ---
 
 ## 📋 マイグレーション TODO（本番取り込み時）

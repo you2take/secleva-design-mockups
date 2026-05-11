@@ -37,7 +37,16 @@
     .shop-block__handle { touch-action: none; cursor: grab; }
     .shop-block__handle:active { cursor: grabbing; }
     .shop-block { transition: transform 0.2s ease; }
-    .shop-block--disabled { opacity: 0.5; filter: grayscale(100%); pointer-events: none; }
+    /* トグルOFF時：本文部分（border-t 区切り以降）だけ無効化。トグル自体は操作可能 */
+    .shop-block--disabled > div:not(:first-child) {
+      opacity: 0.45;
+      filter: grayscale(100%);
+      pointer-events: none;
+      user-select: none;
+    }
+    /* OFF時のヘッダ補足表示 */
+    .shop-block__off-badge { display: none; }
+    .shop-block--disabled .shop-block__off-badge { display: inline-flex; }
 
     /* 表示位置プリセットボタン */
     .position-preset {
@@ -785,6 +794,20 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // ─────────────────────────────────────────
+      // ブロック表示トグル（ON/OFF）→ 編集UIを半透明＆操作不能に
+      // ※ 本番では block.visible=false のとき公開ページから該当セクションを完全省略
+      // ─────────────────────────────────────────
+      document.querySelectorAll('.shop-block__toggle-input').forEach(input => {
+        const article = input.closest('.shop-block');
+        if (!article) return;
+        const apply = () => {
+          article.classList.toggle('shop-block--disabled', !input.checked);
+        };
+        input.addEventListener('change', apply);
+        apply();
+      });
+
       // ─────────────────────────────────────────
       // Block 3: タグ追加・削除デモ
       // ─────────────────────────────────────────
