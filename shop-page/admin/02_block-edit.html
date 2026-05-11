@@ -42,10 +42,10 @@
 </head>
 <body class="bg-zinc-100 flex justify-center text-[16px] antialiased">
 <!--
-  マージ先：mockups/A_pure-line/admin.html
+  マージ先：本番 https://secleva.com/owner 配下（/owner/shop-page/ サブルート）
   挿入箇所：[設定] > [店舗ページ] サブ階層
   依存：Tailwind CDN / Noto Sans JP / Phosphor Icons / ../branding/logo_A.png
-  対応する設定セクション：settings.html の "店舗運営" カテゴリ内に追加項目
+  対応する設定セクション：/owner 既存ナビに「店舗ページ」項目を追加（認証は LINE Login で継承）
   インタラクション仕様：
     - テンプレ選択カードタップで選択切替（aria-selected）
     - ブロック編集の ON/OFF はチェックボックス＋クラス切替
@@ -586,7 +586,7 @@
 
 
             <!-- メニュー管轄の説明 -->
-            <a href="../../mockups/A_pure-line/settings.html" class="mt-2 flex items-center gap-2.5 p-3 bg-white border border-zinc-200 rounded-lg touch-active">
+            <a href="https://secleva.com/owner/settings" class="mt-2 flex items-center gap-2.5 p-3 bg-white border border-zinc-200 rounded-lg touch-active">
               <i class="ph ph-arrow-right-up text-[18px] text-line"></i>
               <div class="flex-1 min-w-0">
                 <span class="text-[13px] font-bold text-zinc-800 block">メニューの追加・料金変更</span>

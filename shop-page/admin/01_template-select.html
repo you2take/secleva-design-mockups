@@ -40,10 +40,10 @@
     </style>
 </head>
 <!--
-  マージ先：mockups/A_pure-line/admin.html
+  マージ先：本番 https://secleva.com/owner 配下（/owner/shop-page/ サブルート）
   挿入箇所：[設定] > [店舗ページ] サブ階層
   依存：Tailwind CDN / Noto Sans JP / Phosphor Icons / ../branding/logo_A.png
-  対応する設定セクション：settings.html の "店舗運営" カテゴリ内に追加項目
+  対応する設定セクション：/owner 既存ナビに「店舗ページ」項目を追加（認証は LINE Login で継承）
   インタラクション仕様：
     - テンプレ選択カードタップで選択切替（aria-selected）
     - サムネタップで実機プレビュー（モーダル iframe）開閉
@@ -65,7 +65,7 @@
 
         <!-- Sticky Header -->
         <header class="h-14 bg-white border-b border-zinc-200 flex justify-between items-center px-3 sticky top-0 z-40">
-            <a href="../../mockups/A_pure-line/settings.html" class="touch-active p-2" aria-label="戻る"><i class="ph ph-caret-left text-2xl"></i></a>
+            <a href="https://secleva.com/owner/settings" class="touch-active p-2" aria-label="戻る"><i class="ph ph-caret-left text-2xl"></i></a>
             <h1 class="text-base font-bold tracking-wide">テンプレートを選ぶ</h1>
             <div class="w-10"></div>
         </header>

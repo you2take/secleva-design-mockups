@@ -1,7 +1,34 @@
-# Secleva 店舗ページ 管理画面（admin）実装ガイド
+# Secleva 店舗ページ 管理画面（owner）実装ガイド
 
-本ディレクトリは **既存 Secleva 管理画面（`mockups/A_pure-line/admin.html`）にマージする前提のモック** です。  
+本ディレクトリは **本番の `https://secleva.com/owner` 配下にマージする前提のモック** です。  
 本番取り込み時に必要な実装情報をまとめます。
+
+---
+
+## 🌐 本番反映先
+
+```
+https://secleva.com/owner                  ← 既存：オーナー管理画面トップ
+                                              （LINE Login OAuth 認証必須）
+https://secleva.com/owner/settings         ← 既存：設定 hub
+https://secleva.com/owner/shop-page        ← 新規：店舗ページ管理（本モック群）
+  ├── /template-select                     ← 01_template-select.html
+  ├── /edit                                ← 02_block-edit.html
+  └── /preview                             ← 03_preview.html
+```
+
+### 認証
+- `/owner` 階層は **LINE Login（LINE OAuth v2.1）** で保護
+- 未認証時は `https://access.line.me/oauth2/v2.1/login?...` にリダイレクト
+- 本モックは認証後の状態（ログイン済み）を前提
+
+### 公開ページとの関係
+| URL | 用途 | 認証 |
+|---|---|---|
+| `secleva.com/SHOP-{id}` | 店舗ページ（一般公開・MEO 対象） | なし |
+| `secleva.com/owner` | オーナー管理画面トップ | LINE Login |
+| `secleva.com/owner/shop-page/edit` | 本モック（編集UI） | LINE Login |
+| `secleva.com/owner/settings` | メニュー管理・店舗情報など本流設定 | LINE Login |
 
 ---
 
@@ -18,7 +45,7 @@ shop-page/admin/
 
 依存：Tailwind CDN / Noto Sans JP / Phosphor Icons / `../branding/logo_A.png` / `../branding/dummy/default/*`
 
-マージ先：`mockups/A_pure-line/settings.html` の「店舗運営」カテゴリ内に「店舗ページ」項目を追加し、本3画面へ遷移させる。
+マージ先：本番 `/owner` の既存ナビゲーションに「店舗ページ」項目を追加し、本3画面へ遷移させる。
 
 ---
 
@@ -111,7 +138,7 @@ shop-page/admin/
 
 ## 🔗 メニュー本体（名前・料金）の管理
 
-**ここ（Block 5）の責務は写真のみ**。メニュー追加・削除・料金変更は本流の `mockups/A_pure-line/settings.html`「設定 > メニュー管理」階層で行う。
+**ここ（Block 5）の責務は写真のみ**。メニュー追加・削除・料金変更は本番の `https://secleva.com/owner/settings/menus`（メニュー管理）階層で行う。
 
 Block 5 内に誘導リンクカード「メニューの追加・料金変更 → 設定 > メニュー管理」を設置済み。
 
@@ -215,7 +242,9 @@ async function copyShopUrl() {
 
 ## 📋 マイグレーション TODO（本番取り込み時）
 
-- [ ] settings.html の「店舗運営」に「店舗ページ」項目を追加（リンク先：01_template-select.html）
+- [ ] `/owner` 既存ナビに「店舗ページ」項目を新設（リンク先：`/owner/shop-page/template-select`）
+- [ ] `/owner/shop-page/` 配下に 3 ルート（template-select / edit / preview）を実装
+- [ ] LINE Login OAuth ガードを継承（既存の `/owner` 認証ミドルウェア）
 - [ ] 各HTMLの Tailwind CDN を本流のビルドに統合
 - [ ] 画像パス `../../branding/dummy/default/` を本番アセットCDNに差し替え
 - [ ] JS（template-card 選択切替、modal開閉、メニュー写真state切替）を本流のフロントフレームワーク（React/Vue 等）に書き換え
