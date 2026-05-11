@@ -3,8 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>上野リラクゼーション - Secleva</title>
-    
+
+    <!-- SEO / OGP（実装時はサーバー側で動的注入。下記は shop record から生成）
+         title       = {shop.name}
+         description = {shop.lead_copy}
+         og:image    = {shop.hero_image_processed} ※未設定時は省略
+         icon        = {shop.logo} ※favicon 用にサーバー側で 32x32 にリサイズ
+    -->
+    <title>上野リラクゼーション</title>
+    <meta name="description" content="心と体をゆるめる、街なかの静かな時間。上野リラクゼーションのご予約はLINEで24時間受付。">
+    <link rel="icon" type="image/png" href="../../branding/logo_A.png">
+    <link rel="apple-touch-icon" href="../../branding/logo_A.png">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="上野リラクゼーション">
+    <meta property="og:description" content="心と体をゆるめる、街なかの静かな時間。上野リラクゼーションのご予約はLINEで24時間受付。">
+    <meta property="og:image" content="https://secleva.vercel.app/branding/dummy/salon/01_hero.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://secleva.com/SHOP-4LBL">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="上野リラクゼーション">
+    <meta name="twitter:description" content="心と体をゆるめる、街なかの静かな時間。">
+    <meta name="twitter:image" content="https://secleva.vercel.app/branding/dummy/salon/01_hero.webp">
+
     <!-- Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

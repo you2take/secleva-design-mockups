@@ -483,6 +483,89 @@ type Shop = {
 
 ---
 
+## 🔖 メタタグ・OGP・ファビコン（自動設定）
+
+公開ページ（`secleva.com/SHOP-{id}`）には、以下の SEO/SNS メタ情報が **自動的に注入**される。オーナーは特別な操作なし。
+
+### 4項目の自動マッピング
+
+| メタ要素 | ソース | 用途 |
+|---|---|---|
+| **タイトル**（`<title>` / `og:title` / `twitter:title`） | `shop.name`（店舗名） | ブラウザタブ／検索結果／SNS シェア時の見出し |
+| **ディスクリプション**（`description` / `og:description` / `twitter:description`） | `shop.lead_copy`（リードコピー） | 検索結果のスニペット／SNS シェア時の説明文 |
+| **メタ画像**（`og:image` / `twitter:image`） | `shop.hero_image_processed`（ヒーロー画像を1200×630にクロップ＋ロゴウォーターマーク） | LINE/Twitter/Facebook 等での共有時のサムネ。**未設定時は OG タグ自体を省略** |
+| **ファビコン**（`<link rel="icon">` / `apple-touch-icon`） | `shop.logo` を 32×32 / 180×180 にリサイズ | ブラウザタブ・iOS ホーム画面アイコン |
+
+### サーバー側で生成するHTML例
+```html
+<!-- 1店舗ごとに動的注入 -->
+<title>{{ shop.name }}</title>
+<meta name="description" content="{{ shop.lead_copy }}">
+<link rel="icon" type="image/png" href="{{ shop.logo_favicon_32 }}">
+<link rel="apple-touch-icon" href="{{ shop.logo_favicon_180 }}">
+
+<!-- OGP -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ shop.name }}">
+<meta property="og:description" content="{{ shop.lead_copy }}">
+{% if shop.hero_image_processed %}
+<meta property="og:image" content="{{ shop.hero_image_processed }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+{% endif %}
+<meta property="og:url" content="https://secleva.com/SHOP-{{ shop.id }}">
+<meta property="og:locale" content="ja_JP">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ shop.name }}">
+<meta name="twitter:description" content="{{ shop.lead_copy }}">
+{% if shop.hero_image_processed %}
+<meta name="twitter:image" content="{{ shop.hero_image_processed }}">
+{% endif %}
+```
+
+### ヒーロー画像の加工パイプライン（og:image用）
+
+オーナーがアップロードした写真を OGP 用にサーバー側で加工：
+
+1. **入力**：`shop.hero_image`（オリジナルサイズ）or デフォルト `00_hero.webp`
+2. **クロップ**：1200×630（OGP 推奨アスペクト 1.91:1）
+3. **オーバーレイ**（任意）：左下にロゴ + 店舗名のタイポグラフィ
+4. **出力**：`/SHOP-{id}/og.webp` に保存、CDN 配信
+5. **キャッシュ**：店舗情報更新時に regenerate（`updated_at` をクエリパラメータで cache bust）
+
+### 未設定時の挙動（fallback ルール）
+
+| ケース | 挙動 |
+|---|---|
+| `shop.hero_image` が未設定 | `og:image` タグ自体を出力しない（LINE 等は URL のみ表示） |
+| `shop.logo` が未設定 | favicon は Secleva 共通ロゴ（`/branding/logo.png`）にフォールバック |
+| `shop.lead_copy` が未設定 | description は店舗名＋業種で自動生成（例：「{name} | {category} のお店ページ」） |
+
+### モック側の固定値（実装時の参照例）
+
+各テンプレートの `<head>` に固定値で書いているが、本番では **テンプレ非依存・shop record 駆動**で注入する：
+
+| テンプレ | タイトル | ディスクリプション | OG画像 |
+|---|---|---|---|
+| T1 | 上野リラクゼーション | 心と体をゆるめる、街なかの静かな時間。 | salon/01_hero.webp |
+| T2 | 結び堂 | ひとり、ひとりの体と向き合う。三代続く、町の治療院。 | salon/01_hero.webp |
+| T3 | アロマスタジオ HANARE | 草木の香りに、ほどける時間を。毎日を、自然と整える。 | salon/01_hero.webp |
+| T4 | 碧の空間 Maison de Lumière | 限られた方だけが知る、街なかの隠れ家。本物の静けさを、あなたへ。 | salon/01_hero.webp |
+| T5 | Lounge ROUGE | 夜が深くなるほど、会話がほどける場所。 | bar/01_hero.webp |
+
+### 実装時の TODO（メタタグ・OGP）
+- [ ] サーバーサイドの shop record から `<title>` `description` `og:*` `twitter:*` を動的注入
+- [ ] OGP用ヒーロー画像加工パイプライン（1200×630 クロップ＋ロゴオーバーレイ）
+- [ ] favicon のリサイズパイプライン（16×16 / 32×32 / 180×180 / 192×192）
+- [ ] WebP 非対応SNS（LINEは PNG/JPEG 推奨）向けの JPEG/PNG フォールバック生成
+- [ ] hero_image / logo / lead_copy のいずれかが未設定時の fallback ロジック実装
+- [ ] LINE シェア時にリッチプレビュー（カードタイプ）で表示されるか確認
+- [ ] LocalBusiness schema 自動付与（後述）
+
+---
+
 ## 🖥️ PC viewport 対応（モバイルUI + 装飾サイドバー）
 
 公開ページ（T1〜T5）は **モバイルファースト**だが、PC（≥1024px）で開いた時も**スマホUIをそのまま中央配置 + 左にテーマ装飾サイドバー**を表示する。  
