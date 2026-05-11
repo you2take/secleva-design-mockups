@@ -84,12 +84,21 @@
         <div class="flex-1 overflow-y-auto pb-[220px] bg-zinc-100 relative">
 
             <!-- Template Switcher Context -->
-            <div class="w-full max-w-[320px] mx-auto flex items-center gap-2 justify-between py-5 px-1">
+            <div class="w-full max-w-[320px] mx-auto flex items-center gap-2 justify-between pt-5 pb-2 px-1">
                 <p class="text-[13px] font-medium text-zinc-500 flex items-center gap-1.5">
                     <i class="ph ph-info text-base text-zinc-400"></i>
                     プレビュー中
                 </p>
                 <span class="text-[12px] font-medium text-zinc-700 bg-white px-2 py-1 rounded border border-zinc-200">T1 クリーン</span>
+            </div>
+
+            <!-- Default state notice -->
+            <div class="w-full max-w-[320px] mx-auto mb-3 px-3 py-2.5 bg-line/10 border border-line/30 rounded-lg flex items-start gap-2">
+                <i class="ph-fill ph-info text-line text-[16px] mt-0.5 shrink-0"></i>
+                <div class="flex-1 min-w-0">
+                    <p class="text-[12px] font-bold text-line leading-tight">写真未設定のままプレビュー中</p>
+                    <p class="text-[11px] text-zinc-700 leading-snug mt-0.5">メインビジュアル・ギャラリー・メニュー写真は<span class="font-bold">デフォルト画像</span>が表示されています。「編集」でいつでも自分の写真に差し替え可能です。</p>
+                </div>
             </div>
 
             <!-- Simulated Phone Frame -->
@@ -112,9 +121,13 @@
                             </div>
                         </div>
 
-                        <!-- Hero -->
+                        <!-- Hero（デフォルト画像） -->
                         <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=400&q=80" alt="" class="w-full h-[160px] object-cover">
+                            <img src="../../branding/dummy/default/00_hero.webp" alt="デフォルトメインビジュアル" class="w-full h-[160px] object-cover">
+                            <span class="absolute top-1.5 left-1.5 inline-flex items-center h-4 px-1.5 rounded bg-zinc-900/70 text-white text-[8px] font-bold leading-none gap-0.5">
+                                <i class="ph-fill ph-info text-[9px]"></i>
+                                DEFAULT
+                            </span>
                             <div class="absolute -bottom-6 left-4 w-12 h-12 bg-white rounded-full p-1 shadow-md">
                                 <div class="w-full h-full bg-zinc-100 rounded-full flex items-center justify-center border border-zinc-200">
                                     <span class="text-[10px] font-bold text-zinc-400">LOGO</span>
@@ -141,34 +154,60 @@
                             </div>
                         </div>
 
-                        <!-- Mini Gallery -->
+                        <!-- Mini Gallery（デフォルト6枚） -->
                         <div class="py-4 border-b border-zinc-100">
                             <h3 class="text-[11px] font-bold px-4 mb-2">ギャラリー</h3>
                             <div class="flex gap-2 overflow-x-auto px-4 pb-2">
-                                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=150&q=80" alt="" class="w-[80px] h-[80px] object-cover rounded-md shrink-0">
-                                <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=150&q=80" alt="" class="w-[80px] h-[80px] object-cover rounded-md shrink-0">
-                                <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=150&q=80" alt="" class="w-[80px] h-[80px] object-cover rounded-md shrink-0">
-                                <img src="https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&fit=crop&w=150&q=80" alt="" class="w-[80px] h-[80px] object-cover rounded-md shrink-0">
+                                <div class="w-[80px] h-[80px] shrink-0 relative">
+                                    <img src="../../branding/dummy/default/01_plants.webp" alt="" class="w-full h-full object-cover rounded-md">
+                                    <span class="absolute top-1 left-1 inline-flex items-center h-3 px-1 rounded bg-zinc-900/70 text-white text-[7px] font-bold leading-none">DEFAULT</span>
+                                </div>
+                                <div class="w-[80px] h-[80px] shrink-0 relative">
+                                    <img src="../../branding/dummy/default/02_light.webp" alt="" class="w-full h-full object-cover rounded-md">
+                                    <span class="absolute top-1 left-1 inline-flex items-center h-3 px-1 rounded bg-zinc-900/70 text-white text-[7px] font-bold leading-none">DEFAULT</span>
+                                </div>
+                                <div class="w-[80px] h-[80px] shrink-0 relative">
+                                    <img src="../../branding/dummy/default/03_linen.webp" alt="" class="w-full h-full object-cover rounded-md">
+                                    <span class="absolute top-1 left-1 inline-flex items-center h-3 px-1 rounded bg-zinc-900/70 text-white text-[7px] font-bold leading-none">DEFAULT</span>
+                                </div>
+                                <div class="w-[80px] h-[80px] shrink-0 relative">
+                                    <img src="../../branding/dummy/default/04_candle.webp" alt="" class="w-full h-full object-cover rounded-md">
+                                    <span class="absolute top-1 left-1 inline-flex items-center h-3 px-1 rounded bg-zinc-900/70 text-white text-[7px] font-bold leading-none">DEFAULT</span>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Menu -->
+                        <!-- Menu（デフォルトメニュー写真） -->
                         <div class="py-4 px-4 border-b border-zinc-100">
                             <h3 class="text-[11px] font-bold mb-3">メニュー</h3>
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-start">
-                                    <div>
-                                        <p class="text-[10px] font-semibold text-zinc-900">60分もみほぐし</p>
+                            <div class="space-y-2.5">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-9 h-9 rounded shrink-0 relative overflow-hidden">
+                                        <img src="../../branding/dummy/default/menu/01_oil.webp" alt="" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-[10px] font-semibold text-zinc-900 leading-tight">60分もみほぐし</p>
                                         <p class="text-[8px] text-zinc-500 mt-0.5">疲労回復・首肩</p>
                                     </div>
-                                    <p class="text-[10px] font-bold">¥6,000</p>
+                                    <p class="text-[10px] font-bold shrink-0">¥6,000</p>
                                 </div>
-                                <div class="w-full h-px bg-zinc-100"></div>
-                                <div class="flex justify-between items-start">
-                                    <div>
-                                        <p class="text-[10px] font-semibold text-zinc-900">90分全身アロマ</p>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-9 h-9 rounded shrink-0 relative overflow-hidden">
+                                        <img src="../../branding/dummy/default/menu/02_aroma.webp" alt="" class="w-full h-full object-cover">
                                     </div>
-                                    <p class="text-[10px] font-bold">¥8,500</p>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-[10px] font-semibold text-zinc-900 leading-tight">90分全身アロマ</p>
+                                    </div>
+                                    <p class="text-[10px] font-bold shrink-0">¥8,500</p>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-9 h-9 rounded shrink-0 relative overflow-hidden">
+                                        <img src="../../branding/dummy/default/menu/04_stones.webp" alt="" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-[10px] font-semibold text-zinc-900 leading-tight">120分じっくりコース</p>
+                                    </div>
+                                    <p class="text-[10px] font-bold shrink-0">¥12,000</p>
                                 </div>
                             </div>
                         </div>

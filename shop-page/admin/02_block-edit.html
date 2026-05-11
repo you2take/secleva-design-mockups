@@ -195,21 +195,57 @@
               </span>
             </div>
 
-            <!-- 候補から追加（タップで追加） -->
-            <p class="text-[11px] text-zinc-500 font-bold mb-2">候補から選ぶ（タップで追加）</p>
+            <!-- 候補から追加（タップで追加／×で候補から削除） -->
+            <p class="text-[11px] text-zinc-500 font-bold mb-2">候補から選ぶ（タップで追加・×で候補から削除）</p>
             <div class="flex flex-wrap gap-2 mb-4">
-              <button class="inline-flex items-center h-8 px-3 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none touch-active">深夜営業</button>
-              <button class="inline-flex items-center h-8 px-3 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none touch-active">キッズOK</button>
-              <button class="inline-flex items-center h-8 px-3 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none touch-active">クレカ可</button>
-              <button class="inline-flex items-center h-8 px-3 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none touch-active">PayPay可</button>
-              <button class="inline-flex items-center h-8 px-3 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none touch-active">英語対応</button>
-              <button class="inline-flex items-center h-8 px-3 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none touch-active">中国語対応</button>
-              <button class="inline-flex items-center h-8 px-3 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none touch-active">カウンセリングあり</button>
-              <button class="inline-flex items-center h-8 px-3 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none touch-active">シャワー完備</button>
-              <button class="inline-flex items-center h-8 px-3 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none touch-active">プライベート空間</button>
-              <button class="inline-flex items-center h-8 px-3 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none touch-active">完全予約制</button>
-              <button class="inline-flex items-center h-8 px-3 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none touch-active">当日予約OK</button>
-              <button class="inline-flex items-center h-8 px-3 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none touch-active">手ぶらOK</button>
+              <span class="inline-flex items-center h-8 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none overflow-hidden">
+                <button class="h-full pl-3 pr-1.5 touch-active flex items-center">深夜営業</button>
+                <button class="h-full pl-1 pr-2 text-zinc-400 hover:text-red-500 touch-active flex items-center border-l border-zinc-100" aria-label="候補から削除"><i class="ph ph-x text-[12px]"></i></button>
+              </span>
+              <span class="inline-flex items-center h-8 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none overflow-hidden">
+                <button class="h-full pl-3 pr-1.5 touch-active flex items-center">キッズOK</button>
+                <button class="h-full pl-1 pr-2 text-zinc-400 hover:text-red-500 touch-active flex items-center border-l border-zinc-100" aria-label="候補から削除"><i class="ph ph-x text-[12px]"></i></button>
+              </span>
+              <span class="inline-flex items-center h-8 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none overflow-hidden">
+                <button class="h-full pl-3 pr-1.5 touch-active flex items-center">クレカ可</button>
+                <button class="h-full pl-1 pr-2 text-zinc-400 hover:text-red-500 touch-active flex items-center border-l border-zinc-100" aria-label="候補から削除"><i class="ph ph-x text-[12px]"></i></button>
+              </span>
+              <span class="inline-flex items-center h-8 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none overflow-hidden">
+                <button class="h-full pl-3 pr-1.5 touch-active flex items-center">PayPay可</button>
+                <button class="h-full pl-1 pr-2 text-zinc-400 hover:text-red-500 touch-active flex items-center border-l border-zinc-100" aria-label="候補から削除"><i class="ph ph-x text-[12px]"></i></button>
+              </span>
+              <span class="inline-flex items-center h-8 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none overflow-hidden">
+                <button class="h-full pl-3 pr-1.5 touch-active flex items-center">英語対応</button>
+                <button class="h-full pl-1 pr-2 text-zinc-400 hover:text-red-500 touch-active flex items-center border-l border-zinc-100" aria-label="候補から削除"><i class="ph ph-x text-[12px]"></i></button>
+              </span>
+              <span class="inline-flex items-center h-8 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none overflow-hidden">
+                <button class="h-full pl-3 pr-1.5 touch-active flex items-center">中国語対応</button>
+                <button class="h-full pl-1 pr-2 text-zinc-400 hover:text-red-500 touch-active flex items-center border-l border-zinc-100" aria-label="候補から削除"><i class="ph ph-x text-[12px]"></i></button>
+              </span>
+              <span class="inline-flex items-center h-8 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none overflow-hidden">
+                <button class="h-full pl-3 pr-1.5 touch-active flex items-center">カウンセリングあり</button>
+                <button class="h-full pl-1 pr-2 text-zinc-400 hover:text-red-500 touch-active flex items-center border-l border-zinc-100" aria-label="候補から削除"><i class="ph ph-x text-[12px]"></i></button>
+              </span>
+              <span class="inline-flex items-center h-8 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none overflow-hidden">
+                <button class="h-full pl-3 pr-1.5 touch-active flex items-center">シャワー完備</button>
+                <button class="h-full pl-1 pr-2 text-zinc-400 hover:text-red-500 touch-active flex items-center border-l border-zinc-100" aria-label="候補から削除"><i class="ph ph-x text-[12px]"></i></button>
+              </span>
+              <span class="inline-flex items-center h-8 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none overflow-hidden">
+                <button class="h-full pl-3 pr-1.5 touch-active flex items-center">プライベート空間</button>
+                <button class="h-full pl-1 pr-2 text-zinc-400 hover:text-red-500 touch-active flex items-center border-l border-zinc-100" aria-label="候補から削除"><i class="ph ph-x text-[12px]"></i></button>
+              </span>
+              <span class="inline-flex items-center h-8 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none overflow-hidden">
+                <button class="h-full pl-3 pr-1.5 touch-active flex items-center">完全予約制</button>
+                <button class="h-full pl-1 pr-2 text-zinc-400 hover:text-red-500 touch-active flex items-center border-l border-zinc-100" aria-label="候補から削除"><i class="ph ph-x text-[12px]"></i></button>
+              </span>
+              <span class="inline-flex items-center h-8 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none overflow-hidden">
+                <button class="h-full pl-3 pr-1.5 touch-active flex items-center">当日予約OK</button>
+                <button class="h-full pl-1 pr-2 text-zinc-400 hover:text-red-500 touch-active flex items-center border-l border-zinc-100" aria-label="候補から削除"><i class="ph ph-x text-[12px]"></i></button>
+              </span>
+              <span class="inline-flex items-center h-8 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none overflow-hidden">
+                <button class="h-full pl-3 pr-1.5 touch-active flex items-center">手ぶらOK</button>
+                <button class="h-full pl-1 pr-2 text-zinc-400 hover:text-red-500 touch-active flex items-center border-l border-zinc-100" aria-label="候補から削除"><i class="ph ph-x text-[12px]"></i></button>
+              </span>
             </div>
 
             <!-- カスタムタグ追加 -->
