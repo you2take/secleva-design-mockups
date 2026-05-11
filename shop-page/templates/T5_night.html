@@ -58,10 +58,10 @@
                 display: flex; position: fixed; top: 50%;
                 flex-direction: column; gap: 0.5rem; z-index: 30;
                 left: calc(50% - 240px - 64px); transform: translate(-100%, -50%);
-                width: 220px; align-items: flex-start;
+                width: 240px; align-items: flex-start;
             }
             .pc-aside-title { font-size: 11px; font-weight: 700; letter-spacing: 0.3em; color: rgba(232,180,160,0.7); margin-bottom: 0.25rem; text-transform: uppercase; }
-            .pc-aside-shop { font-size: 32px; font-weight: 900; color: #E8B4A0; line-height: 1.2; letter-spacing: 0.05em; text-shadow: 0 0 20px rgba(232,180,160,0.4); }
+            .pc-aside-shop { font-size: 32px; font-weight: 900; color: #E8B4A0; line-height: 1.2; white-space: nowrap; letter-spacing: 0.05em; text-shadow: 0 0 20px rgba(232,180,160,0.4); }
             .pc-aside-cat { font-size: 12px; font-weight: 500; color: rgba(245,245,245,0.6); margin-top: 0.75rem; letter-spacing: 0.15em; }
             .pc-aside-note { font-size: 10px; color: rgba(232,180,160,0.4); margin-top: 1.5rem; line-height: 1.5; letter-spacing: 0.1em; }
         }
@@ -71,9 +71,8 @@
 
     <aside class="pc-aside">
         <div class="pc-aside-title">Ginza Snack & Lounge</div>
-        <div class="pc-aside-shop">Lounge<br>ROUGE</div>
+        <div class="pc-aside-shop">Lounge ROUGE</div>
         <div class="pc-aside-cat">スナック・ガールズバー</div>
-        <div class="pc-aside-note">Mobile-first viewing experience.</div>
     </aside>
 
     <main class="w-full max-w-[480px] bg-obsidian text-txtprimary relative overflow-x-hidden shadow-2xl flex flex-col justify-start pb-20">
