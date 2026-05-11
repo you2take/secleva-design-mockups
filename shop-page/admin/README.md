@@ -89,18 +89,66 @@ https://secleva.com/owner/settings/shop-lp      ← 新規：店舗ページ（�
 
 ## 📂 ファイル構成
 
+### 管理画面（本ディレクトリ）
 ```
 shop-page/admin/
 ├── 01_template-select.html   テンプレート選択（5種）＋プレビューモーダル
 ├── 02_block-edit.html        ブロック編集（メインビジュアル・ロゴ・タグ・ギャラリー・メニュー写真・キャッチコピー・SNS）
-├── 03_preview.html           プレビュー＋公開
+├── 03_preview.html           プレビュー＋公開（公開確認モーダル・状態管理）
 ├── thumbs/                   テンプレ選択用サムネJPEG（thumb-T1.jpg〜thumb-T5.jpg）
 └── README.md                 本ファイル
 ```
 
-依存：Tailwind CDN / Noto Sans JP / Phosphor Icons / `../branding/logo_A.png` / `../branding/dummy/default/*`
+### 公開ページ（テンプレ 5 種）
+```
+shop-page/templates/
+├── T1_clean.html             クリーン（マッサージ・リラク向け）
+├── T2_wamodern.html          和モダン（整体・治療院向け）
+├── T3_natural.html           ナチュラル（アロマ・オーガニック向け）
+├── T4_elegant.html           エレガント（高単価エステ向け）
+└── T5_night.html             ナイト（スナック・バー向け）
+```
 
-マージ先：本番 `/owner` の既存ナビゲーションに「店舗ページ」項目を追加し、本3画面へ遷移させる。
+### キャプチャ（参考画像、ガイド用）
+```
+shop-page/captures/
+├── cap-T{1-5}_clean.png 等   各テンプレのモバイル全画面
+├── cap-T{1-5}_pc.png         各テンプレのPC viewport
+├── cap-T{1-5}_top.png        各テンプレの上部
+├── cap-admin01_template-select.png
+├── cap-admin02_block-edit.png
+├── cap-admin02_menu_defaults.png
+├── cap-admin02_menu_modal.png
+├── cap-admin02_publish_state.png（旧仕様、後にPreviewへ移管）
+├── cap-admin02_tag_delete.png
+└── cap-admin03_preview.png
+```
+
+### 依存アセット
+```
+branding/
+├── logo.png / logo_A.png / logo_B.png / logo_C.png   ロゴ
+├── pc-background.webp                                 既存LP用PC背景（流用可）
+└── dummy/
+    ├── salon/01_hero.webp〜05_foot.webp              T1-T4 共通サロン画像
+    ├── bar/01_hero.webp〜05_otsumami.webp            T5 ナイト用
+    ├── default/
+    │   ├── 00_hero.webp                              メインビジュアル fallback
+    │   ├── 01_plants.webp〜06_stones.webp            ギャラリー fallback
+    │   └── menu/
+    │       └── 01_oil.webp〜04_stones.webp           メニュー写真 fallback
+    └── pc-bg/
+        └── T1_clean.webp〜T5_night.webp              PC viewport背景（aidesigner生成）
+```
+
+### 依存ライブラリ
+- **Tailwind CDN**（`<script src="https://cdn.tailwindcss.com"></script>`）
+- **Noto Sans JP / Noto Serif JP / Lora / Cormorant Garamond**（Google Fonts）
+- **Phosphor Icons**（`<script src="https://unpkg.com/@phosphor-icons/web"></script>`）
+
+### マージ先
+本番 `https://secleva.com/owner/settings/shop-lp` 配下に 3 画面（template / edit / preview）を実装。  
+詳細は「本番反映先」セクション参照。
 
 ---
 
