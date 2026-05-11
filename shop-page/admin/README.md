@@ -144,6 +144,58 @@ Block 5 内に誘導リンクカード「メニューの追加・料金変更 �
 
 ---
 
+## 🔗 プレビュー画面（03）からの共有・コピー動線
+
+`03_preview.html` 上部ヘッダー右の **「URLを共有」** と、ステータス行右の **「URLをコピー」** は別々の挙動。
+
+### URLを共有（右上アイコン）
+- **用途**：友人・スタッフ・取引先などに公開URLを送る
+- **想定挙動**：
+  1. **モバイル**：`navigator.share()` でOS標準シェアシートを起動  
+     → LINE / Mail / Messages / Twitter / Instagram DM 等をユーザーが選択
+  2. **PC**：シェアシート未対応の場合は「URLをコピー」と同等のフォールバック ＋ トースト「コピーしました」
+
+```js
+// 実装サンプル
+async function shareShopUrl() {
+  const url = `https://secleva.com/SHOP-${shopId}`;
+  const title = `${shopName} | Secleva`;
+  if (navigator.share) {
+    try { await navigator.share({title, url}); } catch(e) {}
+  } else {
+    await navigator.clipboard.writeText(url);
+    showToast('URLをコピーしました');
+  }
+}
+```
+
+### URLをコピー（ステータス行）
+- **用途**：自分のメモ / ブラウザ別タブ / 既存LINE個別投稿に貼る等
+- **想定挙動**：`navigator.clipboard.writeText()` で公開URLをクリップボードに格納 ＋ 視覚フィードバック（アイコン変化 or トースト「コピーしました」）
+
+```js
+async function copyShopUrl() {
+  const url = `https://secleva.com/SHOP-${shopId}`;
+  await navigator.clipboard.writeText(url);
+  showToast('URLをコピーしました');
+}
+```
+
+### 公開状態（下書き / 公開中）との関係
+| 公開状態 | URL生成 | 「共有」「コピー」挙動 |
+|---|---|---|
+| 下書き | `https://secleva.com/SHOP-{id}` は存在するが**非公開**（一般アクセス時404） | コピー/共有自体は可能。受け手側で「ページが見つかりません」表示 → 公開後に再共有を促すUX推奨 |
+| 公開中 | `https://secleva.com/SHOP-{id}` 一般公開 | フル機能 |
+
+下書き状態で共有する場合は、シェア時にトーストで **「下書き状態のURLを共有します。公開してから送り直すこともできます」** と案内するとフリクション減。
+
+### 実装時のコピー文言
+- 共有時の `share.title`（例）：`{shopName} | Secleva`
+- 共有時の `share.text`（例）：`{shopName} の店舗ページです。`
+- トースト：`コピーしました` / `URLをコピーしました`
+
+---
+
 ## ✅ 公開ページへの反映マップ
 
 | 編集画面ブロック | 公開ページの反映先 |
@@ -169,6 +221,9 @@ Block 5 内に誘導リンクカード「メニューの追加・料金変更 �
 - [ ] LocalBusiness schema 自動付与（SEO/MEO 対策）
 - [ ] sitemap.xml に店舗ページ追加
 - [ ] Googleビジネスプロフィール連携（Phase D / 任意）
+- [ ] プレビュー画面「URLを共有」ボタンに `navigator.share()` 実装（PC fallback はクリップボード）
+- [ ] プレビュー画面「URLをコピー」ボタンに `navigator.clipboard.writeText()` 実装
+- [ ] 下書き状態で共有された URL の受け手向けに「公開準備中」ページ整備（404の代わり）
 
 ---
 
