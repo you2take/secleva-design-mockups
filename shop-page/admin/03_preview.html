@@ -67,20 +67,26 @@
 
         <!-- Status Row -->
         <div class="preview-status bg-white border-b border-zinc-200 px-4 py-3 flex items-center justify-between shrink-0">
-            <div class="flex items-center gap-3">
-                <span class="text-[14px] font-bold text-zinc-700">公開状態</span>
-                <span class="preview-status--draft bg-amber-100 text-amber-800 text-[13px] font-bold px-3 py-1 rounded-full border border-amber-200/50 flex items-center gap-1.5">
+            <div class="flex items-center gap-2 min-w-0">
+                <span class="text-[13px] font-bold text-zinc-700 shrink-0">公開状態</span>
+                <!-- 下書き（current） -->
+                <span class="preview-status--draft bg-amber-100 text-amber-800 text-[12px] font-bold px-2.5 py-1 rounded-full border border-amber-200/50 inline-flex items-center gap-1.5 leading-none">
                     <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
                     下書き
                 </span>
+                <!-- 公開中（implementation note）：bg-line/15 text-line + ph-check-circle -->
+                <!-- 一時休止中（implementation note）：bg-zinc-200 text-zinc-700 + ph-pause-circle -->
             </div>
-            <button class="flex flex-col items-end gap-0 text-zinc-700 tap-effect" aria-label="リンクをコピー">
-                <span class="flex items-center gap-1 text-[12px] font-bold leading-none">
-                    <i class="ph ph-copy text-[15px]"></i>
-                    リンクをコピー
-                </span>
-                <span class="text-[10px] text-zinc-400 mt-0.5 leading-none">メモに貼り付け</span>
-            </button>
+            <div class="flex items-center gap-1.5 shrink-0">
+                <a href="../templates/T1_clean.html" target="_blank" rel="noopener" class="inline-flex items-center gap-1 px-2 h-8 rounded-md bg-line/10 text-line text-[11px] font-bold leading-none tap-effect">
+                    <i class="ph ph-arrow-square-out text-[14px]"></i>
+                    公開ページを見る
+                </a>
+                <button class="inline-flex items-center gap-1 px-2 h-8 rounded-md text-zinc-600 text-[11px] font-bold leading-none tap-effect" aria-label="リンクをコピー">
+                    <i class="ph ph-copy text-[14px]"></i>
+                    コピー
+                </button>
+            </div>
         </div>
 
         <!-- Helper banner（下書きでも送れる旨を明示） -->
@@ -253,13 +259,13 @@
 
         <!-- Bottom Action Bar
              公開操作はすべてここに集約：
-               下書き状態  → メインCTA「お店ページを公開する」
+               下書き状態  → メインCTA「お店ページを公開する」→ 確認モーダル → 公開
                公開中      → メインCTA「変更を反映する」＋ サブ「一時的に非公開にする」
                一時休止中  → メインCTA「もう一度公開する」＋ サブ「下書きに戻す」
         -->
-        <div class="preview-action-bar absolute bottom-0 left-0 w-full bg-white px-4 pt-4 pb-6 rounded-t-3xl shadow-up border-t border-zinc-200 z-50">
+        <div class="preview-action-bar absolute bottom-0 left-0 w-full bg-white px-4 pt-4 pb-6 rounded-t-3xl shadow-up border-t border-zinc-200 z-40">
             <!-- 下書き状態（current） -->
-            <button class="w-full h-[56px] bg-line text-white rounded-xl text-[16px] font-bold flex items-center justify-center gap-2 tap-effect mb-2 shadow-sm">
+            <button id="btn-publish" class="w-full h-[56px] bg-line text-white rounded-xl text-[16px] font-bold flex items-center justify-center gap-2 tap-effect mb-2 shadow-sm">
                 <i class="ph-fill ph-rocket-launch text-[22px]"></i>
                 お店ページを公開する
             </button>
@@ -280,7 +286,87 @@
             </div>
         </div>
 
+        <!-- Publish Confirmation Modal -->
+        <div id="publish-modal" class="absolute inset-0 z-50 hidden" aria-hidden="true">
+            <div class="absolute inset-0 bg-zinc-900/50 backdrop-blur-sm" data-publish-close></div>
+            <div class="absolute left-4 right-4 top-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-2xl p-5">
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-14 h-14 rounded-full bg-line/15 text-line flex items-center justify-center mb-3">
+                        <i class="ph-fill ph-rocket-launch text-3xl"></i>
+                    </div>
+                    <h2 class="text-[16px] font-bold text-zinc-900">お店ページを公開しますか？</h2>
+                    <p class="text-[12px] text-zinc-600 leading-relaxed mt-2">
+                        公開すると <span class="font-mono font-bold text-zinc-800">secleva.com/SHOP-4LBL</span> で<br>
+                        どなたでもアクセスできるようになります。
+                    </p>
+                    <p class="text-[11px] text-zinc-500 leading-snug mt-2">
+                        24時間以内に Google 検索結果にも表示され始めます。<br>
+                        いつでも非公開に戻せます。
+                    </p>
+                </div>
+                <div class="flex gap-2 mt-5">
+                    <button class="flex-1 h-12 bg-white border-2 border-zinc-200 text-zinc-700 rounded-xl text-[14px] font-bold tap-effect" data-publish-close>
+                        キャンセル
+                    </button>
+                    <button id="btn-publish-confirm" class="flex-[2] h-12 bg-line text-white rounded-xl text-[14px] font-bold inline-flex items-center justify-center gap-1.5 tap-effect">
+                        <i class="ph-fill ph-rocket-launch text-[16px]"></i>
+                        公開する
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast notification (hidden by default, shows after publish) -->
+        <div id="publish-toast" class="absolute left-1/2 -translate-x-1/2 top-24 z-[60] hidden">
+            <div class="bg-line text-white px-4 py-2.5 rounded-full shadow-lg flex items-center gap-2 text-[13px] font-bold">
+                <i class="ph-fill ph-check-circle text-[18px]"></i>
+                公開しました！
+            </div>
+        </div>
+
     </main>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnPublish = document.getElementById('btn-publish');
+            const btnConfirm = document.getElementById('btn-publish-confirm');
+            const modal = document.getElementById('publish-modal');
+            const toast = document.getElementById('publish-toast');
+            const closeEls = modal.querySelectorAll('[data-publish-close]');
+
+            function openModal() {
+                modal.classList.remove('hidden');
+                modal.setAttribute('aria-hidden', 'false');
+            }
+            function closeModal() {
+                modal.classList.add('hidden');
+                modal.setAttribute('aria-hidden', 'true');
+            }
+
+            // 公開する → 確認モーダル
+            btnPublish && btnPublish.addEventListener('click', openModal);
+            closeEls.forEach(el => el.addEventListener('click', closeModal));
+
+            // 公開実行 → ステータス変更＋トースト
+            btnConfirm && btnConfirm.addEventListener('click', () => {
+                closeModal();
+                // ステータスバッジを「公開中」に切り替え（モックでは表示変更）
+                const draftBadge = document.querySelector('.preview-status--draft');
+                if (draftBadge) {
+                    draftBadge.innerHTML = '<i class="ph-fill ph-check-circle text-[14px]"></i> 公開中';
+                    draftBadge.classList.remove('bg-amber-100', 'text-amber-800', 'border-amber-200/50');
+                    draftBadge.classList.add('bg-line/15', 'text-line', 'border-line/30');
+                    draftBadge.querySelector('.animate-pulse')?.remove();
+                }
+                // メインCTAを「変更を反映する」に切り替え
+                if (btnPublish) {
+                    btnPublish.innerHTML = '<i class="ph ph-arrows-clockwise text-[22px]"></i> 変更を反映する';
+                }
+                // トースト表示
+                toast.classList.remove('hidden');
+                setTimeout(() => toast.classList.add('hidden'), 3000);
+            });
+        });
+    </script>
 </body>
 </html>
