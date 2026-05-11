@@ -54,7 +54,9 @@
         /* PC viewport：スマホUIを浮かせて中央配置（既存LPと同じパターン） */
         @media (min-width: 1024px) {
             body {
-                background: linear-gradient(135deg, #f0fdf4 0%, #f9fafb 50%, #ecfdf5 100%);
+                background:
+                    linear-gradient(135deg, rgba(240,253,244,0.7) 0%, rgba(249,250,251,0.5) 50%, rgba(236,253,245,0.7) 100%),
+                    url('../../branding/dummy/pc-bg/T1_clean.webp') center/cover no-repeat fixed;
                 padding: 2rem 0;
             }
             .mobile-container {
