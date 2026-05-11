@@ -132,29 +132,57 @@
 
 ### 画面1: テンプレート選択（?step=template）
 
-| モック | 本番 |
-|---|---|
-| ![mock](./screenshots/mock_01_template.png) | （Yuto提供：本番スクショ） |
+<table>
+<tr><th>モック</th><th>本番</th></tr>
+<tr>
+<td valign="top" width="50%"><img src="./screenshots/mock_01_template.png" alt="モック" width="100%"></td>
+<td valign="top" width="50%"><img src="./screenshots/prod_01_template.png" alt="本番" width="100%"></td>
+</tr>
+</table>
 
 **この画面は概ね OK**。5テンプレ並び・サムネ・「公開ページをプレビュー」リンクすべて実装されている。
-**唯一の差分**：「現在のテンプレを選ぶ」ボタンが緑塗りボタン vs 緑border（モック）の差。これは些細。
+**気になる差分**：
+- 「次へ進む（編集する）」ボタンの位置・サイズはモックほぼ通り
+- T3 が緑border強調されており、現在選択中のUXは伝わる
+- ヘッダの「3ステップ表示」（テンプレ／編集／プレビュー）はモック設計通り
 
 ### 画面2: 中身を編集（?step=edit）
 
-| モック（最新仕様） | 本番 |
-|---|---|
-| ![mock](./screenshots/mock_02_edit.png) | （Yuto提供：本番スクショ） |
+<table>
+<tr><th>モック（最新仕様）</th><th>本番</th></tr>
+<tr>
+<td valign="top" width="50%"><img src="./screenshots/mock_02_edit.png" alt="モック" width="100%"></td>
+<td valign="top" width="50%"><img src="./screenshots/prod_02_edit.png" alt="本番" width="100%"></td>
+</tr>
+</table>
 
 **最重要画面**。P0/P1 のほぼ全てがこの画面で発生。
 
+特に **本番側で目に見える問題**：
+- メインビジュアルに**魚の写真が無加工で貼り付け**（クロップモーダル未動作）
+- ロゴ・ギャラリーが「未設定」破線枠で、写真選択しても**そのまま貼り付くだけ**
+- ギャラリーが **6枚別々のスロット**になっており、編集中の枚が分かりづらい
+- 「店舗紹介文」フィールド（モックに無い）が追加されている
+- Block 3 タグ：候補が空っぽ、初期12種プリセットが消えている
+- Block 5 メニュー写真：ガイド文だけで実装無し
+- 全ブロックに **ON/OFFトグルと並べ替えハンドルが無い**
+- ブロック順序：1→2→**4→6→3→7→5** に並び替わっている
+
 ### 画面3: プレビューと公開（?step=preview）
 
-| モック | 本番 |
-|---|---|
-| ![mock](./screenshots/mock_03_preview.png) | （Yuto提供：本番スクショ） |
+<table>
+<tr><th>モック</th><th>本番</th></tr>
+<tr>
+<td valign="top" width="50%"><img src="./screenshots/mock_03_preview.png" alt="モック" width="100%"></td>
+<td valign="top" width="50%"><img src="./screenshots/prod_03_preview.png" alt="本番" width="100%"></td>
+</tr>
+</table>
 
 **この画面も概ね OK**。状態badge、4種CTA、トースト「公開しました」もある。
-**注意**：プレビュー枠内のヒーロー画像がクロップ未適用で見切れている → P0-1 の影響。
+**注意**：プレビュー枠内のヒーロー画像（魚の写真）がクロップ未適用で見切れている → **P0-1 の証拠**。
+
+公開後の状態（「お店ページを公開しました!」バナー表示）：
+<img src="./screenshots/prod_03_preview_published.png" alt="公開後トースト" width="50%">
 
 ---
 
@@ -194,10 +222,20 @@
 
 ---
 
-## 補足：本番スクショ（Yuto添付）
+## 補足：このレポートのスクショ一覧
 
-このセクションに本番側のスクショを後から貼ってください（friend エンジニアにも見やすくなります）。
+`handoff/screenshots/` 配下に以下が格納されている。GitHub 上でも該当画像のURLを直リンク可能。
 
-- `screenshots/prod_01_template.png`（？step=template の全画面）
-- `screenshots/prod_02_edit.png`（？step=edit の全画面、Block 1〜7まで縦に）
-- `screenshots/prod_03_preview.png`（？step=preview の全画面）
+| ファイル | 内容 |
+|---|---|
+| `mock_01_template.png` | モック：テンプレ選択画面 |
+| `mock_02_edit.png` | モック：編集画面（旧キャプチャ、参考） |
+| `mock_02_tags.png` | モック：Block 3 タグ操作（候補プリセット表示状態） |
+| `mock_02_menu.png` | モック：Block 5 メニュー写真モーダル展開状態 |
+| `mock_03_preview.png` | モック：プレビュー画面 |
+| `prod_01_template.png` | 本番：テンプレ選択（2026-05-12 取得） |
+| `prod_02_edit.png` | 本番：編集画面 |
+| `prod_03_preview.png` | 本番：プレビュー（変更を反映するボタン状態） |
+| `prod_03_preview_published.png` | 本番：プレビュー（公開直後トースト表示状態） |
+
+**最新仕様のモック実機確認**は https://secleva.vercel.app/shop-page/admin/02_block-edit.html を実機で開いて操作するのが最速（クロップモーダル等は動作する）。
