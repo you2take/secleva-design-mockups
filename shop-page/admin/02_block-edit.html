@@ -310,22 +310,35 @@
           </div>
           <div class="mt-3 pt-3 border-t border-zinc-100 flex flex-col gap-2">
 
-            <!-- 60分もみほぐし: アップロード済み -->
+            <!--
+              ▼ メニュー行のstate別マークアップ（実装時のリファレンス）
+              本モックではすべて state="default" を採用しているが、
+              実装時はバックエンドから photo_url の有無で3stateを出し分ける：
+
+                state="custom"   : photo_url あり（オーナーがアップロードした写真）
+                state="default"  : photo_url なし & 業界デフォルト画像がmatchする場合
+                state="empty"    : photo_url なし & デフォルトもfitしない場合（カメラ枠）
+
+              詳細は admin/README.md を参照。
+            -->
+
+            <!-- 60分もみほぐし（state="default" を採用） -->
             <div class="flex items-center gap-3 p-2 bg-zinc-50 rounded-lg border border-zinc-100">
-              <div class="w-11 h-11 bg-zinc-200 rounded overflow-hidden flex-shrink-0">
-                <img src="../../branding/dummy/salon/02_oilbowl.webp" alt="" class="w-full h-full object-cover">
+              <div class="w-11 h-11 rounded overflow-hidden flex-shrink-0 relative">
+                <img src="../../branding/dummy/default/menu/01_oil.webp" alt="" class="w-full h-full object-cover opacity-90">
+                <span class="absolute top-0 left-0 right-0 text-center bg-zinc-900/70 text-white text-[8px] font-bold leading-[10px] py-[1px]">DEFAULT</span>
               </div>
               <div class="flex-1 min-w-0">
                 <span class="text-[14px] font-bold text-zinc-800 truncate block">60分もみほぐし</span>
-                <span class="text-[11px] text-zinc-500">マイ写真</span>
+                <span class="text-[11px] text-zinc-500">デフォルト表示中</span>
               </div>
-              <button class="menu-photo-edit text-[13px] font-bold text-line h-8 px-2 flex items-center gap-1" data-menu="60分もみほぐし" data-state="custom">
+              <button class="menu-photo-edit text-[13px] font-bold text-line h-8 px-2 flex items-center gap-1" data-menu="60分もみほぐし" data-state="default">
                 <i class="ph ph-pencil-simple text-[14px]"></i>
                 編集
               </button>
             </div>
 
-            <!-- 90分全身アロマ: 未設定（デフォルト表示） -->
+            <!-- 90分全身アロマ（state="default"） -->
             <div class="flex items-center gap-3 p-2 bg-zinc-50 rounded-lg border border-zinc-100">
               <div class="w-11 h-11 rounded overflow-hidden flex-shrink-0 relative">
                 <img src="../../branding/dummy/default/menu/02_aroma.webp" alt="" class="w-full h-full object-cover opacity-90">
@@ -341,7 +354,7 @@
               </button>
             </div>
 
-            <!-- 120分じっくりコース: 未設定（デフォルト表示） -->
+            <!-- 120分じっくりコース（state="default"） -->
             <div class="flex items-center gap-3 p-2 bg-zinc-50 rounded-lg border border-zinc-100">
               <div class="w-11 h-11 rounded overflow-hidden flex-shrink-0 relative">
                 <img src="../../branding/dummy/default/menu/04_stones.webp" alt="" class="w-full h-full object-cover opacity-90">
@@ -356,6 +369,47 @@
                 編集
               </button>
             </div>
+
+            <!--
+              ▼ state="custom"（マイ写真）パターン：
+                ・サムネはオーナー写真（photo_url を直で指定）
+                ・サブラベル「マイ写真」
+                ・DEFAULTバッジなし
+
+              <div class="flex items-center gap-3 p-2 bg-zinc-50 rounded-lg border border-zinc-100">
+                <div class="w-11 h-11 bg-zinc-200 rounded overflow-hidden flex-shrink-0">
+                  <img src="{{ menu.photo_url }}" alt="" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-1 min-w-0">
+                  <span class="text-[14px] font-bold text-zinc-800 truncate block">{{ menu.name }}</span>
+                  <span class="text-[11px] text-zinc-500">マイ写真</span>
+                </div>
+                <button class="menu-photo-edit text-[13px] font-bold text-line h-8 px-2 flex items-center gap-1" data-menu="{{ menu.name }}" data-state="custom">
+                  <i class="ph ph-pencil-simple text-[14px]"></i>
+                  編集
+                </button>
+              </div>
+
+              ▼ state="empty"（写真なし／カメラ枠）パターン：
+                ・サムネは破線枠＋カメラアイコン
+                ・サブラベル「写真未設定」
+                ・ボタンは「写真を追加」
+
+              <div class="flex items-center gap-3 p-2 bg-zinc-50 rounded-lg border border-zinc-100">
+                <div class="w-11 h-11 bg-zinc-100 border border-dashed border-zinc-300 rounded flex-shrink-0 flex items-center justify-center text-zinc-300">
+                  <i class="ph ph-camera text-lg"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <span class="text-[14px] font-bold text-zinc-800 truncate block">{{ menu.name }}</span>
+                  <span class="text-[11px] text-zinc-500">写真未設定</span>
+                </div>
+                <button class="menu-photo-edit text-[13px] font-bold text-line h-8 px-2 flex items-center gap-1" data-menu="{{ menu.name }}" data-state="empty">
+                  <i class="ph ph-plus text-[14px]"></i>
+                  写真を追加
+                </button>
+              </div>
+            -->
+
 
             <!-- メニュー管轄の説明 -->
             <a href="../../mockups/A_pure-line/settings.html" class="mt-2 flex items-center gap-2.5 p-3 bg-white border border-zinc-200 rounded-lg touch-active">
