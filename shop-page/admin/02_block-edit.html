@@ -38,6 +38,19 @@
     .shop-block__handle:active { cursor: grabbing; }
     .shop-block { transition: transform 0.2s ease; }
     .shop-block--disabled { opacity: 0.5; filter: grayscale(100%); pointer-events: none; }
+
+    /* 表示位置プリセットボタン */
+    .position-preset {
+      background-color: #ffffff;
+      border: 1px solid #e4e4e7;
+      color: #3f3f46;
+      transition: all 0.15s ease;
+    }
+    .position-preset[data-active="true"] {
+      background-color: rgba(6, 199, 85, 0.1);
+      border: 2px solid var(--color-line);
+      color: var(--color-line);
+    }
   </style>
 </head>
 <body class="bg-zinc-100 flex justify-center text-[16px] antialiased">
@@ -171,7 +184,7 @@
 
             <!-- 選択中タグ（×で個別削除） -->
             <p class="text-[11px] text-zinc-500 font-bold mb-2">選択中のタグ（公開ページに表示）</p>
-            <div class="flex flex-wrap gap-2 mb-4">
+            <div class="flex flex-wrap gap-2 mb-4" data-tag-list="selected">
               <span class="inline-flex items-center h-8 pl-3 pr-1.5 gap-1 bg-line/10 border border-line text-line rounded-md text-[13px] font-bold leading-none">
                 女性専用
                 <button class="w-5 h-5 flex items-center justify-center rounded-full hover:bg-line/20" aria-label="削除"><i class="ph ph-x text-[12px]"></i></button>
@@ -196,7 +209,7 @@
 
             <!-- 候補から追加（タップで追加／×で候補から削除） -->
             <p class="text-[11px] text-zinc-500 font-bold mb-2">候補から選ぶ（タップで追加・×で候補から削除）</p>
-            <div class="flex flex-wrap gap-2 mb-4">
+            <div class="flex flex-wrap gap-2 mb-4" data-tag-list="suggested">
               <span class="inline-flex items-center h-8 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none overflow-hidden">
                 <button class="h-full pl-3 pr-1.5 touch-active flex items-center">深夜営業</button>
                 <button class="h-full pl-1 pr-2 text-zinc-400 hover:text-red-500 touch-active flex items-center border-l border-zinc-100" aria-label="候補から削除"><i class="ph ph-x text-[12px]"></i></button>
@@ -250,8 +263,8 @@
             <!-- カスタムタグ追加 -->
             <p class="text-[11px] text-zinc-500 font-bold mb-2">オリジナルタグを追加（最大15文字）</p>
             <div class="flex gap-2">
-              <input type="text" placeholder="例：着替え貸出あり" maxlength="15" class="flex-1 min-w-0 h-10 px-3 bg-zinc-50 border border-zinc-200 rounded-lg text-[14px] text-zinc-800 outline-none focus:border-line">
-              <button class="h-10 px-4 bg-line text-white rounded-lg text-[13px] font-bold inline-flex items-center gap-1 shrink-0 whitespace-nowrap">
+              <input type="text" placeholder="例：着替え貸出あり" maxlength="15" data-custom-tag-input class="flex-1 min-w-0 h-10 px-3 bg-zinc-50 border border-zinc-200 rounded-lg text-[14px] text-zinc-800 outline-none focus:border-line">
+              <button data-add-custom-tag class="h-10 px-4 bg-line text-white rounded-lg text-[13px] font-bold inline-flex items-center gap-1 shrink-0 whitespace-nowrap">
                 <i class="ph ph-plus text-[16px]"></i>
                 追加
               </button>
@@ -259,8 +272,14 @@
 
             <p class="mt-4 text-[12px] text-zinc-500 font-medium flex items-center gap-1.5">
               <i class="ph-fill ph-info text-line text-[14px]"></i>
-              <span class="text-zinc-700"><span class="font-bold text-line">5個</span>選択中・<span class="font-bold">最大10個</span>まで</span>
+              <span class="text-zinc-700"><span class="font-bold text-line" data-tag-counter>5個</span>選択中・<span class="font-bold">最大10個</span>まで</span>
             </p>
+
+            <!-- トースト：最大件数到達／重複時に表示 -->
+            <div data-tag-toast class="hidden mt-2 px-3 py-2 bg-red-50 border border-red-200 text-red-700 text-[12px] rounded-lg flex items-center gap-1.5">
+              <i class="ph-fill ph-warning-circle text-[14px]"></i>
+              <span data-tag-toast-msg></span>
+            </div>
           </div>
         </article>
 
@@ -383,12 +402,39 @@
               <!-- 展開パネル -->
               <div class="menu-row__panel hidden border-t border-zinc-200 p-3 space-y-3 bg-white">
                 <div class="relative w-full aspect-[5/3] rounded-lg overflow-hidden bg-zinc-100 border border-zinc-200">
-                  <img src="../../branding/dummy/default/menu/01_oil.webp" alt="" class="w-full h-full object-cover">
+                  <img src="../../branding/dummy/default/menu/01_oil.webp" alt="" class="w-full h-full object-cover" data-position-target style="object-position: 50% 50%;">
                   <span class="absolute top-2 left-2 inline-flex items-center h-5 px-1.5 rounded bg-zinc-900/75 text-white text-[10px] font-bold gap-1 leading-none">
                     <i class="ph-fill ph-info text-[11px]"></i>
                     デフォルト表示中
                   </span>
                 </div>
+
+                <!-- 表示位置調整UI（アップロード後 or デフォルト切替後に表示位置を微調整できる） -->
+                <div class="bg-line/5 border border-line/30 rounded-lg p-3" data-position-block>
+                  <p class="text-[12px] font-bold text-zinc-800 mb-1 flex items-center gap-1.5">
+                    <i class="ph-fill ph-crop text-line text-[14px]"></i>
+                    写真の見える範囲を調整
+                  </p>
+                  <p class="text-[11px] text-zinc-500 mb-3 leading-snug">
+                    顔・料理など、見せたい部分が中央に来るよう動かしましょう
+                  </p>
+                  <!-- 3プリセット -->
+                  <div class="grid grid-cols-3 gap-2 mb-3">
+                    <button data-position-preset="0" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">上寄せ</button>
+                    <button data-position-preset="50" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset" data-active="true">真ん中</button>
+                    <button data-position-preset="100" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">下寄せ</button>
+                  </div>
+                  <!-- スライダー -->
+                  <div class="flex items-center gap-2">
+                    <i class="ph ph-arrow-line-up text-zinc-400 text-[14px] shrink-0"></i>
+                    <input type="range" min="0" max="100" value="50" step="1" data-position-slider class="flex-1 min-w-0 h-2 bg-zinc-200 rounded-full appearance-none accent-line cursor-pointer">
+                    <i class="ph ph-arrow-line-down text-zinc-400 text-[14px] shrink-0"></i>
+                  </div>
+                  <p class="text-[11px] text-zinc-500 mt-2 text-center">
+                    上下位置：<span data-position-value class="font-bold text-zinc-700">50</span>%
+                  </p>
+                </div>
+
                 <button class="w-full h-11 bg-line text-white rounded-lg text-[13px] font-bold inline-flex items-center justify-center gap-2 leading-none touch-active">
                   <i class="ph ph-upload-simple text-[16px]"></i>
                   自分の写真をアップロード
@@ -739,6 +785,114 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // ─────────────────────────────────────────
+      // Block 3: タグ追加・削除デモ
+      // ─────────────────────────────────────────
+      const MAX_TAGS = 10;
+      const selectedList = document.querySelector('[data-tag-list="selected"]');
+      const suggestedList = document.querySelector('[data-tag-list="suggested"]');
+      const counterEl = document.querySelector('[data-tag-counter]');
+      const customInput = document.querySelector('[data-custom-tag-input]');
+      const addBtn = document.querySelector('[data-add-custom-tag]');
+      const toast = document.querySelector('[data-tag-toast]');
+      const toastMsg = document.querySelector('[data-tag-toast-msg]');
+      let toastTimer = null;
+
+      const updateCounter = () => {
+        if (!counterEl || !selectedList) return;
+        const count = selectedList.querySelectorAll('span').length;
+        counterEl.textContent = `${count}個`;
+      };
+      const showToast = (msg) => {
+        if (!toast || !toastMsg) return;
+        toastMsg.textContent = msg;
+        toast.classList.remove('hidden');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.add('hidden'), 2500);
+      };
+      const getSelectedLabels = () => Array.from(selectedList?.querySelectorAll('span') || [])
+        .map(s => s.childNodes[0]?.textContent?.trim() || '');
+
+      // 選択中タグ用のspan生成（×ボタン付き）
+      const buildSelectedTag = (label) => {
+        const span = document.createElement('span');
+        span.className = 'inline-flex items-center h-8 pl-3 pr-1.5 gap-1 bg-line/10 border border-line text-line rounded-md text-[13px] font-bold leading-none';
+        span.innerHTML = `${label}<button class="w-5 h-5 flex items-center justify-center rounded-full hover:bg-line/20" aria-label="削除" data-remove-selected><i class="ph ph-x text-[12px]"></i></button>`;
+        return span;
+      };
+      // 候補タグ用のspan生成（タップで追加・×で候補削除）
+      const buildSuggestedTag = (label) => {
+        const span = document.createElement('span');
+        span.className = 'inline-flex items-center h-8 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none overflow-hidden';
+        span.innerHTML = `
+          <button class="h-full pl-3 pr-1.5 touch-active flex items-center" data-add-suggested>${label}</button>
+          <button class="h-full pl-1 pr-2 text-zinc-400 hover:text-red-500 touch-active flex items-center border-l border-zinc-100" aria-label="候補から削除" data-remove-suggested><i class="ph ph-x text-[12px]"></i></button>
+        `;
+        return span;
+      };
+
+      // 選択中タグの×：削除＋カウンタ更新
+      selectedList?.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-remove-selected]');
+        if (!btn) return;
+        btn.closest('span')?.remove();
+        updateCounter();
+      });
+
+      // 候補タグのタップ／×
+      suggestedList?.addEventListener('click', (e) => {
+        const removeBtn = e.target.closest('[data-remove-suggested]');
+        const addBtnSuggest = e.target.closest('[data-add-suggested]');
+        if (removeBtn) {
+          removeBtn.closest('span')?.remove();
+          return;
+        }
+        if (addBtnSuggest) {
+          const label = addBtnSuggest.textContent.trim();
+          if (getSelectedLabels().includes(label)) {
+            showToast(`「${label}」はすでに選択中です`);
+            return;
+          }
+          if (selectedList.querySelectorAll('span').length >= MAX_TAGS) {
+            showToast(`タグは最大${MAX_TAGS}個まで`);
+            return;
+          }
+          selectedList.appendChild(buildSelectedTag(label));
+          addBtnSuggest.closest('span')?.remove();
+          updateCounter();
+        }
+      });
+
+      // オリジナルタグ追加
+      const submitCustomTag = () => {
+        if (!customInput || !selectedList) return;
+        const label = customInput.value.trim();
+        if (!label) return;
+        if (label.length > 15) {
+          showToast('タグは15文字以内で入力してください');
+          return;
+        }
+        if (getSelectedLabels().includes(label)) {
+          showToast(`「${label}」はすでに選択中です`);
+          return;
+        }
+        if (selectedList.querySelectorAll('span').length >= MAX_TAGS) {
+          showToast(`タグは最大${MAX_TAGS}個まで`);
+          return;
+        }
+        selectedList.appendChild(buildSelectedTag(label));
+        customInput.value = '';
+        updateCounter();
+      };
+      addBtn?.addEventListener('click', submitCustomTag);
+      customInput?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          submitCustomTag();
+        }
+      });
+      updateCounter();
+
       // メニュー行のインライン展開アコーディオン
       document.querySelectorAll('.menu-row').forEach(row => {
         const toggle = row.querySelector('.menu-row__toggle');
@@ -764,6 +918,33 @@
             row.classList.remove('border-zinc-100');
             row.classList.add('border-line');
           }
+        });
+      });
+
+      // ─────────────────────────────────────────
+      // 画像 表示位置調整（スライダー + 3プリセット）
+      // ─────────────────────────────────────────
+      document.querySelectorAll('[data-position-block]').forEach(block => {
+        const slider = block.querySelector('[data-position-slider]');
+        const valueEl = block.querySelector('[data-position-value]');
+        const presets = block.querySelectorAll('[data-position-preset]');
+        // 同じパネル内のプレビュー画像が調整対象
+        const target = block.closest('.menu-row__panel')?.querySelector('[data-position-target]');
+
+        const applyPosition = (val) => {
+          const v = Math.max(0, Math.min(100, Number(val) || 0));
+          if (target) target.style.objectPosition = `50% ${v}%`;
+          if (valueEl) valueEl.textContent = v;
+          if (slider) slider.value = v;
+          // プリセットの active 切替
+          presets.forEach(b => {
+            b.dataset.active = String(b.dataset.positionPreset) === String(v) ? 'true' : 'false';
+          });
+        };
+
+        slider?.addEventListener('input', (e) => applyPosition(e.target.value));
+        presets.forEach(b => {
+          b.addEventListener('click', () => applyPosition(b.dataset.positionPreset));
         });
       });
     });
