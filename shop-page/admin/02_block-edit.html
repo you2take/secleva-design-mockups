@@ -357,52 +357,191 @@
               詳細は admin/README.md を参照。
             -->
 
-            <!-- 60分もみほぐし（state="default" を採用） -->
-            <div class="flex items-center gap-3 p-2 bg-zinc-50 rounded-lg border border-zinc-100">
-              <div class="w-11 h-11 rounded overflow-hidden flex-shrink-0 relative">
-                <img src="../../branding/dummy/default/menu/01_oil.webp" alt="" class="w-full h-full object-cover opacity-90">
-                <span class="absolute top-0 left-0 right-0 text-center bg-zinc-900/70 text-white text-[8px] font-bold leading-[10px] py-[1px]">DEFAULT</span>
-              </div>
-              <div class="flex-1 min-w-0">
-                <span class="text-[14px] font-bold text-zinc-800 truncate block">60分もみほぐし</span>
-                <span class="text-[11px] text-zinc-500">デフォルト表示中</span>
-              </div>
-              <button class="menu-photo-edit text-[13px] font-bold text-line h-8 px-2 flex items-center gap-1" data-menu="60分もみほぐし" data-state="default">
-                <i class="ph ph-pencil-simple text-[14px]"></i>
-                編集
+            <!--
+              ▼ 展開UI（インラインaccordion）：
+              「編集」タップで同じカード内に編集パネルがその場で展開する。
+              モーダル表示にはせず、編集ボタンの位置を視覚的に維持。
+            -->
+
+            <!-- 60分もみほぐし -->
+            <div class="menu-row bg-zinc-50 rounded-lg border border-zinc-100 overflow-hidden" data-menu="60分もみほぐし" data-state="default">
+              <button class="menu-row__toggle w-full flex items-center gap-3 p-2 text-left touch-active">
+                <div class="w-11 h-11 rounded overflow-hidden flex-shrink-0 relative">
+                  <img src="../../branding/dummy/default/menu/01_oil.webp" alt="" class="menu-row__thumb w-full h-full object-cover opacity-90">
+                  <span class="absolute top-0 left-0 right-0 text-center bg-zinc-900/70 text-white text-[8px] font-bold leading-[10px] py-[1px]">DEFAULT</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <span class="text-[14px] font-bold text-zinc-800 truncate block">60分もみほぐし</span>
+                  <span class="text-[11px] text-zinc-500">デフォルト表示中</span>
+                </div>
+                <span class="text-[13px] font-bold text-line h-8 px-2 flex items-center gap-1 shrink-0">
+                  <i class="ph ph-pencil-simple text-[14px] menu-row__icon-edit"></i>
+                  <i class="ph ph-x text-[14px] menu-row__icon-close hidden"></i>
+                  <span class="menu-row__label">編集</span>
+                </span>
               </button>
+              <!-- 展開パネル -->
+              <div class="menu-row__panel hidden border-t border-zinc-200 p-3 space-y-3 bg-white">
+                <div class="relative w-full aspect-[5/3] rounded-lg overflow-hidden bg-zinc-100 border border-zinc-200">
+                  <img src="../../branding/dummy/default/menu/01_oil.webp" alt="" class="w-full h-full object-cover">
+                  <span class="absolute top-2 left-2 inline-flex items-center h-5 px-1.5 rounded bg-zinc-900/75 text-white text-[10px] font-bold gap-1 leading-none">
+                    <i class="ph-fill ph-info text-[11px]"></i>
+                    デフォルト表示中
+                  </span>
+                </div>
+                <button class="w-full h-11 bg-line text-white rounded-lg text-[13px] font-bold inline-flex items-center justify-center gap-2 leading-none touch-active">
+                  <i class="ph ph-upload-simple text-[16px]"></i>
+                  自分の写真をアップロード
+                </button>
+                <div>
+                  <p class="text-[11px] text-zinc-500 font-bold mb-1.5">デフォルトから選ぶ（タップで反映）</p>
+                  <div class="grid grid-cols-4 gap-2">
+                    <button class="aspect-square rounded-md overflow-hidden border-2 border-line touch-active relative">
+                      <img src="../../branding/dummy/default/menu/01_oil.webp" alt="" class="w-full h-full object-cover">
+                      <span class="absolute inset-0 bg-line/15 flex items-center justify-center"><i class="ph-fill ph-check-circle text-[18px] text-line"></i></span>
+                    </button>
+                    <button class="aspect-square rounded-md overflow-hidden border-2 border-zinc-200 hover:border-line touch-active">
+                      <img src="../../branding/dummy/default/menu/02_aroma.webp" alt="" class="w-full h-full object-cover">
+                    </button>
+                    <button class="aspect-square rounded-md overflow-hidden border-2 border-zinc-200 hover:border-line touch-active">
+                      <img src="../../branding/dummy/default/menu/03_towels.webp" alt="" class="w-full h-full object-cover">
+                    </button>
+                    <button class="aspect-square rounded-md overflow-hidden border-2 border-zinc-200 hover:border-line touch-active">
+                      <img src="../../branding/dummy/default/menu/04_stones.webp" alt="" class="w-full h-full object-cover">
+                    </button>
+                  </div>
+                </div>
+                <div class="flex gap-2">
+                  <button class="flex-1 h-10 bg-white border border-red-200 text-red-600 rounded-lg text-[12px] font-bold flex items-center justify-center gap-1.5 touch-active">
+                    <i class="ph ph-trash text-[14px]"></i>
+                    削除
+                  </button>
+                  <button class="flex-[2] h-10 bg-line text-white rounded-lg text-[13px] font-bold inline-flex items-center justify-center gap-1 touch-active">
+                    <i class="ph-fill ph-check-circle text-[14px]"></i>
+                    保存
+                  </button>
+                </div>
+              </div>
             </div>
 
-            <!-- 90分全身アロマ（state="default"） -->
-            <div class="flex items-center gap-3 p-2 bg-zinc-50 rounded-lg border border-zinc-100">
-              <div class="w-11 h-11 rounded overflow-hidden flex-shrink-0 relative">
-                <img src="../../branding/dummy/default/menu/02_aroma.webp" alt="" class="w-full h-full object-cover opacity-90">
-                <span class="absolute top-0 left-0 right-0 text-center bg-zinc-900/70 text-white text-[8px] font-bold leading-[10px] py-[1px]">DEFAULT</span>
-              </div>
-              <div class="flex-1 min-w-0">
-                <span class="text-[14px] font-bold text-zinc-800 truncate block">90分全身アロマ</span>
-                <span class="text-[11px] text-zinc-500">デフォルト表示中</span>
-              </div>
-              <button class="menu-photo-edit text-[13px] font-bold text-line h-8 px-2 flex items-center gap-1" data-menu="90分全身アロマ" data-state="default">
-                <i class="ph ph-pencil-simple text-[14px]"></i>
-                編集
+            <!-- 90分全身アロマ -->
+            <div class="menu-row bg-zinc-50 rounded-lg border border-zinc-100 overflow-hidden" data-menu="90分全身アロマ" data-state="default">
+              <button class="menu-row__toggle w-full flex items-center gap-3 p-2 text-left touch-active">
+                <div class="w-11 h-11 rounded overflow-hidden flex-shrink-0 relative">
+                  <img src="../../branding/dummy/default/menu/02_aroma.webp" alt="" class="menu-row__thumb w-full h-full object-cover opacity-90">
+                  <span class="absolute top-0 left-0 right-0 text-center bg-zinc-900/70 text-white text-[8px] font-bold leading-[10px] py-[1px]">DEFAULT</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <span class="text-[14px] font-bold text-zinc-800 truncate block">90分全身アロマ</span>
+                  <span class="text-[11px] text-zinc-500">デフォルト表示中</span>
+                </div>
+                <span class="text-[13px] font-bold text-line h-8 px-2 flex items-center gap-1 shrink-0">
+                  <i class="ph ph-pencil-simple text-[14px] menu-row__icon-edit"></i>
+                  <i class="ph ph-x text-[14px] menu-row__icon-close hidden"></i>
+                  <span class="menu-row__label">編集</span>
+                </span>
               </button>
+              <div class="menu-row__panel hidden border-t border-zinc-200 p-3 space-y-3 bg-white">
+                <div class="relative w-full aspect-[5/3] rounded-lg overflow-hidden bg-zinc-100 border border-zinc-200">
+                  <img src="../../branding/dummy/default/menu/02_aroma.webp" alt="" class="w-full h-full object-cover">
+                  <span class="absolute top-2 left-2 inline-flex items-center h-5 px-1.5 rounded bg-zinc-900/75 text-white text-[10px] font-bold gap-1 leading-none">
+                    <i class="ph-fill ph-info text-[11px]"></i>
+                    デフォルト表示中
+                  </span>
+                </div>
+                <button class="w-full h-11 bg-line text-white rounded-lg text-[13px] font-bold inline-flex items-center justify-center gap-2 leading-none touch-active">
+                  <i class="ph ph-upload-simple text-[16px]"></i>
+                  自分の写真をアップロード
+                </button>
+                <div>
+                  <p class="text-[11px] text-zinc-500 font-bold mb-1.5">デフォルトから選ぶ（タップで反映）</p>
+                  <div class="grid grid-cols-4 gap-2">
+                    <button class="aspect-square rounded-md overflow-hidden border-2 border-zinc-200 hover:border-line touch-active">
+                      <img src="../../branding/dummy/default/menu/01_oil.webp" alt="" class="w-full h-full object-cover">
+                    </button>
+                    <button class="aspect-square rounded-md overflow-hidden border-2 border-line touch-active relative">
+                      <img src="../../branding/dummy/default/menu/02_aroma.webp" alt="" class="w-full h-full object-cover">
+                      <span class="absolute inset-0 bg-line/15 flex items-center justify-center"><i class="ph-fill ph-check-circle text-[18px] text-line"></i></span>
+                    </button>
+                    <button class="aspect-square rounded-md overflow-hidden border-2 border-zinc-200 hover:border-line touch-active">
+                      <img src="../../branding/dummy/default/menu/03_towels.webp" alt="" class="w-full h-full object-cover">
+                    </button>
+                    <button class="aspect-square rounded-md overflow-hidden border-2 border-zinc-200 hover:border-line touch-active">
+                      <img src="../../branding/dummy/default/menu/04_stones.webp" alt="" class="w-full h-full object-cover">
+                    </button>
+                  </div>
+                </div>
+                <div class="flex gap-2">
+                  <button class="flex-1 h-10 bg-white border border-red-200 text-red-600 rounded-lg text-[12px] font-bold flex items-center justify-center gap-1.5 touch-active">
+                    <i class="ph ph-trash text-[14px]"></i>
+                    削除
+                  </button>
+                  <button class="flex-[2] h-10 bg-line text-white rounded-lg text-[13px] font-bold inline-flex items-center justify-center gap-1 touch-active">
+                    <i class="ph-fill ph-check-circle text-[14px]"></i>
+                    保存
+                  </button>
+                </div>
+              </div>
             </div>
 
-            <!-- 120分じっくりコース（state="default"） -->
-            <div class="flex items-center gap-3 p-2 bg-zinc-50 rounded-lg border border-zinc-100">
-              <div class="w-11 h-11 rounded overflow-hidden flex-shrink-0 relative">
-                <img src="../../branding/dummy/default/menu/04_stones.webp" alt="" class="w-full h-full object-cover opacity-90">
-                <span class="absolute top-0 left-0 right-0 text-center bg-zinc-900/70 text-white text-[8px] font-bold leading-[10px] py-[1px]">DEFAULT</span>
-              </div>
-              <div class="flex-1 min-w-0">
-                <span class="text-[14px] font-bold text-zinc-800 truncate block">120分じっくりコース</span>
-                <span class="text-[11px] text-zinc-500">デフォルト表示中</span>
-              </div>
-              <button class="menu-photo-edit text-[13px] font-bold text-line h-8 px-2 flex items-center gap-1" data-menu="120分じっくりコース" data-state="default">
-                <i class="ph ph-pencil-simple text-[14px]"></i>
-                編集
+            <!-- 120分じっくりコース -->
+            <div class="menu-row bg-zinc-50 rounded-lg border border-zinc-100 overflow-hidden" data-menu="120分じっくりコース" data-state="default">
+              <button class="menu-row__toggle w-full flex items-center gap-3 p-2 text-left touch-active">
+                <div class="w-11 h-11 rounded overflow-hidden flex-shrink-0 relative">
+                  <img src="../../branding/dummy/default/menu/04_stones.webp" alt="" class="menu-row__thumb w-full h-full object-cover opacity-90">
+                  <span class="absolute top-0 left-0 right-0 text-center bg-zinc-900/70 text-white text-[8px] font-bold leading-[10px] py-[1px]">DEFAULT</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <span class="text-[14px] font-bold text-zinc-800 truncate block">120分じっくりコース</span>
+                  <span class="text-[11px] text-zinc-500">デフォルト表示中</span>
+                </div>
+                <span class="text-[13px] font-bold text-line h-8 px-2 flex items-center gap-1 shrink-0">
+                  <i class="ph ph-pencil-simple text-[14px] menu-row__icon-edit"></i>
+                  <i class="ph ph-x text-[14px] menu-row__icon-close hidden"></i>
+                  <span class="menu-row__label">編集</span>
+                </span>
               </button>
+              <div class="menu-row__panel hidden border-t border-zinc-200 p-3 space-y-3 bg-white">
+                <div class="relative w-full aspect-[5/3] rounded-lg overflow-hidden bg-zinc-100 border border-zinc-200">
+                  <img src="../../branding/dummy/default/menu/04_stones.webp" alt="" class="w-full h-full object-cover">
+                  <span class="absolute top-2 left-2 inline-flex items-center h-5 px-1.5 rounded bg-zinc-900/75 text-white text-[10px] font-bold gap-1 leading-none">
+                    <i class="ph-fill ph-info text-[11px]"></i>
+                    デフォルト表示中
+                  </span>
+                </div>
+                <button class="w-full h-11 bg-line text-white rounded-lg text-[13px] font-bold inline-flex items-center justify-center gap-2 leading-none touch-active">
+                  <i class="ph ph-upload-simple text-[16px]"></i>
+                  自分の写真をアップロード
+                </button>
+                <div>
+                  <p class="text-[11px] text-zinc-500 font-bold mb-1.5">デフォルトから選ぶ（タップで反映）</p>
+                  <div class="grid grid-cols-4 gap-2">
+                    <button class="aspect-square rounded-md overflow-hidden border-2 border-zinc-200 hover:border-line touch-active">
+                      <img src="../../branding/dummy/default/menu/01_oil.webp" alt="" class="w-full h-full object-cover">
+                    </button>
+                    <button class="aspect-square rounded-md overflow-hidden border-2 border-zinc-200 hover:border-line touch-active">
+                      <img src="../../branding/dummy/default/menu/02_aroma.webp" alt="" class="w-full h-full object-cover">
+                    </button>
+                    <button class="aspect-square rounded-md overflow-hidden border-2 border-zinc-200 hover:border-line touch-active">
+                      <img src="../../branding/dummy/default/menu/03_towels.webp" alt="" class="w-full h-full object-cover">
+                    </button>
+                    <button class="aspect-square rounded-md overflow-hidden border-2 border-line touch-active relative">
+                      <img src="../../branding/dummy/default/menu/04_stones.webp" alt="" class="w-full h-full object-cover">
+                      <span class="absolute inset-0 bg-line/15 flex items-center justify-center"><i class="ph-fill ph-check-circle text-[18px] text-line"></i></span>
+                    </button>
+                  </div>
+                </div>
+                <div class="flex gap-2">
+                  <button class="flex-1 h-10 bg-white border border-red-200 text-red-600 rounded-lg text-[12px] font-bold flex items-center justify-center gap-1.5 touch-active">
+                    <i class="ph ph-trash text-[14px]"></i>
+                    削除
+                  </button>
+                  <button class="flex-[2] h-10 bg-line text-white rounded-lg text-[13px] font-bold inline-flex items-center justify-center gap-1 touch-active">
+                    <i class="ph-fill ph-check-circle text-[14px]"></i>
+                    保存
+                  </button>
+                </div>
+              </div>
             </div>
 
             <!--
@@ -595,129 +734,36 @@
       </a>
     </div>
 
-    <!-- Menu Photo Edit Modal (Bottom Sheet) -->
-    <div id="menu-photo-modal" class="absolute inset-0 z-50 hidden" aria-hidden="true">
-      <div class="absolute inset-0 bg-zinc-900/50 backdrop-blur-sm" data-modal-close></div>
-      <div class="absolute left-0 right-0 bottom-0 top-[6dvh] bg-white rounded-t-3xl shadow-2xl flex flex-col">
-        <!-- Drag indicator -->
-        <div class="pt-3 pb-1 flex justify-center"><div class="w-10 h-1 rounded-full bg-zinc-300"></div></div>
-        <!-- Header -->
-        <header class="px-5 pb-3 flex items-center justify-between">
-          <div class="flex-1 min-w-0">
-            <h2 class="font-bold text-[16px] text-zinc-900 leading-tight">メニュー写真を編集</h2>
-            <p id="menu-modal-name" class="text-[12px] text-zinc-500 mt-0.5 truncate">60分もみほぐし</p>
-          </div>
-          <button class="w-9 h-9 flex items-center justify-center -mr-2 touch-active" data-modal-close aria-label="閉じる">
-            <i class="ph ph-x text-2xl text-zinc-500"></i>
-          </button>
-        </header>
-
-        <!-- Scrollable content -->
-        <div class="flex-1 overflow-y-auto px-5 pb-4">
-
-          <!-- Current photo preview -->
-          <div class="mb-4">
-            <p class="text-[11px] text-zinc-500 font-bold mb-1.5">現在の写真</p>
-            <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-zinc-100 border border-zinc-200">
-              <img id="menu-modal-preview" src="../../branding/dummy/salon/02_oilbowl.webp" alt="" class="w-full h-full object-cover">
-              <span id="menu-modal-state-badge" class="absolute top-2 left-2 inline-flex items-center h-6 px-2 rounded bg-zinc-900/75 text-white text-[10px] font-bold gap-1 leading-none">
-                <i class="ph-fill ph-check-circle text-[12px]"></i>
-                マイ写真
-              </span>
-            </div>
-          </div>
-
-          <!-- アップロードCTA -->
-          <button class="w-full h-12 bg-line text-white rounded-xl text-[14px] font-bold inline-flex items-center justify-center gap-2 leading-none touch-active mb-4">
-            <i class="ph ph-upload-simple text-[18px]"></i>
-            自分の写真をアップロード
-          </button>
-
-          <!-- デフォルトから選ぶ -->
-          <p class="text-[11px] text-zinc-500 font-bold mb-2">デフォルトから選ぶ（タップで反映）</p>
-          <div class="grid grid-cols-4 gap-2 mb-4">
-            <button class="aspect-square rounded-lg overflow-hidden border-2 border-zinc-200 hover:border-line touch-active relative">
-              <img src="../../branding/dummy/default/menu/01_oil.webp" alt="オイル" class="w-full h-full object-cover">
-            </button>
-            <button class="aspect-square rounded-lg overflow-hidden border-2 border-line touch-active relative">
-              <img src="../../branding/dummy/default/menu/02_aroma.webp" alt="アロマ" class="w-full h-full object-cover">
-              <span class="absolute inset-0 bg-line/15 flex items-center justify-center"><i class="ph-fill ph-check-circle text-[20px] text-line"></i></span>
-            </button>
-            <button class="aspect-square rounded-lg overflow-hidden border-2 border-zinc-200 hover:border-line touch-active relative">
-              <img src="../../branding/dummy/default/menu/03_towels.webp" alt="タオル" class="w-full h-full object-cover">
-            </button>
-            <button class="aspect-square rounded-lg overflow-hidden border-2 border-zinc-200 hover:border-line touch-active relative">
-              <img src="../../branding/dummy/default/menu/04_stones.webp" alt="ストーン" class="w-full h-full object-cover">
-            </button>
-          </div>
-
-          <!-- その他 -->
-          <p class="text-[11px] text-zinc-500 font-bold mb-2">その他の操作</p>
-          <div class="flex flex-col gap-2">
-            <button class="h-11 px-3 bg-white border border-zinc-200 rounded-lg text-[13px] font-bold text-zinc-700 flex items-center gap-2 touch-active">
-              <i class="ph ph-arrow-counter-clockwise text-[16px] text-zinc-500"></i>
-              元の写真に戻す
-            </button>
-            <button class="h-11 px-3 bg-white border border-red-200 rounded-lg text-[13px] font-bold text-red-600 flex items-center gap-2 touch-active">
-              <i class="ph ph-trash text-[16px]"></i>
-              写真を削除して文字だけにする
-            </button>
-          </div>
-
-          <p class="mt-4 text-[11px] text-zinc-500 leading-snug flex items-start gap-1.5">
-            <i class="ph-fill ph-info text-line text-[13px] shrink-0 mt-[1px]"></i>
-            <span>写真未設定の場合、メニュー内容に近いデフォルト画像が公開ページに表示されます。</span>
-          </p>
-        </div>
-
-        <!-- Footer actions -->
-        <footer class="px-5 py-4 border-t border-zinc-200 flex gap-2 bg-white">
-          <button class="flex-1 h-12 bg-white border-2 border-zinc-200 text-zinc-700 rounded-xl text-[14px] font-bold touch-active" data-modal-close>
-            キャンセル
-          </button>
-          <button class="flex-[2] h-12 bg-line text-white rounded-xl text-[14px] font-bold inline-flex items-center justify-center gap-1.5 touch-active">
-            <i class="ph-fill ph-check-circle text-[16px]"></i>
-            保存する
-          </button>
-        </footer>
-      </div>
-    </div>
 
   </main>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const modal = document.getElementById('menu-photo-modal');
-      const modalNameEl = document.getElementById('menu-modal-name');
-      const modalPreview = document.getElementById('menu-modal-preview');
-      const modalStateBadge = document.getElementById('menu-modal-state-badge');
-
-      // 編集ボタン
-      document.querySelectorAll('.menu-photo-edit').forEach(btn => {
-        btn.addEventListener('click', () => {
-          modalNameEl.textContent = btn.dataset.menu;
-          // Find sibling preview image
-          const row = btn.closest('.flex.items-center');
-          const rowImg = row && row.querySelector('img');
-          if (rowImg) modalPreview.src = rowImg.src;
-          // State badge
-          if (btn.dataset.state === 'default') {
-            modalStateBadge.innerHTML = '<i class="ph-fill ph-info text-[12px]"></i> デフォルト表示中';
-            modalStateBadge.className = 'absolute top-2 left-2 inline-flex items-center h-6 px-2 rounded bg-zinc-900/75 text-white text-[10px] font-bold gap-1 leading-none';
+      // メニュー行のインライン展開アコーディオン
+      document.querySelectorAll('.menu-row').forEach(row => {
+        const toggle = row.querySelector('.menu-row__toggle');
+        const panel = row.querySelector('.menu-row__panel');
+        const labelEl = row.querySelector('.menu-row__label');
+        const iconEdit = row.querySelector('.menu-row__icon-edit');
+        const iconClose = row.querySelector('.menu-row__icon-close');
+        if (!toggle || !panel) return;
+        toggle.addEventListener('click', () => {
+          const isOpen = !panel.classList.contains('hidden');
+          if (isOpen) {
+            panel.classList.add('hidden');
+            iconEdit?.classList.remove('hidden');
+            iconClose?.classList.add('hidden');
+            if (labelEl) labelEl.textContent = '編集';
+            row.classList.remove('border-line');
+            row.classList.add('border-zinc-100');
           } else {
-            modalStateBadge.innerHTML = '<i class="ph-fill ph-check-circle text-[12px]"></i> マイ写真';
-            modalStateBadge.className = 'absolute top-2 left-2 inline-flex items-center h-6 px-2 rounded bg-line text-white text-[10px] font-bold gap-1 leading-none';
+            panel.classList.remove('hidden');
+            iconEdit?.classList.add('hidden');
+            iconClose?.classList.remove('hidden');
+            if (labelEl) labelEl.textContent = '閉じる';
+            row.classList.remove('border-zinc-100');
+            row.classList.add('border-line');
           }
-          modal.classList.remove('hidden');
-          modal.setAttribute('aria-hidden', 'false');
-        });
-      });
-
-      // 閉じる
-      modal.querySelectorAll('[data-modal-close]').forEach(el => {
-        el.addEventListener('click', () => {
-          modal.classList.add('hidden');
-          modal.setAttribute('aria-hidden', 'true');
         });
       });
     });
