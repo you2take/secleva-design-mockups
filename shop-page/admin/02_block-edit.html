@@ -60,6 +60,26 @@
       border: 2px solid var(--color-line);
       color: var(--color-line);
     }
+
+    /* タグ追加・削除アニメーション */
+    @keyframes tagIn {
+      0%   { opacity: 0; transform: scale(0.6) translateY(-4px); }
+      60%  { opacity: 1; transform: scale(1.08); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes tagOut {
+      0%   { opacity: 1; transform: scale(1);   max-width: 200px; padding-left: 0.75rem; padding-right: 0.375rem; margin-right: 0.5rem; }
+      100% { opacity: 0; transform: scale(0.8); max-width: 0;     padding-left: 0;       padding-right: 0;          margin-right: 0; }
+    }
+    .tag-anim-in  { animation: tagIn  0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+    .tag-anim-out { animation: tagOut 0.22s ease-in both; overflow: hidden; }
+
+    /* カウンタbounce */
+    @keyframes counterBounce {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.35); }
+    }
+    .counter-bounce { animation: counterBounce 0.3s ease-out; display: inline-block; }
   </style>
 </head>
 <body class="bg-zinc-100 flex justify-center text-[16px] antialiased">
@@ -125,7 +145,7 @@
           </div>
           <div class="mt-3 pt-3 border-t border-zinc-100">
             <div class="relative w-full h-[160px] rounded-lg border-2 border-dashed border-zinc-300 bg-zinc-50 overflow-hidden">
-              <img src="../../branding/dummy/default/00_hero.webp" alt="デフォルトメインビジュアル" class="absolute inset-0 w-full h-full object-cover">
+              <img src="../../branding/dummy/default/00_hero.webp" alt="デフォルトメインビジュアル" class="absolute inset-0 w-full h-full object-cover" data-position-target style="object-position: 50% 50%;">
               <div class="absolute inset-0 bg-gradient-to-t from-zinc-900/40 via-zinc-900/0 to-zinc-900/0"></div>
               <div class="absolute top-2 left-2 inline-flex items-center h-6 px-2 rounded bg-zinc-900/70 backdrop-blur text-white text-[10px] font-bold gap-1 leading-none">
                 <i class="ph ph-info-fill text-[12px]"></i>
@@ -142,6 +162,27 @@
                 </div>
               </div>
             </div>
+
+            <!-- 表示位置調整UI -->
+            <div class="mt-3 bg-line/5 border border-line/30 rounded-lg p-3" data-position-block>
+              <p class="text-[12px] font-bold text-zinc-800 mb-1 flex items-center gap-1.5">
+                <i class="ph-fill ph-crop text-line text-[14px]"></i>
+                写真の見える範囲を調整
+              </p>
+              <p class="text-[11px] text-zinc-500 mb-3 leading-snug">店舗の顔・看板など、見せたい部分が中央に来るよう動かしましょう</p>
+              <div class="grid grid-cols-3 gap-2 mb-3">
+                <button data-position-preset="0" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">上寄せ</button>
+                <button data-position-preset="50" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset" data-active="true">真ん中</button>
+                <button data-position-preset="100" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">下寄せ</button>
+              </div>
+              <div class="flex items-center gap-2">
+                <i class="ph ph-arrow-line-up text-zinc-400 text-[14px] shrink-0"></i>
+                <input type="range" min="0" max="100" value="50" step="1" data-position-slider class="flex-1 min-w-0 h-2 bg-zinc-200 rounded-full appearance-none accent-line cursor-pointer">
+                <i class="ph ph-arrow-line-down text-zinc-400 text-[14px] shrink-0"></i>
+              </div>
+              <p class="text-[11px] text-zinc-500 mt-2 text-center">上下位置：<span data-position-value class="font-bold text-zinc-700">50</span>%</p>
+            </div>
+
             <p class="mt-2 text-[12px] text-zinc-500 leading-snug flex items-start gap-1.5">
               <i class="ph-fill ph-info text-line text-[14px] shrink-0 mt-[1px]"></i>
               <span>写真未設定の場合、上のデフォルト画像が公開ページに反映されます。あとから差し替え可能。</span>
@@ -165,11 +206,42 @@
               <button class="shop-block__handle w-8 h-10 flex items-center justify-center text-zinc-300"><i class="ph ph-dots-six-vertical text-2xl"></i></button>
             </div>
           </div>
-          <div class="mt-3 pt-3 border-t border-zinc-100 flex flex-col items-center py-2">
-            <div class="w-20 h-20 rounded-full border-2 border-dashed border-zinc-300 bg-zinc-50 flex items-center justify-center text-zinc-400">
-              <i class="ph ph-camera text-2xl"></i>
+          <div class="mt-3 pt-3 border-t border-zinc-100 space-y-3">
+            <!-- アップ済みプレビュー（サンプル） -->
+            <div class="flex items-center gap-3">
+              <div class="w-20 h-20 rounded-full bg-white border-2 border-line/30 shadow-sm overflow-hidden shrink-0">
+                <img src="../../branding/dummy/shop-logos/T1_clean.webp" alt="店舗ロゴ" class="w-full h-full object-cover" data-position-target style="object-position: 50% 50%;">
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-[12px] text-zinc-500 leading-tight mb-0.5">現在のロゴ</p>
+                <p class="text-[13px] font-bold text-zinc-800 truncate">shop-logo.webp</p>
+                <p class="text-[11px] text-zinc-400 leading-tight">ヒーロー円形ロゴ＋ファビコンに自動反映</p>
+              </div>
+              <button class="h-9 px-3 bg-white border border-zinc-200 rounded-md text-[12px] font-bold text-zinc-700 shrink-0 inline-flex items-center gap-1 touch-active">
+                <i class="ph ph-pencil-simple text-[13px]"></i>
+                変更
+              </button>
             </div>
-            <p class="text-[12px] text-zinc-500 mt-2 font-medium">ロゴ画像を選ぶ</p>
+
+            <!-- 表示位置調整UI（円形クロップ用：上下スライダーで余白調整） -->
+            <div class="bg-line/5 border border-line/30 rounded-lg p-3" data-position-block>
+              <p class="text-[12px] font-bold text-zinc-800 mb-1 flex items-center gap-1.5">
+                <i class="ph-fill ph-crop text-line text-[14px]"></i>
+                ロゴの見える範囲を調整
+              </p>
+              <p class="text-[11px] text-zinc-500 mb-3 leading-snug">円形にトリミングしたとき、ロゴの中心がずれていたら動かしましょう</p>
+              <div class="grid grid-cols-3 gap-2 mb-3">
+                <button data-position-preset="0" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">上寄せ</button>
+                <button data-position-preset="50" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset" data-active="true">真ん中</button>
+                <button data-position-preset="100" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">下寄せ</button>
+              </div>
+              <div class="flex items-center gap-2">
+                <i class="ph ph-arrow-line-up text-zinc-400 text-[14px] shrink-0"></i>
+                <input type="range" min="0" max="100" value="50" step="1" data-position-slider class="flex-1 min-w-0 h-2 bg-zinc-200 rounded-full appearance-none accent-line cursor-pointer">
+                <i class="ph ph-arrow-line-down text-zinc-400 text-[14px] shrink-0"></i>
+              </div>
+              <p class="text-[11px] text-zinc-500 mt-2 text-center">上下位置：<span data-position-value class="font-bold text-zinc-700">50</span>%</p>
+            </div>
           </div>
         </article>
 
@@ -316,30 +388,86 @@
               デフォルト6枚を表示中（未設定）
             </div>
 
-            <div class="grid grid-cols-3 gap-2">
-              <div class="aspect-square rounded border border-zinc-200 overflow-hidden relative">
+            <!-- 6枚サムネ（タップで下の編集エリアに切替） -->
+            <div class="grid grid-cols-3 gap-2" data-gallery-thumbs>
+              <button data-gallery-thumb="0" data-src="../../branding/dummy/default/01_plants.webp" data-active="true" class="aspect-square rounded border-2 border-line overflow-hidden relative touch-active">
                 <img src="../../branding/dummy/default/01_plants.webp" alt="" class="w-full h-full object-cover">
                 <span class="absolute top-1 left-1 inline-flex items-center h-4 px-1.5 rounded bg-zinc-900/70 text-white text-[9px] font-bold leading-none">DEFAULT</span>
-              </div>
-              <div class="aspect-square rounded border border-zinc-200 overflow-hidden relative">
+                <span class="absolute inset-0 bg-line/15 flex items-center justify-center"><i class="ph-fill ph-check-circle text-[20px] text-line"></i></span>
+                <span class="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-line text-white text-[10px] font-bold flex items-center justify-center">1</span>
+              </button>
+              <button data-gallery-thumb="1" data-src="../../branding/dummy/default/02_light.webp" class="aspect-square rounded border border-zinc-200 overflow-hidden relative touch-active">
                 <img src="../../branding/dummy/default/02_light.webp" alt="" class="w-full h-full object-cover">
                 <span class="absolute top-1 left-1 inline-flex items-center h-4 px-1.5 rounded bg-zinc-900/70 text-white text-[9px] font-bold leading-none">DEFAULT</span>
-              </div>
-              <div class="aspect-square rounded border border-zinc-200 overflow-hidden relative">
+                <span class="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-zinc-900/70 text-white text-[10px] font-bold flex items-center justify-center">2</span>
+              </button>
+              <button data-gallery-thumb="2" data-src="../../branding/dummy/default/03_linen.webp" class="aspect-square rounded border border-zinc-200 overflow-hidden relative touch-active">
                 <img src="../../branding/dummy/default/03_linen.webp" alt="" class="w-full h-full object-cover">
                 <span class="absolute top-1 left-1 inline-flex items-center h-4 px-1.5 rounded bg-zinc-900/70 text-white text-[9px] font-bold leading-none">DEFAULT</span>
-              </div>
-              <div class="aspect-square rounded border border-zinc-200 overflow-hidden relative">
+                <span class="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-zinc-900/70 text-white text-[10px] font-bold flex items-center justify-center">3</span>
+              </button>
+              <button data-gallery-thumb="3" data-src="../../branding/dummy/default/04_candle.webp" class="aspect-square rounded border border-zinc-200 overflow-hidden relative touch-active">
                 <img src="../../branding/dummy/default/04_candle.webp" alt="" class="w-full h-full object-cover">
                 <span class="absolute top-1 left-1 inline-flex items-center h-4 px-1.5 rounded bg-zinc-900/70 text-white text-[9px] font-bold leading-none">DEFAULT</span>
-              </div>
-              <div class="aspect-square rounded border border-zinc-200 overflow-hidden relative">
+                <span class="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-zinc-900/70 text-white text-[10px] font-bold flex items-center justify-center">4</span>
+              </button>
+              <button data-gallery-thumb="4" data-src="../../branding/dummy/default/05_wood.webp" class="aspect-square rounded border border-zinc-200 overflow-hidden relative touch-active">
                 <img src="../../branding/dummy/default/05_wood.webp" alt="" class="w-full h-full object-cover">
                 <span class="absolute top-1 left-1 inline-flex items-center h-4 px-1.5 rounded bg-zinc-900/70 text-white text-[9px] font-bold leading-none">DEFAULT</span>
-              </div>
-              <div class="aspect-square rounded border border-zinc-200 overflow-hidden relative">
+                <span class="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-zinc-900/70 text-white text-[10px] font-bold flex items-center justify-center">5</span>
+              </button>
+              <button data-gallery-thumb="5" data-src="../../branding/dummy/default/06_stones.webp" class="aspect-square rounded border border-zinc-200 overflow-hidden relative touch-active">
                 <img src="../../branding/dummy/default/06_stones.webp" alt="" class="w-full h-full object-cover">
                 <span class="absolute top-1 left-1 inline-flex items-center h-4 px-1.5 rounded bg-zinc-900/70 text-white text-[9px] font-bold leading-none">DEFAULT</span>
+                <span class="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-zinc-900/70 text-white text-[10px] font-bold flex items-center justify-center">6</span>
+              </button>
+            </div>
+
+            <!-- 選択中の写真を編集（大プレビュー＋位置調整） -->
+            <div class="mt-3 bg-zinc-50 border border-zinc-200 rounded-lg p-3 space-y-3" data-gallery-editor>
+              <div class="flex items-center gap-2">
+                <i class="ph-fill ph-pencil-simple text-line text-[14px]"></i>
+                <p class="text-[12px] font-bold text-zinc-800">
+                  <span data-gallery-current-label>1枚目</span>を編集中
+                </p>
+              </div>
+              <!-- 大プレビュー -->
+              <div class="relative w-full aspect-square max-h-[200px] rounded-lg overflow-hidden bg-zinc-100 border border-zinc-200">
+                <img src="../../branding/dummy/default/01_plants.webp" alt="" class="w-full h-full object-cover" data-position-target data-gallery-preview style="object-position: 50% 50%;">
+                <span class="absolute top-2 left-2 inline-flex items-center h-5 px-1.5 rounded bg-zinc-900/75 text-white text-[10px] font-bold gap-1 leading-none">
+                  <i class="ph-fill ph-info text-[11px]"></i>
+                  デフォルト
+                </span>
+              </div>
+              <!-- 表示位置調整UI -->
+              <div class="bg-line/5 border border-line/30 rounded-lg p-3" data-position-block>
+                <p class="text-[12px] font-bold text-zinc-800 mb-1 flex items-center gap-1.5">
+                  <i class="ph-fill ph-crop text-line text-[14px]"></i>
+                  写真の見える範囲を調整
+                </p>
+                <p class="text-[11px] text-zinc-500 mb-3 leading-snug">サムネをタップで切替・各写真ごとに個別保存されます</p>
+                <div class="grid grid-cols-3 gap-2 mb-3">
+                  <button data-position-preset="0" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">上寄せ</button>
+                  <button data-position-preset="50" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset" data-active="true">真ん中</button>
+                  <button data-position-preset="100" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">下寄せ</button>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i class="ph ph-arrow-line-up text-zinc-400 text-[14px] shrink-0"></i>
+                  <input type="range" min="0" max="100" value="50" step="1" data-position-slider class="flex-1 min-w-0 h-2 bg-zinc-200 rounded-full appearance-none accent-line cursor-pointer">
+                  <i class="ph ph-arrow-line-down text-zinc-400 text-[14px] shrink-0"></i>
+                </div>
+                <p class="text-[11px] text-zinc-500 mt-2 text-center">上下位置：<span data-position-value class="font-bold text-zinc-700">50</span>%</p>
+              </div>
+              <!-- 削除＋並べ替え（編集中サムネ） -->
+              <div class="flex gap-2">
+                <button class="flex-1 h-9 bg-white border border-red-200 text-red-600 rounded-md text-[12px] font-bold inline-flex items-center justify-center gap-1.5 touch-active">
+                  <i class="ph ph-trash text-[13px]"></i>
+                  この写真を削除
+                </button>
+                <button class="flex-1 h-9 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[12px] font-bold inline-flex items-center justify-center gap-1.5 touch-active">
+                  <i class="ph ph-arrows-out-cardinal text-[13px]"></i>
+                  並べ替え
+                </button>
               </div>
             </div>
 
@@ -498,12 +626,33 @@
               </button>
               <div class="menu-row__panel hidden border-t border-zinc-200 p-3 space-y-3 bg-white">
                 <div class="relative w-full aspect-[5/3] rounded-lg overflow-hidden bg-zinc-100 border border-zinc-200">
-                  <img src="../../branding/dummy/default/menu/02_aroma.webp" alt="" class="w-full h-full object-cover">
+                  <img src="../../branding/dummy/default/menu/02_aroma.webp" alt="" class="w-full h-full object-cover" data-position-target style="object-position: 50% 50%;">
                   <span class="absolute top-2 left-2 inline-flex items-center h-5 px-1.5 rounded bg-zinc-900/75 text-white text-[10px] font-bold gap-1 leading-none">
                     <i class="ph-fill ph-info text-[11px]"></i>
                     デフォルト表示中
                   </span>
                 </div>
+
+                <!-- 表示位置調整UI -->
+                <div class="bg-line/5 border border-line/30 rounded-lg p-3" data-position-block>
+                  <p class="text-[12px] font-bold text-zinc-800 mb-1 flex items-center gap-1.5">
+                    <i class="ph-fill ph-crop text-line text-[14px]"></i>
+                    写真の見える範囲を調整
+                  </p>
+                  <p class="text-[11px] text-zinc-500 mb-3 leading-snug">顔・料理など、見せたい部分が中央に来るよう動かしましょう</p>
+                  <div class="grid grid-cols-3 gap-2 mb-3">
+                    <button data-position-preset="0" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">上寄せ</button>
+                    <button data-position-preset="50" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset" data-active="true">真ん中</button>
+                    <button data-position-preset="100" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">下寄せ</button>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <i class="ph ph-arrow-line-up text-zinc-400 text-[14px] shrink-0"></i>
+                    <input type="range" min="0" max="100" value="50" step="1" data-position-slider class="flex-1 min-w-0 h-2 bg-zinc-200 rounded-full appearance-none accent-line cursor-pointer">
+                    <i class="ph ph-arrow-line-down text-zinc-400 text-[14px] shrink-0"></i>
+                  </div>
+                  <p class="text-[11px] text-zinc-500 mt-2 text-center">上下位置：<span data-position-value class="font-bold text-zinc-700">50</span>%</p>
+                </div>
+
                 <button class="w-full h-11 bg-line text-white rounded-lg text-[13px] font-bold inline-flex items-center justify-center gap-2 leading-none touch-active">
                   <i class="ph ph-upload-simple text-[16px]"></i>
                   自分の写真をアップロード
@@ -558,12 +707,33 @@
               </button>
               <div class="menu-row__panel hidden border-t border-zinc-200 p-3 space-y-3 bg-white">
                 <div class="relative w-full aspect-[5/3] rounded-lg overflow-hidden bg-zinc-100 border border-zinc-200">
-                  <img src="../../branding/dummy/default/menu/04_stones.webp" alt="" class="w-full h-full object-cover">
+                  <img src="../../branding/dummy/default/menu/04_stones.webp" alt="" class="w-full h-full object-cover" data-position-target style="object-position: 50% 50%;">
                   <span class="absolute top-2 left-2 inline-flex items-center h-5 px-1.5 rounded bg-zinc-900/75 text-white text-[10px] font-bold gap-1 leading-none">
                     <i class="ph-fill ph-info text-[11px]"></i>
                     デフォルト表示中
                   </span>
                 </div>
+
+                <!-- 表示位置調整UI -->
+                <div class="bg-line/5 border border-line/30 rounded-lg p-3" data-position-block>
+                  <p class="text-[12px] font-bold text-zinc-800 mb-1 flex items-center gap-1.5">
+                    <i class="ph-fill ph-crop text-line text-[14px]"></i>
+                    写真の見える範囲を調整
+                  </p>
+                  <p class="text-[11px] text-zinc-500 mb-3 leading-snug">顔・料理など、見せたい部分が中央に来るよう動かしましょう</p>
+                  <div class="grid grid-cols-3 gap-2 mb-3">
+                    <button data-position-preset="0" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">上寄せ</button>
+                    <button data-position-preset="50" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset" data-active="true">真ん中</button>
+                    <button data-position-preset="100" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">下寄せ</button>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <i class="ph ph-arrow-line-up text-zinc-400 text-[14px] shrink-0"></i>
+                    <input type="range" min="0" max="100" value="50" step="1" data-position-slider class="flex-1 min-w-0 h-2 bg-zinc-200 rounded-full appearance-none accent-line cursor-pointer">
+                    <i class="ph ph-arrow-line-down text-zinc-400 text-[14px] shrink-0"></i>
+                  </div>
+                  <p class="text-[11px] text-zinc-500 mt-2 text-center">上下位置：<span data-position-value class="font-bold text-zinc-700">50</span>%</p>
+                </div>
+
                 <button class="w-full h-11 bg-line text-white rounded-lg text-[13px] font-bold inline-flex items-center justify-center gap-2 leading-none touch-active">
                   <i class="ph ph-upload-simple text-[16px]"></i>
                   自分の写真をアップロード
@@ -823,8 +993,12 @@
 
       const updateCounter = () => {
         if (!counterEl || !selectedList) return;
-        const count = selectedList.querySelectorAll('span').length;
+        const count = selectedList.querySelectorAll('span:not(.tag-anim-out)').length;
         counterEl.textContent = `${count}個`;
+        counterEl.classList.remove('counter-bounce');
+        // 強制 reflow → 再アニメーション
+        void counterEl.offsetWidth;
+        counterEl.classList.add('counter-bounce');
       };
       const showToast = (msg) => {
         if (!toast || !toastMsg) return;
@@ -836,17 +1010,17 @@
       const getSelectedLabels = () => Array.from(selectedList?.querySelectorAll('span') || [])
         .map(s => s.childNodes[0]?.textContent?.trim() || '');
 
-      // 選択中タグ用のspan生成（×ボタン付き）
+      // 選択中タグ用のspan生成（×ボタン付き、追加アニメ付き）
       const buildSelectedTag = (label) => {
         const span = document.createElement('span');
-        span.className = 'inline-flex items-center h-8 pl-3 pr-1.5 gap-1 bg-line/10 border border-line text-line rounded-md text-[13px] font-bold leading-none';
+        span.className = 'tag-anim-in inline-flex items-center h-8 pl-3 pr-1.5 gap-1 bg-line/10 border border-line text-line rounded-md text-[13px] font-bold leading-none';
         span.innerHTML = `${label}<button class="w-5 h-5 flex items-center justify-center rounded-full hover:bg-line/20" aria-label="削除" data-remove-selected><i class="ph ph-x text-[12px]"></i></button>`;
         return span;
       };
       // 候補タグ用のspan生成（タップで追加・×で候補削除）
       const buildSuggestedTag = (label) => {
         const span = document.createElement('span');
-        span.className = 'inline-flex items-center h-8 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none overflow-hidden';
+        span.className = 'tag-anim-in inline-flex items-center h-8 bg-white border border-zinc-200 text-zinc-700 rounded-md text-[13px] font-medium leading-none overflow-hidden';
         span.innerHTML = `
           <button class="h-full pl-3 pr-1.5 touch-active flex items-center" data-add-suggested>${label}</button>
           <button class="h-full pl-1 pr-2 text-zinc-400 hover:text-red-500 touch-active flex items-center border-l border-zinc-100" aria-label="候補から削除" data-remove-suggested><i class="ph ph-x text-[12px]"></i></button>
@@ -854,12 +1028,29 @@
         return span;
       };
 
+      // 退場アニメ付き削除
+      const removeWithAnim = (span, callback) => {
+        if (!span) return;
+        span.classList.add('tag-anim-out');
+        span.addEventListener('animationend', () => {
+          span.remove();
+          callback?.();
+        }, { once: true });
+      };
+
       // 選択中タグの×：削除＋カウンタ更新
       selectedList?.addEventListener('click', (e) => {
         const btn = e.target.closest('[data-remove-selected]');
         if (!btn) return;
-        btn.closest('span')?.remove();
-        updateCounter();
+        const span = btn.closest('span');
+        const label = span?.childNodes[0]?.textContent?.trim();
+        removeWithAnim(span, () => {
+          updateCounter();
+          // 候補リストの先頭に戻す
+          if (label && suggestedList && !Array.from(suggestedList.querySelectorAll('button[data-add-suggested]')).some(b => b.textContent.trim() === label)) {
+            suggestedList.prepend(buildSuggestedTag(label));
+          }
+        });
       });
 
       // 候補タグのタップ／×
@@ -867,7 +1058,7 @@
         const removeBtn = e.target.closest('[data-remove-suggested]');
         const addBtnSuggest = e.target.closest('[data-add-suggested]');
         if (removeBtn) {
-          removeBtn.closest('span')?.remove();
+          removeWithAnim(removeBtn.closest('span'));
           return;
         }
         if (addBtnSuggest) {
@@ -876,12 +1067,12 @@
             showToast(`「${label}」はすでに選択中です`);
             return;
           }
-          if (selectedList.querySelectorAll('span').length >= MAX_TAGS) {
+          if (selectedList.querySelectorAll('span:not(.tag-anim-out)').length >= MAX_TAGS) {
             showToast(`タグは最大${MAX_TAGS}個まで`);
             return;
           }
           selectedList.appendChild(buildSelectedTag(label));
-          addBtnSuggest.closest('span')?.remove();
+          removeWithAnim(addBtnSuggest.closest('span'), updateCounter);
           updateCounter();
         }
       });
@@ -899,7 +1090,7 @@
           showToast(`「${label}」はすでに選択中です`);
           return;
         }
-        if (selectedList.querySelectorAll('span').length >= MAX_TAGS) {
+        if (selectedList.querySelectorAll('span:not(.tag-anim-out)').length >= MAX_TAGS) {
           showToast(`タグは最大${MAX_TAGS}個まで`);
           return;
         }
@@ -946,28 +1137,84 @@
 
       // ─────────────────────────────────────────
       // 画像 表示位置調整（スライダー + 3プリセット）
+      // Block 1, 2, 4, 5 すべての [data-position-block] に共通適用
       // ─────────────────────────────────────────
       document.querySelectorAll('[data-position-block]').forEach(block => {
         const slider = block.querySelector('[data-position-slider]');
         const valueEl = block.querySelector('[data-position-value]');
         const presets = block.querySelectorAll('[data-position-preset]');
-        // 同じパネル内のプレビュー画像が調整対象
-        const target = block.closest('.menu-row__panel')?.querySelector('[data-position-target]');
+        // スコープ：メニュー行展開時は menu-row__panel、そうでなければ shop-block article
+        const scope = block.closest('.menu-row__panel') || block.closest('.shop-block');
+        const target = scope?.querySelector('[data-position-target]');
 
         const applyPosition = (val) => {
           const v = Math.max(0, Math.min(100, Number(val) || 0));
           if (target) target.style.objectPosition = `50% ${v}%`;
           if (valueEl) valueEl.textContent = v;
           if (slider) slider.value = v;
-          // プリセットの active 切替
           presets.forEach(b => {
             b.dataset.active = String(b.dataset.positionPreset) === String(v) ? 'true' : 'false';
           });
+          // ギャラリーの場合：現在選択中サムネに値を保存
+          const galleryThumbs = scope?.querySelector('[data-gallery-thumbs]');
+          if (galleryThumbs) {
+            const activeThumb = galleryThumbs.querySelector('[data-gallery-thumb][data-active="true"]');
+            if (activeThumb) activeThumb.dataset.positionY = v;
+          }
         };
 
         slider?.addEventListener('input', (e) => applyPosition(e.target.value));
         presets.forEach(b => {
           b.addEventListener('click', () => applyPosition(b.dataset.positionPreset));
+        });
+      });
+
+      // ─────────────────────────────────────────
+      // Block 4: ギャラリー サムネタップで大プレビュー切替
+      // ─────────────────────────────────────────
+      document.querySelectorAll('[data-gallery-thumbs]').forEach(thumbsContainer => {
+        const article = thumbsContainer.closest('.shop-block');
+        const editor = article?.querySelector('[data-gallery-editor]');
+        const preview = editor?.querySelector('[data-gallery-preview]');
+        const label = editor?.querySelector('[data-gallery-current-label]');
+        const positionBlock = editor?.querySelector('[data-position-block]');
+        const slider = positionBlock?.querySelector('[data-position-slider]');
+
+        thumbsContainer.addEventListener('click', (e) => {
+          const btn = e.target.closest('[data-gallery-thumb]');
+          if (!btn) return;
+          const idx = Number(btn.dataset.galleryThumb);
+          const src = btn.dataset.src;
+          const savedY = Number(btn.dataset.positionY ?? 50);
+
+          // 全サムネのactive状態を更新
+          thumbsContainer.querySelectorAll('[data-gallery-thumb]').forEach(b => {
+            const isActive = b === btn;
+            b.dataset.active = isActive ? 'true' : 'false';
+            // 視覚切替：active = LINE緑border + チェックマーク表示、非active = zinc border
+            b.classList.toggle('border-2', isActive);
+            b.classList.toggle('border-line', isActive);
+            b.classList.toggle('border', !isActive);
+            b.classList.toggle('border-zinc-200', !isActive);
+            // チェックマーク（中央オーバーレイ）
+            const check = b.querySelector('.absolute.inset-0');
+            if (check) check.classList.toggle('hidden', !isActive);
+            // 番号バッジの色
+            const numBadge = b.querySelector('span:last-child');
+            if (numBadge) {
+              numBadge.classList.toggle('bg-line', isActive);
+              numBadge.classList.toggle('bg-zinc-900/70', !isActive);
+            }
+          });
+
+          // 大プレビューの画像とラベル更新
+          if (preview) preview.src = src;
+          if (label) label.textContent = `${idx + 1}枚目`;
+          // 位置スライダーをサムネの保存値に同期 → input イベント発火で位置調整UIも追従
+          if (slider) {
+            slider.value = savedY;
+            slider.dispatchEvent(new Event('input', { bubbles: true }));
+          }
         });
       });
     });
