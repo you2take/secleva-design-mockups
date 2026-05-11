@@ -92,13 +92,22 @@
             </h2>
         </section>
 
-        <!-- 5. Primary CTA -->
+        <!-- 5. Primary CTA（reservation_mode = "both"）-->
         <section class="px-6 pb-10">
-            <button class="btn-press w-full h-[56px] bg-line text-white rounded-[10px] flex items-center justify-center gap-2">
-                <i class="ph ph-chat-circle text-xl"></i>
-                <span class="font-sans font-medium text-[16px] tracking-wide mt-[1px]">ご予約はこちら</span>
-            </button>
-            <p class="text-center text-[11px] text-textsec mt-3 tracking-wider font-sans">確認後にご連絡いたします。</p>
+            <p class="text-center text-[11px] text-textsec mb-3 tracking-wider font-sans">ご予約はこちら</p>
+            <div class="space-y-2">
+                <button class="btn-press w-full h-[56px] bg-line text-white rounded-[10px] inline-flex items-center justify-center gap-2">
+                    <i class="ph ph-chat-circle text-xl"></i>
+                    <span class="font-sans font-medium text-[16px] tracking-wide mt-[1px]">LINEで予約する</span>
+                </button>
+                <button class="btn-press w-full h-[56px] bg-line text-white rounded-[10px] inline-flex items-center justify-center gap-2">
+                    <i class="ph ph-note-pencil text-xl"></i>
+                    <span class="font-sans font-medium text-[16px] tracking-wide mt-[1px]">フォームで予約する</span>
+                </button>
+            </div>
+            <p class="text-center text-[11px] text-textsec mt-3 tracking-wider font-sans leading-snug">
+                LINEでご予約いただくと、確定/変更通知が届きます。フォーム予約は LINE 不要です。
+            </p>
         </section>
 
         <div class="w-[calc(100%-2.5rem)] h-[1px] bg-paper mx-auto"></div>

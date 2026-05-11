@@ -435,6 +435,77 @@ type Shop = {
 
 ---
 
+## 🗓️ ご予約方法（CTA切替）の仕様
+
+公開ページの予約 CTA は、オーナーが管理画面で **3 モードから選択**できる。  
+Block 8「ご予約方法」のラジオボタンで切替、公開ページの該当セクションが動的に変わる。
+
+### 3 モードと表示パターン
+
+| モード | 値 | 公開ページの表示 |
+|---|---|---|
+| **LINEで予約のみ**（おすすめ・デフォルト） | `line_only` | `[ 💬 LINEで予約する ]` 単独＋下に短文 |
+| **フォームで予約のみ** | `form_only` | `[ 📝 フォームで予約する ]` 単独＋下に短文 |
+| **両方表示する** | `both` | `[ 💬 LINEで予約する ]` + `[ 📝 フォームで予約する ]` ＋下にヘルパー |
+
+### 各モードの公開ページ HTML 例（T1 ベース）
+
+```html
+<!-- line_only -->
+<section class="cta">
+  <p class="caption">ご予約はこちら</p>
+  <button class="primary"><i class="ph ph-chat-circle-text"></i>LINEで予約する</button>
+  <p class="help">LINE で 24h 受付・AI秘書がご案内します。</p>
+</section>
+
+<!-- form_only -->
+<section class="cta">
+  <p class="caption">ご予約はこちら</p>
+  <button class="primary"><i class="ph ph-note-pencil"></i>フォームで予約する</button>
+  <p class="help">店舗側で確認後にご連絡いたします。</p>
+</section>
+
+<!-- both -->
+<section class="cta">
+  <p class="caption">ご予約はこちら</p>
+  <button class="primary"><i class="ph ph-chat-circle-text"></i>LINEで予約する</button>
+  <button class="primary"><i class="ph ph-note-pencil"></i>フォームで予約する</button>
+  <p class="help">LINEでご予約いただくと、確定/変更通知が届きます。フォーム予約は LINE 不要です。</p>
+</section>
+```
+
+### バックエンドデータ
+```ts
+type Shop = {
+  reservation_mode: 'line_only' | 'form_only' | 'both',
+  reservation_form_url?: string,  // form_only / both 時の遷移先 URL
+}
+```
+- `line_only` がデフォルト（`/apply` 完了時に運営が LINE 公式設定済みのため）
+- `form_only` を選んだ場合は別途フォーム URL（Google Form 等）が必要
+- `both` を選んだ場合は両方の URL が必要
+
+### モード切替時のオーナーUX
+- 切替直後にプレビューで反映を確認できるよう、Block 8 直下に **「プレビューで確認」CTA** を出すと親切（将来拡張）
+- 各モード説明文に **「いつでも切替可能」** と明示し、心理障壁を下げる
+
+### 設計判断のポイント
+
+| 観点 | 判断 |
+|---|---|
+| **デフォルトを `line_only` にする理由** | Sevleva のコアバリュー「LINE×AI秘書」と一貫。AI秘書が空き・確定通知まで自動 |
+| **`both` を残す理由** | LINE 未利用客（高齢 / IT 苦手客）にも対応したい店舗のニーズ。3つ目の安全策 |
+| **`form_only` を残す理由** | LINE 公式を契約解除したい店舗（少数だが存在）の保険。LINE 公式 URL 設定有無で切替を強制せず、オーナー意思を尊重 |
+| **「電話で予約」を採用しない理由** | 電話は予約取りこぼしの原問題そのもの。Sevleva のソリューション外なので表示しない |
+
+### 実装時の TODO
+- [ ] バックエンドに `reservation_mode` フィールド追加
+- [ ] 各テンプレ（T1〜T5）のCTAセクションを 3 stateで出し分け
+- [ ] `form_only` / `both` 時の `reservation_form_url` 入力欄を Block 8 に動的展開
+- [ ] LINE 公式 URL 未設定で `line_only` / `both` を選ぼうとした時、警告（「LINE公式URLが未設定です。サポートに連絡してください」）
+
+---
+
 ## 🏷️ タグ（店舗特徴タグ）の操作仕様
 
 Block 3「店舗特徴タグ」は **3エリア構成**：選択中タグ／候補タグ／オリジナルタグ追加。  
