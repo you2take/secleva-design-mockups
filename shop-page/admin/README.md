@@ -137,8 +137,10 @@ branding/
     │   ├── 01_plants.webp〜06_stones.webp            ギャラリー fallback
     │   └── menu/
     │       └── 01_oil.webp〜04_stones.webp           メニュー写真 fallback
-    └── pc-bg/
-        └── T1_clean.webp〜T5_night.webp              PC viewport背景（aidesigner生成）
+    ├── pc-bg/
+    │   └── T1_clean.webp〜T5_night.webp              PC viewport背景（aidesigner生成）
+    └── shop-logos/
+        └── T1_clean.webp〜T5_night.webp              店舗ロゴ（モック5種、ファビコン用）
 ```
 
 ### 依存ライブラリ
@@ -494,7 +496,9 @@ type Shop = {
 | **タイトル**（`<title>` / `og:title` / `twitter:title`） | `shop.name`（店舗名） | ブラウザタブ／検索結果／SNS シェア時の見出し |
 | **ディスクリプション**（`description` / `og:description` / `twitter:description`） | `shop.lead_copy`（リードコピー） | 検索結果のスニペット／SNS シェア時の説明文 |
 | **メタ画像**（`og:image` / `twitter:image`） | `shop.hero_image_processed`（ヒーロー画像を1200×630にクロップ＋ロゴウォーターマーク） | LINE/Twitter/Facebook 等での共有時のサムネ。**未設定時は OG タグ自体を省略** |
-| **ファビコン**（`<link rel="icon">` / `apple-touch-icon`） | `shop.logo` を 32×32 / 180×180 にリサイズ | ブラウザタブ・iOS ホーム画面アイコン |
+| **ファビコン**（`<link rel="icon">` / `apple-touch-icon`） | **`shop.logo`（オーナーが Block 2 でアップロードした店舗ロゴ）**を 32×32 / 180×180 にリサイズ | ブラウザタブ・iOS ホーム画面アイコン |
+
+> ⚠️ ファビコンに **Secleva ブランドロゴを使わない**。オーナー各店舗が設定した独自ロゴを必ず使う（モックでは `branding/dummy/shop-logos/T{1-5}.webp` で5店舗分のサンプルを配置）。
 
 ### サーバー側で生成するHTML例
 ```html
@@ -540,7 +544,7 @@ type Shop = {
 | ケース | 挙動 |
 |---|---|
 | `shop.hero_image` が未設定 | `og:image` タグ自体を出力しない（LINE 等は URL のみ表示） |
-| `shop.logo` が未設定 | favicon は Secleva 共通ロゴ（`/branding/logo.png`）にフォールバック |
+| `shop.logo` が未設定 | favicon は Secleva 共通ロゴ（`/branding/logo.png`）に **やむを得ずフォールバック**。ただし運営側で `/apply` 完了時にロゴ未設定の店舗は催促メールを送る運用想定 |
 | `shop.lead_copy` が未設定 | description は店舗名＋業種で自動生成（例：「{name} | {category} のお店ページ」） |
 
 ### モック側の固定値（実装時の参照例）
