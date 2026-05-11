@@ -102,14 +102,28 @@
             </div>
           </div>
           <div class="mt-3 pt-3 border-t border-zinc-100">
-            <div class="relative w-full h-[120px] rounded-lg border-2 border-dashed border-zinc-300 bg-zinc-50 flex flex-col items-center justify-center text-zinc-400 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1600334129128-685055815ce1?auto=format&fit=crop&w=400&q=80" alt="" class="absolute inset-0 w-full h-full object-cover opacity-20">
-              <div class="relative z-10 flex flex-col items-center gap-1">
-                <i class="ph ph-image-square text-3xl"></i>
-                <span class="text-[13px] font-medium text-zinc-500">タップして写真を選ぶ</span>
+            <div class="relative w-full h-[160px] rounded-lg border-2 border-dashed border-zinc-300 bg-zinc-50 overflow-hidden">
+              <img src="../../branding/dummy/default/00_hero.webp" alt="デフォルトメインビジュアル" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-900/40 via-zinc-900/0 to-zinc-900/0"></div>
+              <div class="absolute top-2 left-2 inline-flex items-center h-6 px-2 rounded bg-zinc-900/70 backdrop-blur text-white text-[10px] font-bold gap-1 leading-none">
+                <i class="ph ph-info-fill text-[12px]"></i>
+                デフォルト表示中
               </div>
-              <button class="absolute top-2 right-2 px-2.5 py-1 bg-white/90 border border-zinc-200 rounded text-[12px] font-bold text-line shadow-sm">編集</button>
+              <button class="absolute top-2 right-2 inline-flex items-center h-7 px-3 rounded bg-white/95 border border-zinc-200 text-[12px] font-bold text-line shadow-sm gap-1 leading-none">
+                <i class="ph ph-upload text-[13px]"></i>
+                写真を選ぶ
+              </button>
+              <div class="absolute bottom-2 left-2 right-2">
+                <div class="inline-flex items-center px-2.5 h-6 bg-white/90 backdrop-blur rounded gap-1 text-[11px] font-medium text-zinc-700 leading-none">
+                  <i class="ph ph-cursor-click text-[12px]"></i>
+                  タップして写真を選ぶ
+                </div>
+              </div>
             </div>
+            <p class="mt-2 text-[12px] text-zinc-500 leading-snug flex items-start gap-1.5">
+              <i class="ph-fill ph-info text-line text-[14px] shrink-0 mt-[1px]"></i>
+              <span>写真未設定の場合、上のデフォルト画像が公開ページに反映されます。あとから差し替え可能。</span>
+            </p>
           </div>
         </article>
 
@@ -232,15 +246,49 @@
             </div>
           </div>
           <div class="mt-3 pt-3 border-t border-zinc-100">
-            <div class="grid grid-cols-3 gap-2">
-              <div class="aspect-square rounded border border-zinc-200 overflow-hidden"><img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=200&q=80" alt="" class="w-full h-full object-cover"></div>
-              <div class="aspect-square rounded border border-zinc-200 overflow-hidden"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=200&q=80" alt="" class="w-full h-full object-cover"></div>
-              <div class="aspect-square rounded border border-zinc-200 overflow-hidden"><img src="https://images.unsplash.com/photo-1620052309852-c3f2b450ffb8?auto=format&fit=crop&w=200&q=80" alt="" class="w-full h-full object-cover"></div>
-              <div class="aspect-square rounded border border-zinc-200 overflow-hidden"><img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&w=200&q=80" alt="" class="w-full h-full object-cover"></div>
-              <button class="aspect-square rounded border-2 border-dashed border-zinc-300 bg-zinc-50 flex items-center justify-center text-zinc-400"><i class="ph ph-plus text-2xl"></i></button>
-              <button class="aspect-square rounded border-2 border-dashed border-zinc-300 bg-zinc-50 flex items-center justify-center text-zinc-400"><i class="ph ph-plus text-2xl"></i></button>
+
+            <!-- デフォルト状態のお知らせ -->
+            <div class="mb-3 inline-flex items-center h-7 px-2.5 rounded bg-line/10 text-line gap-1 text-[11px] font-bold leading-none">
+              <i class="ph-fill ph-info text-[13px]"></i>
+              デフォルト6枚を表示中（未設定）
             </div>
-            <p class="mt-2 text-[12px] text-zinc-500 font-medium">長押しでドラッグ、入れ替えできます。</p>
+
+            <div class="grid grid-cols-3 gap-2">
+              <div class="aspect-square rounded border border-zinc-200 overflow-hidden relative">
+                <img src="../../branding/dummy/default/01_plants.webp" alt="" class="w-full h-full object-cover">
+                <span class="absolute top-1 left-1 inline-flex items-center h-4 px-1.5 rounded bg-zinc-900/70 text-white text-[9px] font-bold leading-none">DEFAULT</span>
+              </div>
+              <div class="aspect-square rounded border border-zinc-200 overflow-hidden relative">
+                <img src="../../branding/dummy/default/02_light.webp" alt="" class="w-full h-full object-cover">
+                <span class="absolute top-1 left-1 inline-flex items-center h-4 px-1.5 rounded bg-zinc-900/70 text-white text-[9px] font-bold leading-none">DEFAULT</span>
+              </div>
+              <div class="aspect-square rounded border border-zinc-200 overflow-hidden relative">
+                <img src="../../branding/dummy/default/03_linen.webp" alt="" class="w-full h-full object-cover">
+                <span class="absolute top-1 left-1 inline-flex items-center h-4 px-1.5 rounded bg-zinc-900/70 text-white text-[9px] font-bold leading-none">DEFAULT</span>
+              </div>
+              <div class="aspect-square rounded border border-zinc-200 overflow-hidden relative">
+                <img src="../../branding/dummy/default/04_candle.webp" alt="" class="w-full h-full object-cover">
+                <span class="absolute top-1 left-1 inline-flex items-center h-4 px-1.5 rounded bg-zinc-900/70 text-white text-[9px] font-bold leading-none">DEFAULT</span>
+              </div>
+              <div class="aspect-square rounded border border-zinc-200 overflow-hidden relative">
+                <img src="../../branding/dummy/default/05_wood.webp" alt="" class="w-full h-full object-cover">
+                <span class="absolute top-1 left-1 inline-flex items-center h-4 px-1.5 rounded bg-zinc-900/70 text-white text-[9px] font-bold leading-none">DEFAULT</span>
+              </div>
+              <div class="aspect-square rounded border border-zinc-200 overflow-hidden relative">
+                <img src="../../branding/dummy/default/06_stones.webp" alt="" class="w-full h-full object-cover">
+                <span class="absolute top-1 left-1 inline-flex items-center h-4 px-1.5 rounded bg-zinc-900/70 text-white text-[9px] font-bold leading-none">DEFAULT</span>
+              </div>
+            </div>
+
+            <button class="mt-3 w-full h-10 inline-flex items-center justify-center gap-1.5 bg-white border-2 border-line text-line rounded-lg text-[13px] font-bold leading-none touch-active">
+              <i class="ph ph-upload text-[16px]"></i>
+              自分の写真をアップロード（最大6枚）
+            </button>
+
+            <p class="mt-2 text-[12px] text-zinc-500 leading-snug flex items-start gap-1.5">
+              <i class="ph-fill ph-info text-line text-[14px] shrink-0 mt-[1px]"></i>
+              <span>写真未設定の場合、上のデフォルト6枚（プロが撮影した中立的なイメージ）が公開ページに反映されます。アップロード後はドラッグで並び替え可能。</span>
+            </p>
           </div>
         </article>
 
