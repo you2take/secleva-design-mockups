@@ -435,74 +435,82 @@ type Shop = {
 
 ---
 
-## 🗓️ ご予約方法（CTA切替）の仕様
+## 🗓️ ご予約方法（LINE一本固定）
 
-公開ページの予約 CTA は、オーナーが管理画面で **3 モードから選択**できる。  
-Block 8「ご予約方法」のラジオボタンで切替、公開ページの該当セクションが動的に変わる。
+**Sevleva は LINE 公式アカウントとの連携が大前提のSaaS** のため、公開ページの予約 CTA は **LINEで予約する一択** に統一。  
+管理画面に切替UIは置かない。
 
-### 3 モードと表示パターン
+### 公開ページの表示パターン
 
-| モード | 値 | 公開ページの表示 |
-|---|---|---|
-| **LINEで予約のみ**（おすすめ・デフォルト） | `line_only` | `[ 💬 LINEで予約する ]` 単独＋下に短文 |
-| **フォームで予約のみ** | `form_only` | `[ 📝 フォームで予約する ]` 単独＋下に短文 |
-| **両方表示する** | `both` | `[ 💬 LINEで予約する ]` + `[ 📝 フォームで予約する ]` ＋下にヘルパー |
-
-### 各モードの公開ページ HTML 例（T1 ベース）
-
+全テンプレ共通：
 ```html
-<!-- line_only -->
 <section class="cta">
   <p class="caption">ご予約はこちら</p>
-  <button class="primary"><i class="ph ph-chat-circle-text"></i>LINEで予約する</button>
-  <p class="help">LINE で 24h 受付・AI秘書がご案内します。</p>
-</section>
-
-<!-- form_only -->
-<section class="cta">
-  <p class="caption">ご予約はこちら</p>
-  <button class="primary"><i class="ph ph-note-pencil"></i>フォームで予約する</button>
-  <p class="help">店舗側で確認後にご連絡いたします。</p>
-</section>
-
-<!-- both -->
-<section class="cta">
-  <p class="caption">ご予約はこちら</p>
-  <button class="primary"><i class="ph ph-chat-circle-text"></i>LINEで予約する</button>
-  <button class="primary"><i class="ph ph-note-pencil"></i>フォームで予約する</button>
-  <p class="help">LINEでご予約いただくと、確定/変更通知が届きます。フォーム予約は LINE 不要です。</p>
+  <button class="primary">
+    <i class="ph ph-chat-circle-text"></i>
+    LINEで予約する
+  </button>
+  <p class="help">24時間受付・AI秘書がご案内します。確定/変更通知はLINEに届きます。</p>
 </section>
 ```
 
 ### バックエンドデータ
 ```ts
 type Shop = {
-  reservation_mode: 'line_only' | 'form_only' | 'both',
-  reservation_form_url?: string,  // form_only / both 時の遷移先 URL
+  line_official_url: string,  // /apply 完了時に運営が設定済み
 }
 ```
-- `line_only` がデフォルト（`/apply` 完了時に運営が LINE 公式設定済みのため）
-- `form_only` を選んだ場合は別途フォーム URL（Google Form 等）が必要
-- `both` を選んだ場合は両方の URL が必要
-
-### モード切替時のオーナーUX
-- 切替直後にプレビューで反映を確認できるよう、Block 8 直下に **「プレビューで確認」CTA** を出すと親切（将来拡張）
-- 各モード説明文に **「いつでも切替可能」** と明示し、心理障壁を下げる
 
 ### 設計判断のポイント
 
 | 観点 | 判断 |
 |---|---|
-| **デフォルトを `line_only` にする理由** | Sevleva のコアバリュー「LINE×AI秘書」と一貫。AI秘書が空き・確定通知まで自動 |
-| **`both` を残す理由** | LINE 未利用客（高齢 / IT 苦手客）にも対応したい店舗のニーズ。3つ目の安全策 |
-| **`form_only` を残す理由** | LINE 公式を契約解除したい店舗（少数だが存在）の保険。LINE 公式 URL 設定有無で切替を強制せず、オーナー意思を尊重 |
-| **「電話で予約」を採用しない理由** | 電話は予約取りこぼしの原問題そのもの。Sevleva のソリューション外なので表示しない |
+| **LINE 一本にする理由** | Sevleva = LINE × AI秘書 のSaaS。LINE 公式連携が **全ユーザーの前提**。フォーム経由だと AI秘書フローを通らない |
+| **フォームを採用しない理由** | LINE 未利用客にも LINE 友追加 → AI秘書一次対応が機能する。フォームは別途メール通知設定など運用負担増 |
+| **「電話で予約」を採用しない理由** | 電話は予約取りこぼしの原問題そのもの。Sevleva のソリューション外 |
+| **`/apply` 申込フローとの整合** | サポートが LINE 公式アカウントを開設・運営側で URL 事前入力する想定。オーナーは触らない |
 
 ### 実装時の TODO
-- [ ] バックエンドに `reservation_mode` フィールド追加
-- [ ] 各テンプレ（T1〜T5）のCTAセクションを 3 stateで出し分け
-- [ ] `form_only` / `both` 時の `reservation_form_url` 入力欄を Block 8 に動的展開
-- [ ] LINE 公式 URL 未設定で `line_only` / `both` を選ぼうとした時、警告（「LINE公式URLが未設定です。サポートに連絡してください」）
+- [ ] 各テンプレ（T1〜T5）のCTAを LINE一本に固定実装
+- [ ] LINE 公式 URL は `shop.line_official_url` から動的注入
+- [ ] LINE 未設定の異常系（運営側ミス）は管理画面トップに警告バナー出す
+
+---
+
+## 📡 公開操作の集約（Preview 画面）
+
+**「公開」操作は Preview 画面（admin/03）に一本化**。編集画面（02）には公開トグルを置かない。
+
+### 設計判断
+- 編集画面 = 内容を変える（保存される、まだ公開はされない）
+- プレビュー画面 = 確認 ＋ 公開操作（最終ステップ）
+- 「保存→確認→公開」が一直線になり、リテラシー低層も迷わない
+
+### Preview のステータス別アクション
+
+| 現在の状態 | メインCTA | サブアクション |
+|---|---|---|
+| **下書き**（未公開） | お店ページを公開する | 一時的に非公開にする |
+| **公開中** | 変更を反映する | 一時的に非公開にする |
+| **一時休止中** | もう一度公開する | 下書きに戻す（任意） |
+
+### バックエンドデータ
+```ts
+type Shop = {
+  publish_state: 'draft' | 'published' | 'paused',
+  published_at?: string,
+  updated_at: string,
+}
+```
+
+### 公開ステータスの表示
+Preview 画面の上部「公開状態」行に **黄色（下書き）／緑（公開中）／グレー（一時休止）** のステータスバッジを置き、現在の状態を常時可視化。
+
+### 実装時の TODO
+- [ ] `publish_state` フィールドをバックエンドに追加
+- [ ] Preview の CTA を3stateで動的に切替
+- [ ] 一時休止 → アクセス時「ページが見つかりません」or「準備中」表示
+- [ ] 公開状態変更ログ（誰がいつ操作したか）
 
 ---
 

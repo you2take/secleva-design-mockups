@@ -251,19 +251,30 @@
             <div class="h-[60px]"></div>
         </div>
 
-        <!-- Bottom Action Bar -->
+        <!-- Bottom Action Bar
+             公開操作はすべてここに集約：
+               下書き状態  → メインCTA「お店ページを公開する」
+               公開中      → メインCTA「変更を反映する」＋ サブ「一時的に非公開にする」
+               一時休止中  → メインCTA「もう一度公開する」＋ サブ「下書きに戻す」
+        -->
         <div class="preview-action-bar absolute bottom-0 left-0 w-full bg-white px-4 pt-4 pb-6 rounded-t-3xl shadow-up border-t border-zinc-200 z-50">
-            <button class="w-full h-[56px] bg-line text-white rounded-xl text-[16px] font-bold flex items-center justify-center gap-2 tap-effect mb-3 shadow-sm">
+            <!-- 下書き状態（current） -->
+            <button class="w-full h-[56px] bg-line text-white rounded-xl text-[16px] font-bold flex items-center justify-center gap-2 tap-effect mb-2 shadow-sm">
                 <i class="ph-fill ph-rocket-launch text-[22px]"></i>
                 お店ページを公開する
             </button>
+            <!-- 一時的に非公開（下書きからも選択可・グレー扱い） -->
+            <button class="w-full h-[40px] bg-white border border-zinc-300 text-zinc-600 rounded-lg text-[12px] font-bold flex items-center justify-center gap-1.5 tap-effect mb-3">
+                <i class="ph ph-pause-circle text-[16px]"></i>
+                一時的に非公開にする（準備中・休業中）
+            </button>
             <div class="flex items-center gap-3 w-full">
-                <a href="02_block-edit.html" class="flex-1 h-[44px] bg-white border border-zinc-300 text-zinc-700 rounded-xl text-[14px] font-bold flex items-center justify-center gap-2 tap-effect">
-                    <i class="ph ph-arrow-left text-[18px]"></i>
+                <a href="02_block-edit.html" class="flex-1 h-[44px] bg-white border border-zinc-300 text-zinc-700 rounded-xl text-[13px] font-bold flex items-center justify-center gap-1.5 tap-effect">
+                    <i class="ph ph-arrow-left text-[16px]"></i>
                     編集に戻る
                 </a>
-                <a href="01_template-select.html" class="flex-1 h-[44px] bg-white border border-zinc-300 text-zinc-700 rounded-xl text-[14px] font-bold flex items-center justify-center gap-2 tap-effect">
-                    <i class="ph ph-palette text-[18px]"></i>
+                <a href="01_template-select.html" class="flex-1 h-[44px] bg-white border border-zinc-300 text-zinc-700 rounded-xl text-[13px] font-bold flex items-center justify-center gap-1.5 tap-effect">
+                    <i class="ph ph-palette text-[16px]"></i>
                     テンプレ変更
                 </a>
             </div>
