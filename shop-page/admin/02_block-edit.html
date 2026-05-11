@@ -275,6 +275,98 @@
           </div>
         </article>
 
+        <!-- Block 7: SNS Links -->
+        <!--
+          公開ページに反映：
+            ・ヘッダー右上のInstagram / X / LINEアイコンの href
+            ・「Instagramで見る」CTAボタンの href
+            ・「LINEで予約する」CTAボタンの href（公式LINEと同じURLでOK）
+          入力例：
+            Instagram: https://www.instagram.com/your_shop/
+            X       : https://x.com/your_shop
+            LINE 公式: https://lin.ee/xxxxxxxx
+            TikTok   : https://www.tiktok.com/@your_shop
+          各行は空欄で「未登録」扱い、入力で「公開ページに表示」に切替（ボタン押下で自動）
+          ON/OFFトグルを切ると、公開ページからSNSアイコン群を一括非表示にできる
+        -->
+        <article class="shop-block bg-white border border-zinc-200 rounded-xl p-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-md bg-line/10 text-line flex items-center justify-center shrink-0">
+              <i class="ph ph-share-network text-2xl"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h2 class="font-bold text-[15px] text-zinc-900 truncate">SNSリンク</h2>
+              <p class="text-[12px] text-zinc-500 truncate">入力したものだけ公開ページに表示</p>
+            </div>
+            <div class="flex items-center gap-1 shrink-0">
+              <input type="checkbox" id="toggle-7" class="shop-block__toggle-input" checked>
+              <label for="toggle-7" class="shop-block__toggle"></label>
+              <button class="shop-block__handle w-8 h-10 flex items-center justify-center text-zinc-300"><i class="ph ph-dots-six-vertical text-2xl"></i></button>
+            </div>
+          </div>
+          <div class="mt-3 pt-3 border-t border-zinc-100 space-y-2">
+
+            <!-- LINE 公式 -->
+            <div class="shop-sns-row flex items-center gap-2.5 bg-zinc-50 border border-zinc-200 rounded-lg px-3 h-12">
+              <div class="w-7 h-7 rounded-full bg-line text-white flex items-center justify-center shrink-0">
+                <i class="ph-fill ph-chat-circle-text text-[16px]"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-[11px] text-zinc-500 leading-none mb-0.5">LINE公式</p>
+                <input type="url" placeholder="https://lin.ee/..." value="https://lin.ee/abcdEFG" class="w-full bg-transparent text-[13px] text-zinc-800 font-medium outline-none">
+              </div>
+              <button class="text-zinc-400 shrink-0" aria-label="クリア"><i class="ph ph-x-circle text-[20px]"></i></button>
+            </div>
+
+            <!-- Instagram -->
+            <div class="shop-sns-row flex items-center gap-2.5 bg-zinc-50 border border-zinc-200 rounded-lg px-3 h-12">
+              <div class="w-7 h-7 rounded-full bg-gradient-to-br from-[#FFDC80] via-[#F77737] to-[#C13584] text-white flex items-center justify-center shrink-0">
+                <i class="ph-fill ph-instagram-logo text-[14px]"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-[11px] text-zinc-500 leading-none mb-0.5">Instagram</p>
+                <input type="url" placeholder="https://www.instagram.com/..." value="https://www.instagram.com/uenorelax/" class="w-full bg-transparent text-[13px] text-zinc-800 font-medium outline-none">
+              </div>
+              <button class="text-zinc-400 shrink-0" aria-label="クリア"><i class="ph ph-x-circle text-[20px]"></i></button>
+            </div>
+
+            <!-- X (Twitter) -->
+            <div class="shop-sns-row flex items-center gap-2.5 bg-zinc-50 border border-zinc-200 rounded-lg px-3 h-12">
+              <div class="w-7 h-7 rounded-full bg-zinc-900 text-white flex items-center justify-center shrink-0">
+                <i class="ph-fill ph-x-logo text-[12px]"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-[11px] text-zinc-500 leading-none mb-0.5">X（Twitter）</p>
+                <input type="url" placeholder="https://x.com/..." value="" class="w-full bg-transparent text-[13px] text-zinc-400 font-medium outline-none">
+              </div>
+              <button class="text-zinc-300 shrink-0" aria-label="クリア"><i class="ph ph-x-circle text-[20px]"></i></button>
+            </div>
+
+            <!-- TikTok -->
+            <div class="shop-sns-row flex items-center gap-2.5 bg-zinc-50 border border-zinc-200 rounded-lg px-3 h-12">
+              <div class="w-7 h-7 rounded-full bg-zinc-900 text-white flex items-center justify-center shrink-0">
+                <i class="ph-fill ph-tiktok-logo text-[14px]"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-[11px] text-zinc-500 leading-none mb-0.5">TikTok</p>
+                <input type="url" placeholder="https://www.tiktok.com/@..." value="" class="w-full bg-transparent text-[13px] text-zinc-400 font-medium outline-none">
+              </div>
+              <button class="text-zinc-300 shrink-0" aria-label="クリア"><i class="ph ph-x-circle text-[20px]"></i></button>
+            </div>
+
+            <!-- Add more -->
+            <button class="w-full h-10 flex items-center justify-center gap-1.5 border border-dashed border-zinc-300 rounded-lg text-[13px] font-bold text-zinc-500">
+              <i class="ph ph-plus-circle text-[18px]"></i>
+              他のSNSを追加（YouTube・Facebook など）
+            </button>
+
+            <p class="text-[11px] text-zinc-400 leading-snug pt-1">
+              <i class="ph ph-info text-[13px] align-text-bottom"></i>
+              空欄のSNSは公開ページに表示されません。LINE公式は予約CTAにも自動で反映されます。
+            </p>
+          </div>
+        </article>
+
       </div>
     </div>
 
