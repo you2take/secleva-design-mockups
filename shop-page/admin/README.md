@@ -8,27 +8,41 @@
 ## 🌐 本番反映先
 
 ```
-https://secleva.com/owner                  ← 既存：オーナー管理画面トップ
-                                              （LINE Login OAuth 認証必須）
-https://secleva.com/owner/settings         ← 既存：設定 hub
-https://secleva.com/owner/shop-page        ← 新規：店舗ページ管理（本モック群）
-  ├── /template-select                     ← 01_template-select.html
-  ├── /edit                                ← 02_block-edit.html
-  └── /preview                             ← 03_preview.html
+https://secleva.com/owner                       ← 既存：オーナー管理画面トップ
+                                                   （LINE Login OAuth 認証必須）
+https://secleva.com/owner/settings              ← 既存：設定 hub
+https://secleva.com/owner/settings/shop-lp      ← 新規：店舗ページ（本モック群がここに入る）
+  ├── ?step=template                            ← 01_template-select.html 相当
+  ├── ?step=edit                                ← 02_block-edit.html 相当（デフォルトstep）
+  └── ?step=preview                             ← 03_preview.html 相当
 ```
+
+サブルートはクエリで分岐 or `/shop-lp/template` `/shop-lp/edit` `/shop-lp/preview` のパス分岐どちらでも可（実装側で選択）。
 
 ### 認証
 - `/owner` 階層は **LINE Login（LINE OAuth v2.1）** で保護
 - 未認証時は `https://access.line.me/oauth2/v2.1/login?...` にリダイレクト
 - 本モックは認証後の状態（ログイン済み）を前提
 
+### 前提条件（オンボーディング完了状態）
+本モックUIが動く前提として、以下が **`https://secleva.com/apply` のサポート対応**で完了済み：
+
+1. オーナーが Secleva サポート LINE に友だち追加（`/apply`の Step 1）
+2. 店舗情報 3 項目を LINE で返送（業種・店舗名・住所など）
+3. **Secleva サポート運営側が LINE 公式アカウントを開設・設定**（オーナー作業不要）
+4. 準備完了メール → オーナーは管理画面（`/owner`）にログイン
+5. ここで本モックの UI（`/owner/settings/shop-lp`）が触れる状態
+
+→ **LINE 公式アカウントの開設は Secleva サポートが代行する**前提なので、Block 7「SNSリンク」の `LINE公式` URL は **デフォルトで運営が事前入力**しておく運用想定。オーナーはあとから自分のSNSを追加するだけ。
+
 ### 公開ページとの関係
 | URL | 用途 | 認証 |
 |---|---|---|
 | `secleva.com/SHOP-{id}` | 店舗ページ（一般公開・MEO 対象） | なし |
+| `secleva.com/apply` | 申込フロー（サポート対応） | なし |
 | `secleva.com/owner` | オーナー管理画面トップ | LINE Login |
-| `secleva.com/owner/shop-page/edit` | 本モック（編集UI） | LINE Login |
-| `secleva.com/owner/settings` | メニュー管理・店舗情報など本流設定 | LINE Login |
+| `secleva.com/owner/settings/shop-lp` | 本モック（店舗ページ編集） | LINE Login |
+| `secleva.com/owner/settings/menus` | メニュー管理（料金・追加削除） | LINE Login |
 
 ---
 
@@ -242,9 +256,11 @@ async function copyShopUrl() {
 
 ## 📋 マイグレーション TODO（本番取り込み時）
 
-- [ ] `/owner` 既存ナビに「店舗ページ」項目を新設（リンク先：`/owner/shop-page/template-select`）
-- [ ] `/owner/shop-page/` 配下に 3 ルート（template-select / edit / preview）を実装
+- [ ] `/owner/settings` 既存ナビに「店舗ページ（shop-lp）」項目を新設
+- [ ] `/owner/settings/shop-lp` 配下に 3 ステップ（template / edit / preview）を実装
 - [ ] LINE Login OAuth ガードを継承（既存の `/owner` 認証ミドルウェア）
+- [ ] Block 7 SNSリンク：LINE公式URLをサポート運営が `/apply` 完了時に事前入力する運用に組み込み（オーナー側は閲覧のみ or 上書き可）
+- [ ] 申込（`/apply`）→ 開通通知メールに `/owner/settings/shop-lp` の直リンクを含める
 - [ ] 各HTMLの Tailwind CDN を本流のビルドに統合
 - [ ] 画像パス `../../branding/dummy/default/` を本番アセットCDNに差し替え
 - [ ] JS（template-card 選択切替、modal開閉、メニュー写真state切替）を本流のフロントフレームワーク（React/Vue 等）に書き換え
