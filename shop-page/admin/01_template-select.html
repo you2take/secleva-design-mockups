@@ -25,14 +25,14 @@
         .touch-active { transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.1s ease; }
         .touch-active:active { transform: scale(0.98); opacity: 0.6; }
         .template-card { transition: all 0.2s ease; }
-        .template-card__check-selected { display: none; flex-direction: column; align-items: center; justify-content: center; }
-        .template-card__check-empty { display: flex; align-items: center; justify-content: center; }
+        .template-card__check-selected { display: none; align-items: center; justify-content: center; gap: 4px; }
+        .template-card__check-empty { display: inline-flex; align-items: center; justify-content: center; }
         .template-card--selected { border-color: #06C755; box-shadow: 0 0 0 2px #06C755 inset, 0 6px 16px -4px rgba(6, 199, 85, 0.18); }
-        .template-card--selected .template-card__check-selected { display: flex; }
+        .template-card--selected .template-card__check-selected { display: inline-flex; }
         .template-card--selected .template-card__check-empty { display: none; }
+        .template-card__select-btn-label::before { content: 'このテンプレートを選ぶ'; }
         .template-card--selected .template-card__select-btn { background-color: #06C755; color: white; border-color: #06C755; }
         .template-card--selected .template-card__select-btn-label::before { content: '選択中'; }
-        .template-card .template-card__select-btn-label::before { content: 'このテンプレートを選ぶ'; }
         /* Preview modal */
         .preview-modal { display: none; }
         .preview-modal[open] { display: flex; }
