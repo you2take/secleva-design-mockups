@@ -9,6 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Cropper.js: X風の画像クロップモーダル用 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
   <script>
     tailwind.config = {
       theme: { extend: { fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] }, colors: { line: '#06C755' } } }
@@ -48,16 +51,16 @@
     .shop-block__off-badge { display: none; }
     .shop-block--disabled .shop-block__off-badge { display: inline-flex; }
 
-    /* 表示位置プリセットボタン */
-    .position-preset {
+    /* カスタムタグ追加先トグル */
+    .tag-target-toggle {
       background-color: #ffffff;
       border: 1px solid #e4e4e7;
-      color: #3f3f46;
+      color: #71717a;
       transition: all 0.15s ease;
     }
-    .position-preset[data-active="true"] {
+    .tag-target-toggle[data-active="true"] {
       background-color: rgba(6, 199, 85, 0.1);
-      border: 2px solid var(--color-line);
+      border: 1.5px solid var(--color-line);
       color: var(--color-line);
     }
 
@@ -144,48 +147,27 @@
             </div>
           </div>
           <div class="mt-3 pt-3 border-t border-zinc-100">
-            <div class="relative w-full h-[160px] rounded-lg border-2 border-dashed border-zinc-300 bg-zinc-50 overflow-hidden">
-              <img src="../../branding/dummy/default/00_hero.webp" alt="デフォルトメインビジュアル" class="absolute inset-0 w-full h-full object-cover" data-position-target style="object-position: 50% 50%;">
+            <button type="button" class="relative w-full h-[160px] rounded-lg border-2 border-dashed border-zinc-300 bg-zinc-50 overflow-hidden text-left touch-active" data-upload-trigger data-target="#img-main-visual" data-aspect="1.7778">
+              <img id="img-main-visual" src="../../branding/dummy/default/00_hero.webp" alt="デフォルトメインビジュアル" class="absolute inset-0 w-full h-full object-cover">
               <div class="absolute inset-0 bg-gradient-to-t from-zinc-900/40 via-zinc-900/0 to-zinc-900/0"></div>
               <div class="absolute top-2 left-2 inline-flex items-center h-6 px-2 rounded bg-zinc-900/70 backdrop-blur text-white text-[10px] font-bold gap-1 leading-none">
                 <i class="ph ph-info-fill text-[12px]"></i>
                 デフォルト表示中
               </div>
-              <button class="absolute top-2 right-2 inline-flex items-center h-7 px-3 rounded bg-white/95 border border-zinc-200 text-[12px] font-bold text-line shadow-sm gap-1 leading-none">
+              <span class="absolute top-2 right-2 inline-flex items-center h-7 px-3 rounded bg-white/95 border border-zinc-200 text-[12px] font-bold text-line shadow-sm gap-1 leading-none">
                 <i class="ph ph-upload text-[13px]"></i>
                 写真を選ぶ
-              </button>
+              </span>
               <div class="absolute bottom-2 left-2 right-2">
                 <div class="inline-flex items-center px-2.5 h-6 bg-white/90 backdrop-blur rounded gap-1 text-[11px] font-medium text-zinc-700 leading-none">
                   <i class="ph ph-cursor-click text-[12px]"></i>
                   タップして写真を選ぶ
                 </div>
               </div>
-            </div>
-
-            <!-- 表示位置調整UI -->
-            <div class="mt-3 bg-line/5 border border-line/30 rounded-lg p-3" data-position-block>
-              <p class="text-[12px] font-bold text-zinc-800 mb-1 flex items-center gap-1.5">
-                <i class="ph-fill ph-crop text-line text-[14px]"></i>
-                写真の見える範囲を調整
-              </p>
-              <p class="text-[11px] text-zinc-500 mb-3 leading-snug">店舗の顔・看板など、見せたい部分が中央に来るよう動かしましょう</p>
-              <div class="grid grid-cols-3 gap-2 mb-3">
-                <button data-position-preset="0" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">上寄せ</button>
-                <button data-position-preset="50" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset" data-active="true">真ん中</button>
-                <button data-position-preset="100" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">下寄せ</button>
-              </div>
-              <div class="flex items-center gap-2">
-                <i class="ph ph-arrow-line-up text-zinc-400 text-[14px] shrink-0"></i>
-                <input type="range" min="0" max="100" value="50" step="1" data-position-slider class="flex-1 min-w-0 h-2 bg-zinc-200 rounded-full appearance-none accent-line cursor-pointer">
-                <i class="ph ph-arrow-line-down text-zinc-400 text-[14px] shrink-0"></i>
-              </div>
-              <p class="text-[11px] text-zinc-500 mt-2 text-center">上下位置：<span data-position-value class="font-bold text-zinc-700">50</span>%</p>
-            </div>
-
+            </button>
             <p class="mt-2 text-[12px] text-zinc-500 leading-snug flex items-start gap-1.5">
               <i class="ph-fill ph-info text-line text-[14px] shrink-0 mt-[1px]"></i>
-              <span>写真未設定の場合、上のデフォルト画像が公開ページに反映されます。あとから差し替え可能。</span>
+              <span>写真を選ぶと、見える範囲を調整できる画面が出ます（X 風のクロップ画面）。確定で公開ページに反映。未設定時はデフォルト画像が使われます。</span>
             </p>
           </div>
         </article>
@@ -207,41 +189,26 @@
             </div>
           </div>
           <div class="mt-3 pt-3 border-t border-zinc-100 space-y-3">
-            <!-- アップ済みプレビュー（サンプル） -->
+            <!-- アップ済みプレビュー＋変更ボタン -->
             <div class="flex items-center gap-3">
               <div class="w-20 h-20 rounded-full bg-white border-2 border-line/30 shadow-sm overflow-hidden shrink-0">
-                <img src="../../branding/dummy/shop-logos/T1_clean.webp" alt="店舗ロゴ" class="w-full h-full object-cover" data-position-target style="object-position: 50% 50%;">
+                <img id="img-logo" src="../../branding/dummy/shop-logos/T1_clean.webp" alt="店舗ロゴ" class="w-full h-full object-cover">
               </div>
               <div class="flex-1 min-w-0">
                 <p class="text-[12px] text-zinc-500 leading-tight mb-0.5">現在のロゴ</p>
                 <p class="text-[13px] font-bold text-zinc-800 truncate">shop-logo.webp</p>
                 <p class="text-[11px] text-zinc-400 leading-tight">ヒーロー円形ロゴ＋ファビコンに自動反映</p>
               </div>
-              <button class="h-9 px-3 bg-white border border-zinc-200 rounded-md text-[12px] font-bold text-zinc-700 shrink-0 inline-flex items-center gap-1 touch-active">
+              <button type="button" class="h-9 px-3 bg-white border border-zinc-200 rounded-md text-[12px] font-bold text-zinc-700 shrink-0 inline-flex items-center gap-1 touch-active" data-upload-trigger data-target="#img-logo" data-aspect="1">
                 <i class="ph ph-pencil-simple text-[13px]"></i>
                 変更
               </button>
             </div>
 
-            <!-- 表示位置調整UI（円形クロップ用：上下スライダーで余白調整） -->
-            <div class="bg-line/5 border border-line/30 rounded-lg p-3" data-position-block>
-              <p class="text-[12px] font-bold text-zinc-800 mb-1 flex items-center gap-1.5">
-                <i class="ph-fill ph-crop text-line text-[14px]"></i>
-                ロゴの見える範囲を調整
-              </p>
-              <p class="text-[11px] text-zinc-500 mb-3 leading-snug">円形にトリミングしたとき、ロゴの中心がずれていたら動かしましょう</p>
-              <div class="grid grid-cols-3 gap-2 mb-3">
-                <button data-position-preset="0" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">上寄せ</button>
-                <button data-position-preset="50" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset" data-active="true">真ん中</button>
-                <button data-position-preset="100" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">下寄せ</button>
-              </div>
-              <div class="flex items-center gap-2">
-                <i class="ph ph-arrow-line-up text-zinc-400 text-[14px] shrink-0"></i>
-                <input type="range" min="0" max="100" value="50" step="1" data-position-slider class="flex-1 min-w-0 h-2 bg-zinc-200 rounded-full appearance-none accent-line cursor-pointer">
-                <i class="ph ph-arrow-line-down text-zinc-400 text-[14px] shrink-0"></i>
-              </div>
-              <p class="text-[11px] text-zinc-500 mt-2 text-center">上下位置：<span data-position-value class="font-bold text-zinc-700">50</span>%</p>
-            </div>
+            <p class="text-[11px] text-zinc-500 leading-snug flex items-start gap-1.5">
+              <i class="ph-fill ph-info text-line text-[12px] shrink-0 mt-[1px]"></i>
+              <span>「変更」を押すと写真を選び、見える範囲（円形）を調整して保存できます。</span>
+            </p>
           </div>
         </article>
 
@@ -341,19 +308,33 @@
               </span>
             </div>
 
-            <!-- カスタムタグ追加 -->
+            <!-- カスタムタグ追加（選択中 or 候補に） -->
             <p class="text-[11px] text-zinc-500 font-bold mb-2">オリジナルタグを追加（最大15文字）</p>
-            <div class="flex gap-2">
+            <div class="flex gap-2 mb-2">
               <input type="text" placeholder="例：着替え貸出あり" maxlength="15" data-custom-tag-input class="flex-1 min-w-0 h-10 px-3 bg-zinc-50 border border-zinc-200 rounded-lg text-[14px] text-zinc-800 outline-none focus:border-line">
               <button data-add-custom-tag class="h-10 px-4 bg-line text-white rounded-lg text-[13px] font-bold inline-flex items-center gap-1 shrink-0 whitespace-nowrap">
                 <i class="ph ph-plus text-[16px]"></i>
                 追加
               </button>
             </div>
+            <div class="flex gap-2 mb-2">
+              <button data-add-custom-as="selected" data-active="true" class="flex-1 h-8 text-[11px] font-bold rounded-md touch-active tag-target-toggle">
+                <i class="ph ph-check-circle text-[12px] align-text-bottom mr-0.5"></i>
+                すぐ選択中に
+              </button>
+              <button data-add-custom-as="suggested" class="flex-1 h-8 text-[11px] font-bold rounded-md touch-active tag-target-toggle">
+                <i class="ph ph-tag text-[12px] align-text-bottom mr-0.5"></i>
+                候補リストに足す
+              </button>
+            </div>
 
             <p class="mt-4 text-[12px] text-zinc-500 font-medium flex items-center gap-1.5">
               <i class="ph-fill ph-info text-line text-[14px]"></i>
               <span class="text-zinc-700"><span class="font-bold text-line" data-tag-counter>5個</span>選択中・<span class="font-bold">最大10個</span>まで</span>
+            </p>
+            <p class="mt-1 text-[11px] text-zinc-400 leading-snug">
+              <i class="ph ph-arrow-counter-clockwise text-[12px] align-text-bottom"></i>
+              初期表示の候補タグは、ページをリロードすると元に戻ります（モック挙動）
             </p>
 
             <!-- トースト：最大件数到達／重複時に表示 -->
@@ -423,7 +404,7 @@
               </button>
             </div>
 
-            <!-- 選択中の写真を編集（大プレビュー＋位置調整） -->
+            <!-- 選択中の写真を編集（大プレビュー） -->
             <div class="mt-3 bg-zinc-50 border border-zinc-200 rounded-lg p-3 space-y-3" data-gallery-editor>
               <div class="flex items-center gap-2">
                 <i class="ph-fill ph-pencil-simple text-line text-[14px]"></i>
@@ -433,32 +414,17 @@
               </div>
               <!-- 大プレビュー -->
               <div class="relative w-full aspect-square max-h-[200px] rounded-lg overflow-hidden bg-zinc-100 border border-zinc-200">
-                <img src="../../branding/dummy/default/01_plants.webp" alt="" class="w-full h-full object-cover" data-position-target data-gallery-preview style="object-position: 50% 50%;">
+                <img id="img-gallery-current" src="../../branding/dummy/default/01_plants.webp" alt="" class="w-full h-full object-cover" data-gallery-preview>
                 <span class="absolute top-2 left-2 inline-flex items-center h-5 px-1.5 rounded bg-zinc-900/75 text-white text-[10px] font-bold gap-1 leading-none">
                   <i class="ph-fill ph-info text-[11px]"></i>
                   デフォルト
                 </span>
               </div>
-              <!-- 表示位置調整UI -->
-              <div class="bg-line/5 border border-line/30 rounded-lg p-3" data-position-block>
-                <p class="text-[12px] font-bold text-zinc-800 mb-1 flex items-center gap-1.5">
-                  <i class="ph-fill ph-crop text-line text-[14px]"></i>
-                  写真の見える範囲を調整
-                </p>
-                <p class="text-[11px] text-zinc-500 mb-3 leading-snug">サムネをタップで切替・各写真ごとに個別保存されます</p>
-                <div class="grid grid-cols-3 gap-2 mb-3">
-                  <button data-position-preset="0" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">上寄せ</button>
-                  <button data-position-preset="50" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset" data-active="true">真ん中</button>
-                  <button data-position-preset="100" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">下寄せ</button>
-                </div>
-                <div class="flex items-center gap-2">
-                  <i class="ph ph-arrow-line-up text-zinc-400 text-[14px] shrink-0"></i>
-                  <input type="range" min="0" max="100" value="50" step="1" data-position-slider class="flex-1 min-w-0 h-2 bg-zinc-200 rounded-full appearance-none accent-line cursor-pointer">
-                  <i class="ph ph-arrow-line-down text-zinc-400 text-[14px] shrink-0"></i>
-                </div>
-                <p class="text-[11px] text-zinc-500 mt-2 text-center">上下位置：<span data-position-value class="font-bold text-zinc-700">50</span>%</p>
-              </div>
-              <!-- 削除＋並べ替え（編集中サムネ） -->
+              <!-- 1枚を入れ替えるアップロードCTA -->
+              <button type="button" class="w-full h-10 bg-white border-2 border-line text-line rounded-lg text-[13px] font-bold inline-flex items-center justify-center gap-1.5 touch-active" data-upload-trigger data-target="#img-gallery-current" data-aspect="1">
+                <i class="ph ph-upload text-[15px]"></i>
+                この枠の写真を選び直す
+              </button>
               <div class="flex gap-2">
                 <button class="flex-1 h-9 bg-white border border-red-200 text-red-600 rounded-md text-[12px] font-bold inline-flex items-center justify-center gap-1.5 touch-active">
                   <i class="ph ph-trash text-[13px]"></i>
@@ -471,7 +437,7 @@
               </div>
             </div>
 
-            <button class="mt-3 w-full h-10 inline-flex items-center justify-center gap-1.5 bg-white border-2 border-line text-line rounded-lg text-[13px] font-bold leading-none touch-active">
+            <button type="button" class="mt-3 w-full h-10 inline-flex items-center justify-center gap-1.5 bg-white border-2 border-line text-line rounded-lg text-[13px] font-bold leading-none touch-active" data-upload-trigger data-target="#img-gallery-current" data-aspect="1">
               <i class="ph ph-upload text-[16px]"></i>
               自分の写真をアップロード（最大6枚）
             </button>
@@ -539,40 +505,14 @@
               <!-- 展開パネル -->
               <div class="menu-row__panel hidden border-t border-zinc-200 p-3 space-y-3 bg-white">
                 <div class="relative w-full aspect-[5/3] rounded-lg overflow-hidden bg-zinc-100 border border-zinc-200">
-                  <img src="../../branding/dummy/default/menu/01_oil.webp" alt="" class="w-full h-full object-cover" data-position-target style="object-position: 50% 50%;">
+                  <img id="img-menu-1" src="../../branding/dummy/default/menu/01_oil.webp" alt="" class="w-full h-full object-cover">
                   <span class="absolute top-2 left-2 inline-flex items-center h-5 px-1.5 rounded bg-zinc-900/75 text-white text-[10px] font-bold gap-1 leading-none">
                     <i class="ph-fill ph-info text-[11px]"></i>
                     デフォルト表示中
                   </span>
                 </div>
 
-                <!-- 表示位置調整UI（アップロード後 or デフォルト切替後に表示位置を微調整できる） -->
-                <div class="bg-line/5 border border-line/30 rounded-lg p-3" data-position-block>
-                  <p class="text-[12px] font-bold text-zinc-800 mb-1 flex items-center gap-1.5">
-                    <i class="ph-fill ph-crop text-line text-[14px]"></i>
-                    写真の見える範囲を調整
-                  </p>
-                  <p class="text-[11px] text-zinc-500 mb-3 leading-snug">
-                    顔・料理など、見せたい部分が中央に来るよう動かしましょう
-                  </p>
-                  <!-- 3プリセット -->
-                  <div class="grid grid-cols-3 gap-2 mb-3">
-                    <button data-position-preset="0" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">上寄せ</button>
-                    <button data-position-preset="50" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset" data-active="true">真ん中</button>
-                    <button data-position-preset="100" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">下寄せ</button>
-                  </div>
-                  <!-- スライダー -->
-                  <div class="flex items-center gap-2">
-                    <i class="ph ph-arrow-line-up text-zinc-400 text-[14px] shrink-0"></i>
-                    <input type="range" min="0" max="100" value="50" step="1" data-position-slider class="flex-1 min-w-0 h-2 bg-zinc-200 rounded-full appearance-none accent-line cursor-pointer">
-                    <i class="ph ph-arrow-line-down text-zinc-400 text-[14px] shrink-0"></i>
-                  </div>
-                  <p class="text-[11px] text-zinc-500 mt-2 text-center">
-                    上下位置：<span data-position-value class="font-bold text-zinc-700">50</span>%
-                  </p>
-                </div>
-
-                <button class="w-full h-11 bg-line text-white rounded-lg text-[13px] font-bold inline-flex items-center justify-center gap-2 leading-none touch-active">
+                <button type="button" class="w-full h-11 bg-line text-white rounded-lg text-[13px] font-bold inline-flex items-center justify-center gap-2 leading-none touch-active" data-upload-trigger data-target="#img-menu-1" data-aspect="1.6667">
                   <i class="ph ph-upload-simple text-[16px]"></i>
                   自分の写真をアップロード
                 </button>
@@ -626,34 +566,14 @@
               </button>
               <div class="menu-row__panel hidden border-t border-zinc-200 p-3 space-y-3 bg-white">
                 <div class="relative w-full aspect-[5/3] rounded-lg overflow-hidden bg-zinc-100 border border-zinc-200">
-                  <img src="../../branding/dummy/default/menu/02_aroma.webp" alt="" class="w-full h-full object-cover" data-position-target style="object-position: 50% 50%;">
+                  <img id="img-menu-2" src="../../branding/dummy/default/menu/02_aroma.webp" alt="" class="w-full h-full object-cover">
                   <span class="absolute top-2 left-2 inline-flex items-center h-5 px-1.5 rounded bg-zinc-900/75 text-white text-[10px] font-bold gap-1 leading-none">
                     <i class="ph-fill ph-info text-[11px]"></i>
                     デフォルト表示中
                   </span>
                 </div>
 
-                <!-- 表示位置調整UI -->
-                <div class="bg-line/5 border border-line/30 rounded-lg p-3" data-position-block>
-                  <p class="text-[12px] font-bold text-zinc-800 mb-1 flex items-center gap-1.5">
-                    <i class="ph-fill ph-crop text-line text-[14px]"></i>
-                    写真の見える範囲を調整
-                  </p>
-                  <p class="text-[11px] text-zinc-500 mb-3 leading-snug">顔・料理など、見せたい部分が中央に来るよう動かしましょう</p>
-                  <div class="grid grid-cols-3 gap-2 mb-3">
-                    <button data-position-preset="0" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">上寄せ</button>
-                    <button data-position-preset="50" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset" data-active="true">真ん中</button>
-                    <button data-position-preset="100" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">下寄せ</button>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <i class="ph ph-arrow-line-up text-zinc-400 text-[14px] shrink-0"></i>
-                    <input type="range" min="0" max="100" value="50" step="1" data-position-slider class="flex-1 min-w-0 h-2 bg-zinc-200 rounded-full appearance-none accent-line cursor-pointer">
-                    <i class="ph ph-arrow-line-down text-zinc-400 text-[14px] shrink-0"></i>
-                  </div>
-                  <p class="text-[11px] text-zinc-500 mt-2 text-center">上下位置：<span data-position-value class="font-bold text-zinc-700">50</span>%</p>
-                </div>
-
-                <button class="w-full h-11 bg-line text-white rounded-lg text-[13px] font-bold inline-flex items-center justify-center gap-2 leading-none touch-active">
+                <button type="button" class="w-full h-11 bg-line text-white rounded-lg text-[13px] font-bold inline-flex items-center justify-center gap-2 leading-none touch-active" data-upload-trigger data-target="#img-menu-2" data-aspect="1.6667">
                   <i class="ph ph-upload-simple text-[16px]"></i>
                   自分の写真をアップロード
                 </button>
@@ -707,34 +627,14 @@
               </button>
               <div class="menu-row__panel hidden border-t border-zinc-200 p-3 space-y-3 bg-white">
                 <div class="relative w-full aspect-[5/3] rounded-lg overflow-hidden bg-zinc-100 border border-zinc-200">
-                  <img src="../../branding/dummy/default/menu/04_stones.webp" alt="" class="w-full h-full object-cover" data-position-target style="object-position: 50% 50%;">
+                  <img id="img-menu-3" src="../../branding/dummy/default/menu/04_stones.webp" alt="" class="w-full h-full object-cover">
                   <span class="absolute top-2 left-2 inline-flex items-center h-5 px-1.5 rounded bg-zinc-900/75 text-white text-[10px] font-bold gap-1 leading-none">
                     <i class="ph-fill ph-info text-[11px]"></i>
                     デフォルト表示中
                   </span>
                 </div>
 
-                <!-- 表示位置調整UI -->
-                <div class="bg-line/5 border border-line/30 rounded-lg p-3" data-position-block>
-                  <p class="text-[12px] font-bold text-zinc-800 mb-1 flex items-center gap-1.5">
-                    <i class="ph-fill ph-crop text-line text-[14px]"></i>
-                    写真の見える範囲を調整
-                  </p>
-                  <p class="text-[11px] text-zinc-500 mb-3 leading-snug">顔・料理など、見せたい部分が中央に来るよう動かしましょう</p>
-                  <div class="grid grid-cols-3 gap-2 mb-3">
-                    <button data-position-preset="0" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">上寄せ</button>
-                    <button data-position-preset="50" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset" data-active="true">真ん中</button>
-                    <button data-position-preset="100" class="h-9 text-[12px] font-bold rounded-md touch-active position-preset">下寄せ</button>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <i class="ph ph-arrow-line-up text-zinc-400 text-[14px] shrink-0"></i>
-                    <input type="range" min="0" max="100" value="50" step="1" data-position-slider class="flex-1 min-w-0 h-2 bg-zinc-200 rounded-full appearance-none accent-line cursor-pointer">
-                    <i class="ph ph-arrow-line-down text-zinc-400 text-[14px] shrink-0"></i>
-                  </div>
-                  <p class="text-[11px] text-zinc-500 mt-2 text-center">上下位置：<span data-position-value class="font-bold text-zinc-700">50</span>%</p>
-                </div>
-
-                <button class="w-full h-11 bg-line text-white rounded-lg text-[13px] font-bold inline-flex items-center justify-center gap-2 leading-none touch-active">
+                <button type="button" class="w-full h-11 bg-line text-white rounded-lg text-[13px] font-bold inline-flex items-center justify-center gap-2 leading-none touch-active" data-upload-trigger data-target="#img-menu-3" data-aspect="1.6667">
                   <i class="ph ph-upload-simple text-[16px]"></i>
                   自分の写真をアップロード
                 </button>
@@ -962,6 +862,31 @@
 
   </main>
 
+  <!-- 共通アップロード input（ネイティブピッカー起動用、hidden） -->
+  <input type="file" id="upload-input" accept="image/*" class="hidden">
+
+  <!-- X風 クロップモーダル（写真選択後に開く） -->
+  <div id="crop-modal" class="fixed inset-0 z-[100] hidden flex flex-col bg-black" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="crop-title">
+    <!-- ヘッダ -->
+    <div class="h-14 px-4 flex items-center justify-between text-white shrink-0 bg-black">
+      <button id="crop-cancel" type="button" class="text-[14px] font-bold touch-active px-2 py-2 -ml-2">キャンセル</button>
+      <p id="crop-title" class="text-[14px] font-bold">写真の見える範囲</p>
+      <button id="crop-confirm" type="button" class="text-[14px] font-bold text-line touch-active px-2 py-2 -mr-2">確定</button>
+    </div>
+    <!-- クロップ領域 -->
+    <div class="flex-1 relative bg-black overflow-hidden flex items-center justify-center">
+      <!-- 重要：img タグは Cropper.js 用にスタイル制約なしで配置 -->
+      <img id="crop-image" alt="クロップ対象" class="block max-w-full">
+    </div>
+    <!-- フッタ補足 -->
+    <div class="px-4 py-4 bg-black shrink-0">
+      <p class="text-center text-white/80 text-[12px] flex items-center justify-center gap-1.5">
+        <i class="ph ph-hand-tap text-[14px]"></i>
+        指で動かす・ピンチで拡大できます
+      </p>
+    </div>
+  </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // ─────────────────────────────────────────
@@ -1077,26 +1002,51 @@
         }
       });
 
-      // オリジナルタグ追加
+      // 追加先（選択中 / 候補）の切替トグル
+      const targetToggles = document.querySelectorAll('[data-add-custom-as]');
+      let addAsTarget = 'selected'; // 'selected' or 'suggested'
+      targetToggles.forEach(btn => {
+        btn.addEventListener('click', () => {
+          addAsTarget = btn.dataset.addCustomAs;
+          targetToggles.forEach(b => {
+            b.dataset.active = (b === btn) ? 'true' : 'false';
+          });
+        });
+      });
+
+      const getSuggestedLabels = () => Array.from(suggestedList?.querySelectorAll('button[data-add-suggested]') || [])
+        .map(b => b.textContent.trim());
+
+      // オリジナルタグ追加（選択中 or 候補のどちらに足すか分岐）
       const submitCustomTag = () => {
-        if (!customInput || !selectedList) return;
+        if (!customInput) return;
         const label = customInput.value.trim();
         if (!label) return;
         if (label.length > 15) {
           showToast('タグは15文字以内で入力してください');
           return;
         }
-        if (getSelectedLabels().includes(label)) {
-          showToast(`「${label}」はすでに選択中です`);
-          return;
+        if (addAsTarget === 'selected') {
+          if (!selectedList) return;
+          if (getSelectedLabels().includes(label)) {
+            showToast(`「${label}」はすでに選択中です`);
+            return;
+          }
+          if (selectedList.querySelectorAll('span:not(.tag-anim-out)').length >= MAX_TAGS) {
+            showToast(`タグは最大${MAX_TAGS}個まで`);
+            return;
+          }
+          selectedList.appendChild(buildSelectedTag(label));
+          updateCounter();
+        } else {
+          if (!suggestedList) return;
+          if (getSelectedLabels().includes(label) || getSuggestedLabels().includes(label)) {
+            showToast(`「${label}」はすでにあります`);
+            return;
+          }
+          suggestedList.appendChild(buildSuggestedTag(label));
         }
-        if (selectedList.querySelectorAll('span:not(.tag-anim-out)').length >= MAX_TAGS) {
-          showToast(`タグは最大${MAX_TAGS}個まで`);
-          return;
-        }
-        selectedList.appendChild(buildSelectedTag(label));
         customInput.value = '';
-        updateCounter();
       };
       addBtn?.addEventListener('click', submitCustomTag);
       customInput?.addEventListener('keydown', (e) => {
@@ -1136,40 +1086,6 @@
       });
 
       // ─────────────────────────────────────────
-      // 画像 表示位置調整（スライダー + 3プリセット）
-      // Block 1, 2, 4, 5 すべての [data-position-block] に共通適用
-      // ─────────────────────────────────────────
-      document.querySelectorAll('[data-position-block]').forEach(block => {
-        const slider = block.querySelector('[data-position-slider]');
-        const valueEl = block.querySelector('[data-position-value]');
-        const presets = block.querySelectorAll('[data-position-preset]');
-        // スコープ：メニュー行展開時は menu-row__panel、そうでなければ shop-block article
-        const scope = block.closest('.menu-row__panel') || block.closest('.shop-block');
-        const target = scope?.querySelector('[data-position-target]');
-
-        const applyPosition = (val) => {
-          const v = Math.max(0, Math.min(100, Number(val) || 0));
-          if (target) target.style.objectPosition = `50% ${v}%`;
-          if (valueEl) valueEl.textContent = v;
-          if (slider) slider.value = v;
-          presets.forEach(b => {
-            b.dataset.active = String(b.dataset.positionPreset) === String(v) ? 'true' : 'false';
-          });
-          // ギャラリーの場合：現在選択中サムネに値を保存
-          const galleryThumbs = scope?.querySelector('[data-gallery-thumbs]');
-          if (galleryThumbs) {
-            const activeThumb = galleryThumbs.querySelector('[data-gallery-thumb][data-active="true"]');
-            if (activeThumb) activeThumb.dataset.positionY = v;
-          }
-        };
-
-        slider?.addEventListener('input', (e) => applyPosition(e.target.value));
-        presets.forEach(b => {
-          b.addEventListener('click', () => applyPosition(b.dataset.positionPreset));
-        });
-      });
-
-      // ─────────────────────────────────────────
       // Block 4: ギャラリー サムネタップで大プレビュー切替
       // ─────────────────────────────────────────
       document.querySelectorAll('[data-gallery-thumbs]').forEach(thumbsContainer => {
@@ -1177,29 +1093,22 @@
         const editor = article?.querySelector('[data-gallery-editor]');
         const preview = editor?.querySelector('[data-gallery-preview]');
         const label = editor?.querySelector('[data-gallery-current-label]');
-        const positionBlock = editor?.querySelector('[data-position-block]');
-        const slider = positionBlock?.querySelector('[data-position-slider]');
 
         thumbsContainer.addEventListener('click', (e) => {
           const btn = e.target.closest('[data-gallery-thumb]');
           if (!btn) return;
           const idx = Number(btn.dataset.galleryThumb);
           const src = btn.dataset.src;
-          const savedY = Number(btn.dataset.positionY ?? 50);
 
-          // 全サムネのactive状態を更新
           thumbsContainer.querySelectorAll('[data-gallery-thumb]').forEach(b => {
             const isActive = b === btn;
             b.dataset.active = isActive ? 'true' : 'false';
-            // 視覚切替：active = LINE緑border + チェックマーク表示、非active = zinc border
             b.classList.toggle('border-2', isActive);
             b.classList.toggle('border-line', isActive);
             b.classList.toggle('border', !isActive);
             b.classList.toggle('border-zinc-200', !isActive);
-            // チェックマーク（中央オーバーレイ）
             const check = b.querySelector('.absolute.inset-0');
             if (check) check.classList.toggle('hidden', !isActive);
-            // 番号バッジの色
             const numBadge = b.querySelector('span:last-child');
             if (numBadge) {
               numBadge.classList.toggle('bg-line', isActive);
@@ -1207,15 +1116,108 @@
             }
           });
 
-          // 大プレビューの画像とラベル更新
           if (preview) preview.src = src;
           if (label) label.textContent = `${idx + 1}枚目`;
-          // 位置スライダーをサムネの保存値に同期 → input イベント発火で位置調整UIも追従
-          if (slider) {
-            slider.value = savedY;
-            slider.dispatchEvent(new Event('input', { bubbles: true }));
-          }
         });
+      });
+
+      // ─────────────────────────────────────────
+      // 写真アップロード → クロップモーダル (Cropper.js)
+      // ─────────────────────────────────────────
+      const fileInput = document.getElementById('upload-input');
+      const cropModal = document.getElementById('crop-modal');
+      const cropImage = document.getElementById('crop-image');
+      const cropCancel = document.getElementById('crop-cancel');
+      const cropConfirm = document.getElementById('crop-confirm');
+      const cropTitle = document.getElementById('crop-title');
+      let cropper = null;
+      let activeUploadCtx = null;
+
+      const openCropModal = () => {
+        cropModal.classList.remove('hidden');
+        cropModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      };
+      const closeCropModal = () => {
+        cropModal.classList.add('hidden');
+        cropModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (cropper) { cropper.destroy(); cropper = null; }
+        cropImage.src = '';
+        if (fileInput) fileInput.value = '';
+      };
+
+      document.querySelectorAll('[data-upload-trigger]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const targetSel = btn.dataset.target;
+          const aspect = Number(btn.dataset.aspect || 1);
+          const target = targetSel ? document.querySelector(targetSel) : null;
+          if (!target || !fileInput) return;
+          activeUploadCtx = { target, aspect, label: btn.dataset.label || '写真の見える範囲' };
+          if (cropTitle) cropTitle.textContent = activeUploadCtx.label;
+          fileInput.click();
+        });
+      });
+
+      fileInput?.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        if (!file.type.startsWith('image/')) {
+          alert('画像ファイルを選んでください');
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = () => {
+          cropImage.src = reader.result;
+          openCropModal();
+          if (cropper) cropper.destroy();
+          // Cropper初期化（画像load後に確実に動く）
+          cropImage.onload = () => {
+            cropper = new Cropper(cropImage, {
+              aspectRatio: activeUploadCtx?.aspect || 1,
+              viewMode: 1,
+              autoCropArea: 1,
+              dragMode: 'move',
+              guides: false,
+              center: true,
+              background: false,
+              cropBoxResizable: false,
+              cropBoxMovable: false,
+              toggleDragModeOnDblclick: false,
+              responsive: true,
+              restore: false,
+            });
+          };
+        };
+        reader.readAsDataURL(file);
+      });
+
+      cropCancel?.addEventListener('click', closeCropModal);
+
+      cropConfirm?.addEventListener('click', () => {
+        if (!cropper || !activeUploadCtx?.target) {
+          closeCropModal();
+          return;
+        }
+        const canvas = cropper.getCroppedCanvas({
+          maxWidth: 1600,
+          maxHeight: 1600,
+          imageSmoothingQuality: 'high',
+        });
+        if (canvas) {
+          const dataUrl = canvas.toDataURL('image/webp', 0.85);
+          activeUploadCtx.target.src = dataUrl;
+          // Block 4 大プレビューの場合 → 同じサムネにも反映
+          if (activeUploadCtx.target.id === 'img-gallery-current') {
+            const activeThumb = document.querySelector('[data-gallery-thumb][data-active="true"]');
+            const thumbImg = activeThumb?.querySelector('img');
+            if (thumbImg) thumbImg.src = dataUrl;
+            // バッジ「DEFAULT」→「マイ写真」風表示は v2
+          }
+        }
+        closeCropModal();
       });
     });
   </script>
